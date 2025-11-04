@@ -1,0 +1,18 @@
+
+# Development environment with PostgreSQL database
+
+services:
+  database:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: sgedd_user
+      POSTGRES_PASSWORD: sgedd_password
+      POSTGRES_DB: sgedd_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql
+
+volumes:
+  db_data:
