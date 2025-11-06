@@ -1,0 +1,102 @@
+"use client";
+
+import Link from "next/link";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage
+} from "../ui/form";
+
+import {z} from "zod";
+import { useForm } from "react-hook-form";
+import {zodResolver} from "@hookform/resolvers/zod"
+
+const formSchema = z.object({
+  email: z.email("In  troduce una dirección de correo válida"),
+  password: z.string()
+    .min(6, "La contraseña debe contener al menos 6 caracteres")
+    .regex(/[a-zA-Z]/, "Debe tener al menos un caracter")
+    .regex(/[0-9]/, "Debe tener al menos un número")
+})
+
+export default function LoginForm() {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+      password: ""
+    }
+  });
+
+  const handleSubmit = (values: z.infer<typeof formSchema>) => {
+    console.log(values);
+  }
+
+  return (
+    <Form {...form}>
+      <form className="w-full space-y-3" onSubmit={form.handleSubmit(handleSubmit)}>
+        <FormField 
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Correo</FormLabel>
+              <FormControl>
+                <Input
+                  type="email"
+                  {...field}
+                  className="shadow-2xl focus:ring-2 focus:ring-primary"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="password"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Contraseña</FormLabel>
+              <FormControl>
+                <Input
+                  type="password"
+                  {...field}
+                  className="shadow-2xl focus:ring-2 focusring-primary"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <div className="text-center">
+          <Button
+            type="submit"
+            className="bg-primary w-full">
+            Iniciar sesión
+          </Button>
+
+          <Link
+            href="/forgotpassword"
+            className="block mt-3 text-sm font-semibold text-foreground hover:underline"
+          >
+            ¿Olvidaste tu contraseña?
+          </Link>
+
+          <Link
+            href="/register"
+            className="block mt-3 text-sm font-semibold text-foreground hover:underline"
+          >
+            ¿No tienes una cuenta aún? Registrate
+          </Link>
+        </div>
+      </form>
+    </Form>
+  );
+}
