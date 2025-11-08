@@ -1,3 +1,4 @@
+"use client";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,19 +11,21 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { Bell, UserRound, LogOut } from "lucide-react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 export default function Header({ rol }: { rol: string }) {
+const pathname = usePathname();
   return (
     <>
-        <div className="h-1/6">
+        <div className="w-full">
             <div className="h-2/3 bg-primary flex justify-between px-5 py-3">
                 <div className="flex w-1/6 min-w-[175px] gap-4 items-center">
-                    <div className="bg-primary-foreground w-2/3 h-full rounded-2xl flex items-center justify-center">
-                        <Image className="p-3" src={"/img/logo-sgedd.png"} alt="SGEDD" width={150} height={50}></Image>
+                    <div className="bg-primary-foreground w-2/3 rounded-2xl flex items-center justify-center">
+                        <Image src={"/img/logo-sgedd.png"} alt="SGEDD" width={100} height={100}></Image>
                     </div>
                     <h1 className="font-bold text-2xl w-1/3 text-background">SGEDD</h1>
                 </div>
-                <div className="flex items-center justify-end gap-2 flex-wrap h-full">
+                <div className="flex items-center justify-end gap-2 flex-wrap ">
                     <h2 className="text-2xl text-background text-center">{rol}</h2>
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
@@ -77,12 +80,20 @@ export default function Header({ rol }: { rol: string }) {
             <div className="h-1/3 bg-sidebar-border flex justify-between">
                 <div className="flex items-center justify-start gap-5 px-8 h-full">
                     <Link href="/dashboard">
-                        <Button variant="ghost" className="rounded-2xl">
+                        <Button variant="ghost" className={`rounded-2xl ${
+                            pathname === "/dashboard"
+                            ? "bg-accent/50"
+                            : "hover:bg-primary"
+                        }`}>
                             <p>Inicio</p>
                         </Button>
                     </Link>
-                    <Link href="#">
-                        <Button variant="ghost" className="rounded-2xl">
+                    <Link href="/dashboard/periodo">
+                        <Button variant="ghost" className={`rounded-2xl ${
+                            pathname === "/dashboard/periodo"
+                            ? "bg-accent/50"
+                            : "hover:bg-primary"
+                        }`}>
                             <p>Período</p>
                         </Button>
                     </Link>
