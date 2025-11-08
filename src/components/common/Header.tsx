@@ -76,7 +76,7 @@ export default function Header({ rol }: { rol: string }) {
             </div>
             <div className="h-1/3 bg-sidebar-border flex justify-between">
                 <div className="flex items-center justify-start gap-5 px-8 h-full">
-                    <Link href="#">
+                    <Link href="/dashboard">
                         <Button variant="ghost" className="rounded-2xl">
                             <p>Inicio</p>
                         </Button>
