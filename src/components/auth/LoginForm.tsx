@@ -50,7 +50,7 @@ export default function LoginForm() {
                 <Input
                   type="email"
                   {...field}
-                  className="shadow-2xl focus:ring-2 focus:ring-primary"
+                  className="shadow-2xl"
                 />
               </FormControl>
               <FormMessage />
@@ -67,7 +67,7 @@ export default function LoginForm() {
                 <Input
                   type="password"
                   {...field}
-                  className="shadow-2xl focus:ring-2 focusring-primary"
+                  className="shadow-2xl"
                 />
               </FormControl>
               <FormMessage />
