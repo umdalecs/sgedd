@@ -1,5 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Usuario, UsuarioDocente } from "@/types/usuario";
+import { Button } from "../ui/button";
+import { CircleUserRound } from "lucide-react";
 
 type Props = {
   usuario: Usuario | UsuarioDocente;
@@ -18,7 +20,11 @@ export default function DashboardCards({ usuario }: Props) {
           <CardContent className="flex-1 flex items-center justify-center gap-0">
             <div className="flex w-full h-full">
               <div className="w-1/3 flex items-center justify-center">
-                <div className="w-32 h-32 bg-sidebar-border rounded-full flex items-center justify-center"></div>
+                <div className="w-32 h-32 bg-sidebar-border rounded-full flex items-center justify-center">
+                  <Button variant="ghost" className="size-full rounded-full">
+                    <CircleUserRound className="text-primary size-full" />
+                  </Button>
+                </div>
               </div>
               <div className="w-2/3 flex flex-col justify-center gap-8">
                 <div className="flex gap-2">
