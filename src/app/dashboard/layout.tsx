@@ -1,7 +1,11 @@
-import DashboardCards from "@/components/common/DashboardCard";
-import { Usuario, UsuarioDocente, asignarRol } from "@/types/usuario";
+"use client";
 
-export default function Page() {
+import Header from "@/components/common/Header";
+import { Usuario, asignarRol, UsuarioDocente } from "@/types/usuario";
+
+export default function DashboardLayout({
+  children,
+}: LayoutProps<"/dashboard">) {
   const usuarioTest: Usuario = {
     nombre: "Pedro",
     apellido: "Sanchez",
@@ -20,10 +24,10 @@ export default function Page() {
     rol: asignarRol("Docente"),
   };
   return (
-    <>
-      <div className="min-h-70">
-        <DashboardCards usuario={usuarioTestD} />
-      </div>
-    </>
+    <div className="min-h-screen flex flex-col">
+      <Header rol={usuarioTestD.rol} />
+
+      <main className="flex-1">{children}</main>
+    </div>
   );
 }
