@@ -22,7 +22,7 @@ export default function Header({ rol }: { rol: string }) {
           <div className="flex w-1/6 min-w-[175px] gap-4 items-center">
             <div className="bg-primary-foreground w-2/3 rounded-2xl flex items-center justify-center">
               <Image
-                src={"/img/logo-sgedd.png"}
+                src={"/img/logo-sgedd.jpg"}
                 alt="SGEDD"
                 width={100}
                 height={100}
@@ -83,9 +83,11 @@ export default function Header({ rol }: { rol: string }) {
                 <DropdownMenuItem className="bg-primary-foreground rounded-2xl border-b-3 border-b-primary">
                   Cambiar datos del perfil
                 </DropdownMenuItem>
+                <Link href="/change-password">
                 <DropdownMenuItem className="bg-primary-foreground rounded-2xl border-b-3 border-b-primary">
                   Cambiar contraseña
                 </DropdownMenuItem>
+                </Link>
               </DropdownMenuContent>
             </DropdownMenu>
             <Link href="/">
@@ -134,12 +136,12 @@ export default function Header({ rol }: { rol: string }) {
             </Link>
           </div>
           <div className="flex items-center justify-end gap-5 px-8 h-full">
-            <Link href="#">
+            <Link href="/soporte">
               <Button variant="ghost" className="rounded-2xl">
                 <p>Soporte</p>
               </Button>
             </Link>
-            <Link href="#">
+            <Link href="/guia_uso">
               <Button variant="ghost" className="rounded-2xl">
                 <p>Guía de uso</p>
               </Button>
