@@ -83,9 +83,11 @@ export default function Header({ rol }: { rol: string }) {
                 <DropdownMenuItem className="bg-primary-foreground rounded-2xl border-b-3 border-b-primary">
                   Cambiar datos del perfil
                 </DropdownMenuItem>
+                <Link  href="/change-password">
                 <DropdownMenuItem className="bg-primary-foreground rounded-2xl border-b-3 border-b-primary">
                   Cambiar contraseña
                 </DropdownMenuItem>
+                </Link>
               </DropdownMenuContent>
             </DropdownMenu>
             <Link href="/">
@@ -134,12 +136,12 @@ export default function Header({ rol }: { rol: string }) {
             </Link>
           </div>
           <div className="flex items-center justify-end gap-5 px-8 h-full">
-            <Link href="#">
+            <Link href="/soporte">
               <Button variant="ghost" className="rounded-2xl">
                 <p>Soporte</p>
               </Button>
             </Link>
-            <Link href="#">
+            <Link href="/guia_uso">
               <Button variant="ghost" className="rounded-2xl">
                 <p>Guía de uso</p>
               </Button>
