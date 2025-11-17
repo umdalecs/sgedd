@@ -12,14 +12,12 @@ export default function RevisionesPanel({ data }: { data: RevisionData }) {
   return (
     <CardBase titulo={titulo}>
       <div className="w-full max-w-5xl mx-auto">
-        {/* Etiqueta “Solicitantes:” */}
+       
         <div className="w-full flex justify-center mb-4">
           <span className="inline-flex items-center justify-center rounded-full bg-foreground text-background px-5 py-1 text-sm font-semibold">
             Solicitantes:
           </span>
         </div>
-
-        {/* Contenedor principal (sin doble azul; usamos colores del tema) */}
         <div className="border border-primary rounded-2xl bg-card p-3 sm:p-4">
           <SolicitantesAccordion solicitantes={solicitantes} />
         </div>
@@ -38,7 +36,7 @@ function SolicitantesAccordion({ solicitantes }: { solicitantes: Solicitante[] }
         const expanded = !!open[s.id];
         return (
           <div key={s.id} className="rounded-2xl">
-            {/* Fila de solicitante (píldora gris) */}
+           
             <div className="flex items-center justify-between bg-muted rounded-full px-4 py-3">
               <span className="font-semibold italic text-foreground">
                 {s.nombreCompleto}
@@ -59,7 +57,7 @@ function SolicitantesAccordion({ solicitantes }: { solicitantes: Solicitante[] }
               </button>
             </div>
 
-            {/* Documentos */}
+            
             {expanded && (
               <div className="mt-2 rounded-2xl bg-muted border border-input p-3 sm:p-4 space-y-3">
                 {s.documentos.length ? (

@@ -5,18 +5,18 @@ import type { Solicitante } from "@/types/generador";
 import { ChevronDown, Minus, Plus } from "lucide-react";
 
 export default function Solicitantes({ solicitantes }: { solicitantes: Solicitante[] }) {
-  // Abre el primero por defecto como en el mock
+
   const [open, setOpen] = useState<Record<string, boolean>>({ "1": true });
   const toggle = (id: string) => setOpen((s) => ({ ...s, [id]: !s[id] }));
 
   return (
     <div className="w-full max-w-4xl mx-auto">
-      {/* Encabezado: usa tokens del tema (Tailwind variables) */}
+      
       <div className="rounded-t-2xl bg-primary text-primary-foreground text-center py-3 text-xl font-semibold">
         Solicitantes
       </div>
 
-      {/* Contenedor: borde con color primario y fondo de tarjeta */}
+ 
       <div className="border-x border-b border-primary rounded-b-2xl bg-card">
         <div className="divide-y px-3 sm:px-5 pb-5">
           {solicitantes.map((s) => {
@@ -24,7 +24,7 @@ export default function Solicitantes({ solicitantes }: { solicitantes: Solicitan
 
             return (
               <div key={s.id} className="py-2">
-                {/* Fila principal del solicitante */}
+                
                 <div className="flex items-center justify-between px-4 py-3 bg-muted rounded-xl">
                   <span className="font-semibold italic text-foreground">
                     {s.nombreCompleto}
@@ -44,8 +44,6 @@ export default function Solicitantes({ solicitantes }: { solicitantes: Solicitan
                     )}
                   </button>
                 </div>
-
-                {/* Zona expandible con documentos */}
                 {expanded && (
                   <div className="mx-4 mt-2 rounded-xl bg-muted border border-input p-3 sm:p-4 space-y-3">
                     {s.documentos.length ? (
@@ -54,19 +52,18 @@ export default function Solicitantes({ solicitantes }: { solicitantes: Solicitan
                           key={d.id}
                           className="flex items-center justify-between gap-3 rounded-lg bg-background px-3 py-2 border border-input"
                         >
-                          {/* Nombre del documento */}
+                          
                           <div className="flex-1 text-sm sm:text-base text-foreground/90 text-center sm:text-left">
                             {d.nombre}
                           </div>
 
-                          {/* Chip de estado usando el color de acento del tema */}
+                          
                           <div className="hidden sm:flex items-center">
                             <span className="inline-flex items-center gap-1 rounded-full bg-accent text-accent-foreground px-2 py-1 text-xs font-semibold">
                               <Plus className="w-3.5 h-3.5" />
                             </span>
                           </div>
 
-                          {/* Botón primario 'Ver PDF' */}
                           <button
                             onClick={() => window.open(d.urlPDF, "_blank")}
                             className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground text-xs sm:text-sm font-semibold px-4 py-1.5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"

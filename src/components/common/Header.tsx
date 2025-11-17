@@ -16,7 +16,6 @@ import { usePathname } from "next/navigation";
 export default function Header({ rol }: { rol: string }) {
   const pathname = usePathname();
 
-  // Ajuste: determina el label del tercer tab por la ruta actual
   const thirdTabLabel =
     pathname?.startsWith("/docente")
       ? "Mi expediente"
