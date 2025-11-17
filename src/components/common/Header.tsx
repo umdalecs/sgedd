@@ -104,7 +104,7 @@ export default function Header({ rol }: { rol: string }) {
                 variant="ghost"
                 className={`rounded-2xl ${
                   pathname === "/dashboard"
-                    ? "bg-accent/50"
+                    ? "bg-secondary/50"
                     : "hover:bg-primary"
                 }`}
               >
@@ -116,7 +116,7 @@ export default function Header({ rol }: { rol: string }) {
                 variant="ghost"
                 className={`rounded-2xl ${
                   pathname === "/dashboard/periodo"
-                    ? "bg-accent/50"
+                    ? "bg-secondary/50"
                     : "hover:bg-primary"
                 }`}
               >
