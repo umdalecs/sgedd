@@ -1,5 +1,5 @@
 "use client";
-import MainCard from "@/components/dashboard/MainCard";
+import DashboardCards from "@/components/common/DashboardCard";
 import { Usuario, UsuarioDocente, asignarRol } from "@/types/usuario";
 
 export default function Page() {
@@ -23,7 +23,6 @@ export default function Page() {
   return (
     <>
     <div className="min-h-70">
-      <Header rol={usuarioTestD.rol} />
       <DashboardCards usuario={usuarioTestD}/>
     </div>
     </>
