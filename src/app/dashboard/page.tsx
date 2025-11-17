@@ -1,3 +1,4 @@
+"use client";
 import MainCard from "@/components/dashboard/MainCard";
 import { Usuario, UsuarioDocente, asignarRol } from "@/types/usuario";
 
