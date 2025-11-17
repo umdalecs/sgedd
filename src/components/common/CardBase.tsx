@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 type CardBaseProps = {
   titulo: string;
   children: ReactNode;
+  
 };
 
 export default function CardBase({ titulo, children }: CardBaseProps) {

@@ -15,6 +15,14 @@ import { usePathname } from "next/navigation";
 
 export default function Header({ rol }: { rol: string }) {
   const pathname = usePathname();
+
+  const thirdTabLabel =
+    pathname?.startsWith("/docente")
+      ? "Mi expediente"
+      : pathname?.startsWith("/revisor")
+      ? "Revisiones"
+      : "Generaciones";
+
   return (
     <>
       <div className="w-full">
@@ -22,7 +30,7 @@ export default function Header({ rol }: { rol: string }) {
           <div className="flex w-1/6 min-w-[175px] gap-4 items-center">
             <div className="bg-primary-foreground w-2/3 rounded-2xl flex items-center justify-center">
               <Image
-                src={"/img/logo-sgedd.png"}
+                src={"/img/logo-sgedd.jpg"}
                 alt="SGEDD"
                 width={100}
                 height={100}
@@ -83,10 +91,10 @@ export default function Header({ rol }: { rol: string }) {
                 <DropdownMenuItem className="bg-primary-foreground rounded-2xl border-b-3 border-b-primary">
                   Cambiar datos del perfil
                 </DropdownMenuItem>
-                <Link  href="/change-password">
-                <DropdownMenuItem className="bg-primary-foreground rounded-2xl border-b-3 border-b-primary">
-                  Cambiar contraseña
-                </DropdownMenuItem>
+                <Link href="/change-password">
+                  <DropdownMenuItem className="bg-primary-foreground rounded-2xl border-b-3 border-b-primary">
+                    Cambiar contraseña
+                  </DropdownMenuItem>
                 </Link>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -125,13 +133,7 @@ export default function Header({ rol }: { rol: string }) {
             </Link>
             <Link href="#">
               <Button variant="ghost" className="rounded-2xl">
-                <p>
-                  {rol === "Docente"
-                    ? "Mi expediente"
-                    : rol === "Revisor"
-                    ? "Revisiones"
-                    : "Generaciones"}
-                </p>
+                <p>{thirdTabLabel}</p>
               </Button>
             </Link>
           </div>
