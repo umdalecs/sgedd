@@ -17,7 +17,7 @@ import { useForm } from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod"
 
 const formSchema = z.object({
-  email: z.email("In  troduce una dirección de correo válida"),
+  email: z.email("Introduce una dirección de correo válida"),
   password: z.string()
     .min(6, "La contraseña debe contener al menos 6 caracteres")
     .regex(/[a-zA-Z]/, "Debe tener al menos un caracter")
