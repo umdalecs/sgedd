@@ -18,12 +18,13 @@ export default function Page() {
     rfc: "PEASXXX1231",
     estatusPlaza: "Activo",
     rol: asignarRol("Docente"),
-  };
+  }
   return (
     <>
-      <div className="">
-        <MainCard usuario={usuarioTestD} />
-      </div>
+    <div className="min-h-70">
+      <Header rol={usuarioTestD.rol} />
+      <DashboardCards usuario={usuarioTestD}/>
+    </div>
     </>
-  );
+  )
 }
