@@ -10,12 +10,11 @@ import {
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { FilePlus } from "lucide-react" // Importa el icono
-import Header from "@/components/common/Header";
+import Link from "next/link"
 
 export default function Page() {
     return (
         <>
-            <Header rol="Docente"></Header>
             <div className="max-w-7xl mx-auto p-8">
                 <h1 className="text-2xl font-bold mt-4 mb-2">MI EXPEDIENTE - PERIODO 2025</h1>
                 <div className="rounded-2xl border shadow-2xl">
@@ -56,7 +55,9 @@ export default function Page() {
                                           ) : (
                                             <Button variant="outline" size="sm" className="rounded-2xl w-1/4">Ver motivos</Button>
                                           )}
-                                        <Button variant="destructive" size="sm" className="rounded-2xl w-1/4">Reportar</Button>
+                                        <Link href="/dashboard/expediente/documento_soporte">
+                                          <Button variant="destructive" size="sm" className="rounded-2xl w-1/4">Reportar</Button>
+                                        </Link>
                                     </TableCell>
                                 </TableRow>
                             ))}
@@ -71,7 +72,7 @@ export default function Page() {
 const documentos = [    
   { id: 1, nombre: "Constancia de Recursos Humanos", solicitar: false, estado: "Aprobado", ultimaActualizacion: "24/10/2025", verPDF: true },
   { id: 2, nombre: "Carta de Exclusividad  Laboral", solicitar: true, estado: "NoGen", ultimaActualizacion: "24/10/2025", verPDF: false },
-  { id: 3, nombre: "Carta de liberacion de Actividades", solicitar: false, estado: "pendiente", ultimaActualizacion: "20/10/2025", verPDF: false },
+  { id: 3, nombre: "Carta de liberacion de Actividades", solicitar: false, estado: "Pendiente", ultimaActualizacion: "20/10/2025", verPDF: false },
   { id: 4, nombre: "Constancia de servicios escolares", solicitar: true, estado: "Rechazado", ultimaActualizacion: "18/10/2025", verPDF: false }
 ]
 

@@ -15,14 +15,11 @@ import { usePathname } from "next/navigation";
 
 export default function Header({ rol }: { rol: string }) {
   const pathname = usePathname();
-
-  const thirdTabLabel =
-    pathname?.startsWith("/docente")
-      ? "Mi expediente"
-      : pathname?.startsWith("/revisor")
-      ? "Revisiones"
-      : "Generaciones";
-
+  const rutaRol: Record<string, string> = {
+  "Docente": "/dashboard/expediente",
+  "Revisor": "/dashboard/revisiones",
+  "Generador": "/dashboard/generaciones",
+  };
   return (
     <>
       <div className="w-full">
@@ -30,7 +27,7 @@ export default function Header({ rol }: { rol: string }) {
           <div className="flex w-1/6 min-w-[175px] gap-4 items-center">
             <div className="bg-primary-foreground w-2/3 rounded-2xl flex items-center justify-center">
               <Image
-                src={"/img/logo-sgedd.jpg"}
+                src={"/img/logo-sgedd.png"}
                 alt="SGEDD"
                 width={100}
                 height={100}
@@ -56,7 +53,7 @@ export default function Header({ rol }: { rol: string }) {
                 {notificaciones.length > 0 ? (
                   notificaciones.map((n) => (
                     <DropdownMenuItem
-                      className="bg-primary-foreground rounded-2xl border-b-3 border-b-primary"
+                      className="bg-primary-foreground rounded-2xl border-b-3 border-b-primary data-[highlighted]:bg-primary data-[highlighted]:text-primary-foreground"
                       key={n.id}
                     >
                       {n.texto}
@@ -69,7 +66,7 @@ export default function Header({ rol }: { rol: string }) {
                 )}
 
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="bg-primary rounded-lg justify-center">
+                <DropdownMenuItem className="bg-primary rounded-lg justify-center data-[highlighted]:bg-secondary data-[highlighted]:text-primary-foreground">
                   <p className="text-sidebar-primary-foreground font-bold">
                     Ver todas
                   </p>
@@ -88,14 +85,12 @@ export default function Header({ rol }: { rol: string }) {
               >
                 <DropdownMenuLabel>Perfil</DropdownMenuLabel>
                 <DropdownMenuSeparator className="bg-accent-foreground" />
-                <DropdownMenuItem className="bg-primary-foreground rounded-2xl border-b-3 border-b-primary">
+                <DropdownMenuItem className="bg-primary-foreground rounded-2xl border-b-3 border-b-primary data-[highlighted]:bg-primary data-[highlighted]:text-primary-foreground">
                   Cambiar datos del perfil
                 </DropdownMenuItem>
-                <Link href="/change-password">
-                  <DropdownMenuItem className="bg-primary-foreground rounded-2xl border-b-3 border-b-primary">
-                    Cambiar contraseña
-                  </DropdownMenuItem>
-                </Link>
+                <DropdownMenuItem className="bg-primary-foreground rounded-2xl border-b-3 border-b-primary data-[highlighted]:bg-primary data-[highlighted]:text-primary-foreground">
+                  Cambiar contraseña
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
             <Link href="/">
@@ -131,20 +126,47 @@ export default function Header({ rol }: { rol: string }) {
                 <p>Período</p>
               </Button>
             </Link>
-            <Link href="#">
-              <Button variant="ghost" className="rounded-2xl">
-                <p>{thirdTabLabel}</p>
+            <Link href={rutaRol[rol] || "#"}>
+              <Button
+                variant="ghost"
+                className={`rounded-2xl ${
+                  pathname === rutaRol[rol]
+                    ? "bg-secondary/50"
+                    : "hover:bg-primary"
+                }`}
+              >
+                <p>
+                  {rol === "Docente"
+                    ? "Mi expediente"
+                    : rol === "Revisor"
+                    ? "Revisiones"
+                    : "Generaciones"}
+                </p>
               </Button>
             </Link>
           </div>
           <div className="flex items-center justify-end gap-5 px-8 h-full">
-            <Link href="/soporte">
-              <Button variant="ghost" className="rounded-2xl">
+            <Link href="/dashboard/soporte">
+              <Button
+                variant="ghost"
+                className={`rounded-2xl ${
+                  pathname === "/dashboard/soporte"
+                    ? "bg-secondary/50"
+                    : "hover:bg-primary"
+                }`}
+              >
                 <p>Soporte</p>
               </Button>
             </Link>
             <Link href="/guia_uso">
-              <Button variant="ghost" className="rounded-2xl">
+              <Button
+                variant="ghost"
+                className={`rounded-2xl ${
+                  pathname === "/guia_uso"
+                    ? "bg-secondary/50"
+                    : "hover:bg-primary"
+                }`}
+              >
                 <p>Guía de uso</p>
               </Button>
             </Link>
