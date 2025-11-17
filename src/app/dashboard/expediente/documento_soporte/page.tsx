@@ -10,7 +10,6 @@ const nombreDocumento = "Constancia de servicios escolares";
 export default function Page() {
     return (
         <>
-            <Header rol="Docente"></Header>
             <div className="max-w-5xl mx-auto mt-18 bg-background rounded-2xl shadow-lg overflow-hidden">
                 <div className="bg-primary text-white p-4 flex items-center space-x-2">
                     <h1 className="text-lg font-semibold"> 
