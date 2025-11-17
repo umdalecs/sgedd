@@ -12,7 +12,7 @@ export default function MainCard({ usuario }: Props) {
     <CardBase titulo="Perfil de Usuario">
       <div className="flex w-full h-full">
         <div className="w-1/3 flex items-center justify-center">
-          <div className="w-32 h-32 bg-sidebar-border rounded-full flex items-center justify-center">
+          <div className="w-32 h-32 bg-secondary/50 rounded-full flex items-center justify-center">
             <Button variant="ghost" className="size-full rounded-full">
               <CircleUserRound className="text-primary size-full" />
             </Button>
