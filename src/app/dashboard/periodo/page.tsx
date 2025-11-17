@@ -1,9 +1,6 @@
-import Header from "@/components/common/Header";
+
+import PeriodCard from "@/components/dashboard/PeriodCard";
 
 export default function Page() {
-  return (
-    <>
-        <Header rol="Docente"></Header>
-    </>
-  )
+  return <PeriodCard></PeriodCard>;
 }
