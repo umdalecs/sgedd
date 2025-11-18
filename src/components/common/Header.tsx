@@ -66,11 +66,13 @@ export default function Header({ rol }: { rol: string }) {
                 )}
 
                 <DropdownMenuSeparator />
+              <Link  href="/dashboard/notificaciones" >
                 <DropdownMenuItem className="bg-primary rounded-lg justify-center data-[highlighted]:bg-secondary data-[highlighted]:text-primary-foreground">
                   <p className="text-sidebar-primary-foreground font-bold">
                     Ver todas
                   </p>
                 </DropdownMenuItem>
+                </Link>
               </DropdownMenuContent>
             </DropdownMenu>
             <DropdownMenu>
@@ -87,10 +89,14 @@ export default function Header({ rol }: { rol: string }) {
                 <DropdownMenuSeparator className="bg-accent-foreground" />
                 <DropdownMenuItem className="bg-primary-foreground rounded-2xl border-b-3 border-b-primary data-[highlighted]:bg-primary data-[highlighted]:text-primary-foreground">
                   Cambiar datos del perfil
+                 
                 </DropdownMenuItem>
+                <Link href="/change-password">
                 <DropdownMenuItem className="bg-primary-foreground rounded-2xl border-b-3 border-b-primary data-[highlighted]:bg-primary data-[highlighted]:text-primary-foreground">
                   Cambiar contraseña
                 </DropdownMenuItem>
+                </Link>
+                <DropdownMenuSeparator />        
               </DropdownMenuContent>
             </DropdownMenu>
             <Link href="/">
