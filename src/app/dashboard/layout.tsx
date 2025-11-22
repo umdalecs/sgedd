@@ -10,9 +10,9 @@ export default function DashboardLayout({
     nombre: "Pedro",
     apellido: "Sanchez",
     correo: "pedro@example.com",
-    puesto: "Vinculacion",
+    puesto: "Subdireccion",
     rfc: "PEASXXX1231",
-    rol: asignarRol("Vinculacion"),
+    rol: asignarRol("Subdireccion"),
   };
   const usuarioTestD: UsuarioDocente = {
     nombre: "Pedro",

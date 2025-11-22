@@ -5,19 +5,19 @@ const docs: Record<string, Documento> = {
     id: "doc1",
     nombre: "Constancia de Servicios Escolares",
     tipo: "Constancia de Servicios Escolares",
-    urlPDF: "/pdfs/constancia_servicios_1.pdf",
+    urlPDF: "/pdf/constancia_servicios_1.pdf",
   },
   rh1: {
     id: "doc2",
     nombre: "Constancia de Recursos Humanos",
     tipo: "Constancia de Recursos Humanos",
-    urlPDF: "/pdfs/constancia_rh_1.pdf",
+    urlPDF: "/pdf/constancia_rh_1.pdf",
   },
   cse2: {
     id: "doc3",
     nombre: "Constancia de Servicios Escolares",
     tipo: "Constancia de Servicios Escolares",
-    urlPDF: "/pdfs/constancia_servicios_2.pdf",
+    urlPDF: "/pdf/constancia_servicios_2.pdf",
   },
 };
 
