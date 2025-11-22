@@ -23,7 +23,7 @@ export default function Page() {
   return (
     <>
     <div className="min-h-70">
-      <MainCard usuario={usuarioTestD}/>
+      <MainCard usuario={usuarioTest}/>
     </div>
     </>
   )
