@@ -1,5 +1,3 @@
-"use client";
-
 import Header from "@/components/common/Header";
 import { Usuario, asignarRol, UsuarioDocente } from "@/types/usuario";
 

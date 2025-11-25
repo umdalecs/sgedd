@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Card,
   CardContent,
@@ -30,16 +28,16 @@ export default function Page() {
                 const Icon = notification.icon;
                 return (
                   <div key={notification.id} className="flex items-start space-x-4 p-4">
-                    <div className="flex-shrink-0">
+                    <div className="shrink-0">
                       <div className="p-2 bg-slate-100 rounded-full">
                         <Icon className={`h-6 w-6 ${notification.iconColor}`} />
                       </div>
                     </div>
-                    <div className="flex-grow min-w-0">
+                    <div className="grow min-w-0">
                       <p className="font-semibold text-sm">{notification.title}</p>
                       <p className="text-sm text-muted-foreground">{notification.description}</p>
                     </div>
-                    <div className="flex-shrink-0 ml-auto">
+                    <div className="shrink-0 ml-auto">
                       <p className="text-xs text-muted-foreground whitespace-nowrap">
                         {notification.time}
                       </p>

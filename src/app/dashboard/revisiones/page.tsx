@@ -1,5 +1,3 @@
-"use client";
-
 import RevisionesPanel from "@/components/revisor/RevisionesPanel";
 import { getMockRevisionData } from "@/lib/mock/revisor";
 
