@@ -25,7 +25,7 @@ export default function DashboardLayout({
   };
   return (
     <div className="min-h-screen flex flex-col">
-      <Header rol={usuarioTestD.rol} />
+      <Header rol={usuarioTest.rol} />
 
       <main className="flex-1">{children}</main>
     </div>
