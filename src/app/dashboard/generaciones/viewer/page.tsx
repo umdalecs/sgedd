@@ -49,7 +49,7 @@ export default function Page() {
         value === d.puesto
           ? "bg-sidebar-accent-foreground text-white font-bold"
           : "hover:bg-accent"
-      }                    
+      }
     `}
                 >
                   <div className="font-semibold">{d.puesto}</div>

@@ -21,10 +21,8 @@ export default function Page() {
     rol: asignarRol("Docente"),
   }
   return (
-    <>
     <div className="min-h-70">
       <MainCard usuario={usuarioTest}/>
     </div>
-    </>
   )
 }
