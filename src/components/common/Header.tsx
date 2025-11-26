@@ -12,13 +12,18 @@ import Image from "next/image";
 import { Bell, UserRound, LogOut } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { logout } from "@/app/actions/auth";
 
 export default function Header({ rol }: { rol: string }) {
   const pathname = usePathname();
   const rutaRol: Record<string, string> = {
-  "Docente": "/dashboard/expediente",
-  "Revisor": "/dashboard/revisiones",
-  "Generador": "/dashboard/generaciones",
+    Docente: "/dashboard/expediente",
+    Revisor: "/dashboard/revisiones",
+    Generador: "/dashboard/generaciones",
+  };
+
+  const handleLogout = async () => {
+    await logout();
   };
   return (
     <>
@@ -91,7 +96,7 @@ export default function Header({ rol }: { rol: string }) {
                   Cambiar datos del perfil
                  
                 </DropdownMenuItem>
-                <Link href="/change-password">
+                <Link href="/dashboard/change-password">
                 <DropdownMenuItem className="bg-primary-foreground rounded-2xl border-b-3 border-b-primary data-[highlighted]:bg-primary data-[highlighted]:text-primary-foreground">
                   Cambiar contraseña
                 </DropdownMenuItem>
@@ -99,11 +104,9 @@ export default function Header({ rol }: { rol: string }) {
                 <DropdownMenuSeparator />        
               </DropdownMenuContent>
             </DropdownMenu>
-            <Link href="/">
-              <Button variant="ghost">
-                <LogOut className="text-primary-foreground size-fit" />
-              </Button>
-            </Link>
+            <Button variant="ghost" onClick={handleLogout}>
+              <LogOut className="text-primary-foreground size-fit" />
+            </Button>
           </div>
         </div>
         <div className="h-1/3 bg-sidebar-border flex justify-between">
@@ -150,6 +153,34 @@ export default function Header({ rol }: { rol: string }) {
                 </p>
               </Button>
             </Link>
+            {(rol === "Generador" || rol === "Administrador") && (
+              <Link href="/dashboard/plantillas">
+                <Button
+                  variant="ghost"
+                  className={`rounded-2xl ${
+                    pathname === "/dashboard/plantillas"
+                      ? "bg-secondary/50"
+                      : "hover:bg-primary"
+                  }`}
+                >
+                  <p>Plantillas</p>
+                </Button>
+              </Link>
+            )}
+            {(rol === "Revisor" || rol === "Administrador") && (
+              <Link href="/dashboard/firmas">
+                <Button
+                  variant="ghost"
+                  className={`rounded-2xl ${
+                    pathname === "/dashboard/firmas"
+                      ? "bg-secondary/50"
+                      : "hover:bg-primary"
+                  }`}
+                >
+                  <p>Mis Firmas</p>
+                </Button>
+              </Link>
+            )}
           </div>
           <div className="flex items-center justify-end gap-5 px-8 h-full">
             <Link href="/dashboard/soporte">
