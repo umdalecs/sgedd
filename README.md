@@ -28,6 +28,8 @@ npm install
 
 ```bash
 bunx supabase start
+o 
+npx supabase start
 ```
 
 3. Copia el archivo `.env.example` a `.env` y rellena con los valores de tu entorno de desarrollo
@@ -35,9 +37,20 @@ bunx supabase start
 4. Inicia el servidor de desarrollo de NEXTjs
 
 ```bash
-bun dev
+bun run dev
 # o
 npm run dev
+```
+
+## Comandos útiles para supabase local
+
+```sh
+# Guarda las tablas de la base de datos
+bunx supabase db diff -f my_schema 
+# Guarda la data
+bunx supabase db dump --local --data-only > supabase/seed.sql
+# Detiene los contenedores sin guardar volumenes con la data
+bunx supabase stop --no-backup
 ```
 
 ## Documentación útil
