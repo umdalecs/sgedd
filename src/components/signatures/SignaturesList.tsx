@@ -134,7 +134,7 @@ export default function SignaturesList({ onCreateNew }: SignaturesListProps) {
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={signature.firma_base64}
-                    alt="Firma"
+                    alt={`Firma digital creada el ${new Date(signature.created_at).toLocaleDateString()}`}
                     className="max-w-full h-auto border rounded"
                   />
                 </div>

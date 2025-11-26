@@ -1,22 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import SignaturePad from "@/components/signatures/SignaturePad";
 import SignaturesList from "@/components/signatures/SignaturesList";
 
 export default function FirmasPage() {
   const [mode, setMode] = useState<"list" | "create">("list");
+  const [refreshKey, setRefreshKey] = useState(0);
 
-  const handleSave = () => {
+  const handleSave = useCallback(() => {
     setMode("list");
-    // Trigger refresh of signatures list
-    window.location.reload();
-  };
+    setRefreshKey((prev) => prev + 1);
+  }, []);
 
   return (
     <div className="px-4 sm:px-6 md:px-8 py-6 max-w-4xl mx-auto">
       {mode === "list" && (
-        <SignaturesList onCreateNew={() => setMode("create")} />
+        <SignaturesList key={refreshKey} onCreateNew={() => setMode("create")} />
       )}
       {mode === "create" && (
         <SignaturePad

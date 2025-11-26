@@ -205,12 +205,12 @@ export default function TemplateForm({
                 Define los campos que serán reemplazados en el documento. Usa
                 el formato {"{{campo}}"} en el contenido HTML.
               </FormDescription>
-              <div className="flex space-x-2">
+                <div className="flex space-x-2">
                 <Input
                   placeholder="Nombre del campo"
                   value={nuevoCampo}
                   onChange={(e) => setNuevoCampo(e.target.value)}
-                  onKeyPress={(e) =>
+                  onKeyDown={(e) =>
                     e.key === "Enter" && (e.preventDefault(), handleAddCampo())
                   }
                 />

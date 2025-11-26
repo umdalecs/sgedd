@@ -24,6 +24,30 @@ export async function getUserSignatures(): Promise<SignatureResult> {
     .from("firmas")
     .select("*")
     .eq("usuario_id", user.id)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    return { success: false, error: error.message };
+  }
+
+  return { success: true, data };
+}
+
+export async function getActiveUserSignatures(): Promise<SignatureResult> {
+  const supabase = await getSupabaseServerClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return { success: false, error: "User not authenticated" };
+  }
+
+  const { data, error } = await supabase
+    .from("firmas")
+    .select("*")
+    .eq("usuario_id", user.id)
     .eq("activa", true)
     .order("created_at", { ascending: false });
 
