@@ -1,5 +1,5 @@
 import Header from "@/components/common/Header";
-import { Usuario, asignarRol, UsuarioDocente } from "@/types/usuario";
+import { Usuario } from "@/types/usuario";
 
 export default function DashboardLayout({
   children,
@@ -8,18 +8,8 @@ export default function DashboardLayout({
     nombre: "Pedro",
     apellido: "Sanchez",
     correo: "pedro@example.com",
-    puesto: "Vinculacion",
     rfc: "PEASXXX1231",
-    rol: asignarRol("Vinculacion"),
-  };
-  const usuarioTestD: UsuarioDocente = {
-    nombre: "Pedro",
-    apellido: "Sanchez",
-    correo: "pedro@example.com",
-    puesto: "Docente",
-    rfc: "PEASXXX1231",
-    estatusPlaza: "Activo",
-    rol: asignarRol("Docente"),
+    rol: "revisor",
   };
   return (
     <div className="min-h-screen flex flex-col">
