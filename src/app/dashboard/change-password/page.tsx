@@ -1,4 +1,4 @@
-import { ChangePasswordCard } from "@/components/change-password";
+import { ChangePasswordCard } from "@/components/dashboard/change-password";
 
 export default function Page() {
   return (

@@ -2,18 +2,12 @@
 
 import { getSupabaseCookiesClient } from "@/lib/supabase/clients";
 import { redirect } from "next/navigation";
-import type { Rol } from "@/types/usuario";
+import { RegisterSchema } from "../schemas/authSchemas";
+import { z } from "zod";
 
 export interface LoginFormData {
   email: string;
   password: string;
-}
-
-export interface RegisterFormData {
-  email: string;
-  password: string;
-  rfc: string;
-  rol: Rol;
 }
 
 export interface AuthResult {
@@ -36,38 +30,43 @@ export async function login(formData: LoginFormData): Promise<AuthResult> {
   redirect("/dashboard");
 }
 
-export async function register(
-  formData: RegisterFormData
-): Promise<AuthResult> {
+export async function register(values: z.infer<typeof RegisterSchema>) {
   const supabase = await getSupabaseCookiesClient();
 
-  // Buscar en la tabla del rol
+  // Buscar en la tabla de usuarios
   // si existe una tupla donde coincida el rfc
+
+  console.log(values)
+
   const { data: user, error: err1 } = await supabase
-    .from(formData.rol)
+    .from("usuarios")
     .select("*")
-    .eq("rfc", formData.rfc)
+    .or(`docente_rfc.eq.${values.rfc},generador_rfc.eq.${values.rfc},revisor_rfc.eq.${values.rfc}`)
     .single();
 
   if (err1) {
+    console.log(err1)
     return { success: false, error: err1.message };
   }
 
+  // TODO: Si es docente y no cumple los requisitos de registro,
+  // no se permite el registro
+
+  return { success: false, error: "No cumples los requisitos para inscribirte en SGEDD" };
+
+  
   // Crear el usuario en SupabaseAuth
   const {
     data: { user: supabaseUser },
     error: err2,
   } = await supabase.auth.signUp({
-    email: formData.email,
-    password: formData.password,
-    options: {
-      data: {
-        role: formData.rol
-      }
-    }
+    email: values.email,
+    password: values.password,
   });
-
+  
   if (err2) {
+    console.log(err2)
+
     return { success: false, error: err2.message };
   }
 
@@ -76,11 +75,11 @@ export async function register(
   user.supabase_user = supabaseUser!.id;
 
   const { error: err3 } = await supabase
-    .from(formData.rol)
-    .update({ supabase_user: supabaseUser!.id })
-    .eq("rfc", formData.rfc);
+    .from("usuarios")
+    .upsert(user);
 
-  if (err3) {
+    if (err3) {
+      console.log(err3)
     return { success: false, error: err3.message };
   }
 
@@ -105,14 +104,36 @@ export async function getCurrentUser() {
 
   // Get user profile from role table
   const { data: profile } = await supabase
-    .from(user.user_metadata.role)
+    .from("usuarios")
     .select("*")
     .eq("supabase_user", user.id)
     .single();
 
+  let rfc = "";
+
+  switch (profile.rol) {
+    case "docente":
+      rfc = profile.docente_rfc;
+      break;
+    case "generador":
+      rfc = profile.generador_rfc;
+      break;
+
+    case "revisor":
+      rfc = profile.revisor_rfc;
+      break;
+  }
+
+  const { data: role } = await supabase
+    .from(profile.rol)
+    .select("*")
+    .eq("rfc", rfc)
+    .single();
+
   return {
     ...user,
-    profile,
+    ...profile,
+    ...role
   };
 }
 

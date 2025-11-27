@@ -65,7 +65,7 @@ export default function GuiaUsoPage() {
         <Card className="bg-card text-card-foreground w-full rounded-lg shadow-lg">
           <CardHeader>
             <div className="flex items-start gap-3">
-              <Info className="size-5 sm:size-6 text-primary mt-0.5 flex-shrink-0" aria-hidden />
+              <Info className="size-5 sm:size-6 text-primary mt-0.5 shrink-0" aria-hidden />
               <div className="space-y-1">
                 <CardTitle className="font-semibold text-base sm:text-lg md:text-xl">
                   Guía de Uso para el SGEDD

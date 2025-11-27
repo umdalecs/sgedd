@@ -1,21 +1,13 @@
-import Header from "@/components/common/Header";
-import { Usuario } from "@/types/usuario";
+import Header from "@/components/dashboard/Header";
 
 export default function DashboardLayout({
   children,
 }: LayoutProps<"/dashboard">) {
-  const usuarioTest: Usuario = {
-    nombre: "Pedro",
-    apellido: "Sanchez",
-    correo: "pedro@example.com",
-    rfc: "PEASXXX1231",
-    rol: "revisor",
-  };
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header rol={usuarioTest.rol} />
+    <>
+      <Header />
 
-      <main className="flex-1">{children}</main>
-    </div>
+      <main className="justify-center p-8">{children}</main>
+    </>
   );
 }

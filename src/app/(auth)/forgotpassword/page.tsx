@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { ArrowLeft, KeyRound, CheckCircle } from "lucide-react";
 import Link from "next/link";
-import { resetPassword } from "@/lib/actions/auth";
+// import { resetPassword } from "@/lib/actions/auth";
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState("");
@@ -19,18 +19,18 @@ export default function ForgotPasswordPage() {
     setIsLoading(true);
     setError(null);
 
-    try {
-      const result = await resetPassword(email);
-      if (result.success) {
-        setSuccess(true);
-      } else {
-        setError(result.error || "Error al enviar correo de recuperación");
-      }
-    } catch {
-      setError("Error al conectar con el servidor");
-    } finally {
-      setIsLoading(false);
-    }
+    // try {
+    //   const result = await resetPassword(email);
+    //   if (result.success) {
+    //     setSuccess(true);
+    //   } else {
+    //     setError(result.error || "Error al enviar correo de recuperación");
+    //   }
+    // } catch {
+    //   setError("Error al conectar con el servidor");
+    // } finally {
+    //   setIsLoading(false);
+    // }
   };
 
   if (success) {
