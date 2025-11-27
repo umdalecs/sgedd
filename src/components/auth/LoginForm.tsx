@@ -16,7 +16,7 @@ import {
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { login } from "@/app/actions/auth";
+import { login } from "@/lib/actions/auth";
 
 const formSchema = z.object({
   email: z.email("Introduce una dirección de correo válida"),

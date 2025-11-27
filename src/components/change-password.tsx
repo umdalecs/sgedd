@@ -5,7 +5,7 @@ import CardBase from '@/components/common/CardBase';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { updatePassword } from '@/app/actions/auth';
+// import { updatePassword } from '@/lib/actions/auth';
 import { CheckCircle } from 'lucide-react';
 
 export function ChangePasswordCard() {
@@ -17,34 +17,34 @@ export function ChangePasswordCard() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
+    // setError(null);
     
-    if (newPassword !== confirmPassword) {
-      setError('Las contraseñas no coinciden');
-      return;
-    }
+    // if (newPassword !== confirmPassword) {
+    //   setError('Las contraseñas no coinciden');
+    //   return;
+    // }
 
-    if (newPassword.length < 6) {
-      setError('La contraseña debe tener al menos 6 caracteres');
-      return;
-    }
+    // if (newPassword.length < 6) {
+    //   setError('La contraseña debe tener al menos 6 caracteres');
+    //   return;
+    // }
 
-    setIsLoading(true);
+    // setIsLoading(true);
     
-    try {
-      const result = await updatePassword(newPassword);
-      if (result.success) {
-        setSuccess(true);
-        setNewPassword('');
-        setConfirmPassword('');
-      } else {
-        setError(result.error || 'Error al actualizar la contraseña');
-      }
-    } catch {
-      setError('Error al conectar con el servidor');
-    } finally {
-      setIsLoading(false);
-    }
+    // try {
+    //   const result = await updatePassword(newPassword);
+    //   if (result.success) {
+    //     setSuccess(true);
+    //     setNewPassword('');
+    //     setConfirmPassword('');
+    //   } else {
+    //     setError(result.error || 'Error al actualizar la contraseña');
+    //   }
+    // } catch {
+    //   setError('Error al conectar con el servidor');
+    // } finally {
+    //   setIsLoading(false);
+    // }
   };
 
   if (success) {

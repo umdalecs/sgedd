@@ -6,7 +6,7 @@ export default function Home({}: PageProps<"/">) {
     <>
       <div className="mb-6 text-center">
         <Image
-          src="/img/logo-sgedd.jpg"
+          src="/img/logo-sgedd.png"
           alt="SGEDD"
           width={250}
           height={250}

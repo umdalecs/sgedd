@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { createSignature } from "@/app/actions/signatures";
+import { createSignature } from "@/lib/actions/signatures";
 import { Eraser, Save, RotateCcw } from "lucide-react";
 
 interface SignaturePadProps {

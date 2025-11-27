@@ -23,15 +23,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { register } from "@/app/actions/auth";
-import type { Rol } from "@/lib/supabase/database.types";
+import { register } from "@/lib/actions/auth";
+import { Rol } from "@/types/usuario";
 
-const puestosPorRol: Record<string, string[]> = {
-  Docente: ["Docente"],
-  Generador: ["Vinculacion", "Departamento Academico"],
-  Revisor: ["Subdireccion"],
-  Administrador: ["Administracion"],
-};
+
+const roles: Record<string, Rol>=  {
+  "Docente": "docente",
+  "Vinculación": "generador",
+  "Departamento Académico": "generador",
+  "Subdirección": "revisor",
+}
 
 const formSchema = z.object({
   name: z.string().min(2, "El nombre debe medir al menos 2 caracteres"),
@@ -47,7 +48,7 @@ const formSchema = z.object({
     .regex(/[a-zA-Z]/, "Debe tener al menos un caracter")
     .regex(/[0-9]/, "Debe tener al menos un número"),
   confirmPassword: z.string(),
-  role: z.enum(["Docente", "Generador", "Revisor", "Administrador"]),
+  role: z.enum(["docente", "generador", "revisor"]),
   puesto: z.string().min(1, "Selecciona un puesto"),
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Las contraseñas no coinciden",
@@ -61,19 +62,16 @@ export default function RegisterForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      lastName: "",
       rfc: "",
       email: "",
       password: "",
       confirmPassword: "",
-      role: "Docente",
+      role: "docente",
       puesto: "",
     },
   });
 
-  const selectedRole = form.watch("role");
-  const availablePuestos = puestosPorRol[selectedRole] || [];
+  const selectedRole = roles[form.watch("puesto")];
 
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
@@ -83,11 +81,8 @@ export default function RegisterForm() {
       const result = await register({
         email: values.email,
         password: values.password,
-        nombre: values.name,
-        apellido: values.lastName,
         rfc: values.rfc,
-        puesto: values.puesto,
-        rol: values.role as Rol,
+        rol: selectedRole,
       });
 
       if (!result.success) {
@@ -198,61 +193,31 @@ export default function RegisterForm() {
             )}
           />
         </div>
-        <div className="grid grid-cols-2 gap-3">
-          <FormField
-            control={form.control}
-            name="role"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Rol</FormLabel>
-                <Select
-                  onValueChange={(value) => {
-                    field.onChange(value);
-                    form.setValue("puesto", "");
-                  }}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger className="shadow-2xl">
-                      <SelectValue placeholder="Selecciona un rol" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    <SelectItem value="Docente">Docente</SelectItem>
-                    <SelectItem value="Generador">Generador</SelectItem>
-                    <SelectItem value="Revisor">Revisor</SelectItem>
-                    <SelectItem value="Administrador">Administrador</SelectItem>
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="puesto"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Puesto</FormLabel>
-                <Select onValueChange={field.onChange} value={field.value}>
-                  <FormControl>
-                    <SelectTrigger className="shadow-2xl">
-                      <SelectValue placeholder="Selecciona un puesto" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {availablePuestos.map((puesto) => (
-                      <SelectItem key={puesto} value={puesto}>
-                        {puesto}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
+          
+        <FormField
+          control={form.control}
+          name="puesto"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Puesto</FormLabel>
+              <Select onValueChange={field.onChange} value={field.value}>
+                <FormControl>
+                  <SelectTrigger className="shadow-2xl w-full">
+                    <SelectValue placeholder="Selecciona un puesto" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {Object.keys(roles).map((puesto) => (
+                    <SelectItem key={puesto} value={puesto}>
+                      {puesto}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
         <div className="text-center">
           <Button type="submit" className="w-full" disabled={isLoading}>

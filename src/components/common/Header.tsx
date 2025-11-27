@@ -12,7 +12,7 @@ import Image from "next/image";
 import { Bell, UserRound, LogOut } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { logout } from "@/app/actions/auth";
+import { logout } from "@/lib/actions/auth";
 
 export default function Header({ rol }: { rol: string }) {
   const pathname = usePathname();

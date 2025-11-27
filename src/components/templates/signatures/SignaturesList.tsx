@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getUserSignatures, deleteSignature, setActiveSignature } from "@/app/actions/signatures";
+import { getUserSignatures, deleteSignature, setActiveSignature } from "@/lib/actions/signatures";
 import type { Firma } from "@/lib/supabase/database.types";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

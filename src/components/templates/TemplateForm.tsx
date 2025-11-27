@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createTemplate, updateTemplate } from "@/app/actions/templates";
+import { createTemplate, updateTemplate } from "@/lib/actions/templates";
 import type {
   PlantillaDocumento,
   TipoDocumento,

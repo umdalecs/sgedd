@@ -1,13 +1,18 @@
 import CardBase from "@/components/common/CardBase";
-import { Usuario, UsuarioDocente } from "@/types/usuario";
 import { Button } from "../ui/button";
 import { CircleUserRound } from "lucide-react";
+import { getCurrentUser } from "@/lib/actions/auth";
+import { redirect } from "next/navigation";
 
-type Props = {
-  usuario: Usuario | UsuarioDocente;
-};
+// TODO: Este componente se va a romper
 
-export default function MainCard({ usuario }: Props) {
+export default async function MainCard() {
+  const usuario_supabase = await getCurrentUser();
+
+  if(!usuario_supabase) {
+    redirect("/");
+  }
+  
   return (
     <CardBase titulo="Perfil de Usuario">
       <div className="flex w-full h-full">
@@ -23,32 +28,32 @@ export default function MainCard({ usuario }: Props) {
           <div className="flex gap-2">
             <p className="font-semibold w-1/3">Nombre:</p>
             <p className="w-2/3">
-              {usuario.nombre} {usuario.apellido}
+              {usuario_supabase.profile.nombre} {usuario_supabase.profile.apellido}
             </p>
           </div>
 
           <div className="flex gap-2">
             <p className="font-semibold w-1/3">Correo:</p>
-            <p className="w-2/3">{usuario.correo}</p>
+            <p className="w-2/3">{usuario_supabase?.email}</p>
           </div>
 
-          {usuario.rol === "Docente" && "estatusPlaza" in usuario && (
+          {usuario_supabase.user_metadata.role === "docente" && "estatusPlaza" in usuario_supabase && (
             <div className="flex gap-2">
               <p className="font-semibold w-1/3">Estatus plaza:</p>
-              <p className="w-2/3">{usuario.estatusPlaza}</p>
+              <p className="w-2/3">{usuario_supabase.profile.estatusPlaza}</p>
             </div>
           )}
 
-          {(usuario.rol === "Generador" || usuario.rol === "Revisor") && (
+          {(usuario_supabase.user_metadata.role === "generador" || usuario_supabase.user_metadata.role === "revisor") && (
             <div className="flex gap-2">
               <p className="font-semibold w-1/3">Puesto:</p>
-              <p className="w-2/3">{usuario.puesto}</p>
+              <p className="w-2/3">{usuario_supabase.profile.puesto}</p>
             </div>
           )}
 
           <div className="flex gap-2">
             <p className="font-semibold w-1/3">RFC:</p>
-            <p className="w-2/3">{usuario.rfc}</p>
+            <p className="w-2/3">{usuario_supabase.profile.rfc}</p>
           </div>
         </div>
       </div>

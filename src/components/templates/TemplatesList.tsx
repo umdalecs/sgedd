@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getTemplates, deleteTemplate } from "@/app/actions/templates";
+import { getTemplates, deleteTemplate } from "@/lib/actions/templates";
 import type { PlantillaDocumento } from "@/lib/supabase/database.types";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
