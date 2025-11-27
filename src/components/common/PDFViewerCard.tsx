@@ -8,11 +8,7 @@ type ViewerProps = {
 
 export default function PDFViewerCard({ children }: ViewerProps) {
   return (
-    <CardBase
-      titulo="Visor de PDF"
-      classNameWrapper="px-10 py-0"
-      classNameCard="w-full"
-    >
+    <CardBase titulo="Visor de PDF" className="w-full">
       <div className="flex h-full w-full">
         <div className="w-1/3">{children}</div>
         <div className="w-2/3 p-10">

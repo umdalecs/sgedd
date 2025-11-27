@@ -1,12 +1,10 @@
-"use client";
-import React from 'react'
-import BotonPDF from '../../../../components/botonPdf';
+import BotonPDF from "@/components/generador/botonPdf";
 
 export default function Page() {
   return (
     <div>
-        <h1>Generador de PDF</h1>
-        <BotonPDF />
+      <h1>Generador de PDF</h1>
+      <BotonPDF />
     </div>
-  )
+  );
 }
