@@ -4,9 +4,9 @@ import { CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-const nombreDocumento = "Constancia de servicios escolares";
-
-export default function Page() {
+export default async function Page({ searchParams }: { searchParams: { doc?: string } }) {
+  const params = await searchParams; 
+  const nombreDocumento = params.doc ?? "Documento no identificado";
   return (
     <CardBase titulo="Reportar error en documento" className="">
       <CardContent className="p-6 grid gap-6">

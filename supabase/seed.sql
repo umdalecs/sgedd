@@ -4,7 +4,7 @@ SET session_replication_role = replica;
 -- PostgreSQL database dump
 --
 
--- \restrict cqNo2nmDaEdwiQ0N899GMc1miYEU99BwzNVJ9QRBwY0DYs0ckJGqBNGvKY6MhKz
+-- \restrict ICeltaRrYQ3QgE3O6ZNWOQBDphC8Xc8dHv1p1UfBTm0yyGj8iRv7dH3Fis853cJ
 
 -- Dumped from database version 17.6
 -- Dumped by pg_dump version 17.6
@@ -41,7 +41,9 @@ INSERT INTO "auth"."audit_log_entries" ("instance_id", "id", "payload", "created
 	('00000000-0000-0000-0000-000000000000', 'f9a193fe-3dab-48e8-91c4-c25ff6f9e330', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-11-28 06:57:29.690022+00', ''),
 	('00000000-0000-0000-0000-000000000000', 'd067cec0-9753-4949-b708-d8c95fbd6834', '{"action":"token_revoked","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-11-28 06:57:29.694714+00', ''),
 	('00000000-0000-0000-0000-000000000000', 'e4c4c4da-dbfc-491a-bf14-bf52e5d351e8', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-11-28 06:57:30.514597+00', ''),
-	('00000000-0000-0000-0000-000000000000', '9bf26fa5-6c52-42bc-bfc0-1504b6f0e414', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-11-28 06:57:30.697209+00', '');
+	('00000000-0000-0000-0000-000000000000', '9bf26fa5-6c52-42bc-bfc0-1504b6f0e414', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-11-28 06:57:30.697209+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'd3409aac-4de8-42a4-a653-0217e9aa73ef', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-11-28 07:56:23.436977+00', ''),
+	('00000000-0000-0000-0000-000000000000', '7308179a-7ee2-49c5-9971-5220f167512c', '{"action":"token_revoked","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-11-28 07:56:23.441789+00', '');
 
 
 --
@@ -57,7 +59,7 @@ INSERT INTO "auth"."audit_log_entries" ("instance_id", "id", "payload", "created
 INSERT INTO "auth"."users" ("instance_id", "id", "aud", "role", "email", "encrypted_password", "email_confirmed_at", "invited_at", "confirmation_token", "confirmation_sent_at", "recovery_token", "recovery_sent_at", "email_change_token_new", "email_change", "email_change_sent_at", "last_sign_in_at", "raw_app_meta_data", "raw_user_meta_data", "is_super_admin", "created_at", "updated_at", "phone", "phone_confirmed_at", "phone_change", "phone_change_token", "phone_change_sent_at", "email_change_token_current", "email_change_confirm_status", "banned_until", "reauthentication_token", "reauthentication_sent_at", "is_sso_user", "deleted_at", "is_anonymous") VALUES
 	('00000000-0000-0000-0000-000000000000', '1d9c6248-0cc0-4496-b8ca-1fa012fbf38e', 'authenticated', 'authenticated', 'diego1@sgedd.com', '$2a$10$azxS.YxVfX4sPQQsEcuBzuTbotYnByqjGsju4ckEQ9RdKFlcY..l6', '2025-11-28 03:43:36.980086+00', NULL, '', NULL, '', NULL, '', '', NULL, '2025-11-28 03:43:36.99158+00', '{"provider": "email", "providers": ["email"]}', '{"sub": "1d9c6248-0cc0-4496-b8ca-1fa012fbf38e", "email": "diego1@sgedd.com", "email_verified": true, "phone_verified": false}', NULL, '2025-11-28 03:43:36.976052+00', '2025-11-28 03:43:36.99353+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
 	('00000000-0000-0000-0000-000000000000', '53798262-7c9d-4764-94e5-31e00c1790c5', 'authenticated', 'authenticated', 'cesar1@sgedd.com', '$2a$10$fQttNyo9OzymuNVcaWwzW.v0a5snB30VoXyT8vUwS3BprfoiKEJKG', '2025-11-28 03:43:17.069043+00', NULL, '', NULL, '', NULL, '', '', NULL, '2025-11-28 05:56:19.20765+00', '{"provider": "email", "providers": ["email"]}', '{"sub": "53798262-7c9d-4764-94e5-31e00c1790c5", "email": "cesar1@sgedd.com", "email_verified": true, "phone_verified": false}', NULL, '2025-11-28 03:43:17.063834+00', '2025-11-28 05:56:19.21816+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
-	('00000000-0000-0000-0000-000000000000', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', 'authenticated', 'authenticated', 'alejandro1@sgedd.com', '$2a$10$jkAMamNVz.3xuvoLSxVGAuvW7ixb3Rb.5WZKuAP/a3FLUSJvx31c.', '2025-11-28 03:42:47.029909+00', NULL, '', NULL, '', NULL, '', '', NULL, '2025-11-28 05:57:03.700395+00', '{"provider": "email", "providers": ["email"]}', '{"sub": "748ba0b1-73d2-49ec-b48c-1f7a20df69bb", "email": "alejandro1@sgedd.com", "email_verified": true, "phone_verified": false}', NULL, '2025-11-28 03:42:47.02484+00', '2025-11-28 06:57:29.703387+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false);
+	('00000000-0000-0000-0000-000000000000', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', 'authenticated', 'authenticated', 'alejandro1@sgedd.com', '$2a$10$jkAMamNVz.3xuvoLSxVGAuvW7ixb3Rb.5WZKuAP/a3FLUSJvx31c.', '2025-11-28 03:42:47.029909+00', NULL, '', NULL, '', NULL, '', '', NULL, '2025-11-28 05:57:03.700395+00', '{"provider": "email", "providers": ["email"]}', '{"sub": "748ba0b1-73d2-49ec-b48c-1f7a20df69bb", "email": "alejandro1@sgedd.com", "email_verified": true, "phone_verified": false}', NULL, '2025-11-28 03:42:47.02484+00', '2025-11-28 07:56:23.4512+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false);
 
 
 --
@@ -87,7 +89,7 @@ INSERT INTO "auth"."identities" ("provider_id", "user_id", "identity_data", "pro
 --
 
 INSERT INTO "auth"."sessions" ("id", "user_id", "created_at", "updated_at", "factor_id", "aal", "not_after", "refreshed_at", "user_agent", "ip", "tag", "oauth_client_id", "refresh_token_hmac_key", "refresh_token_counter") VALUES
-	('ca05afaa-962c-421a-9357-87c12d4cd807', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', '2025-11-28 05:57:03.70047+00', '2025-11-28 06:57:30.702288+00', NULL, 'aal1', NULL, '2025-11-28 06:57:30.702156', 'node', '172.18.0.1', NULL, NULL, NULL, NULL);
+	('ca05afaa-962c-421a-9357-87c12d4cd807', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', '2025-11-28 05:57:03.70047+00', '2025-11-28 07:56:23.454056+00', NULL, 'aal1', NULL, '2025-11-28 07:56:23.453966', 'node', '172.18.0.1', NULL, NULL, NULL, NULL);
 
 
 --
@@ -134,7 +136,8 @@ INSERT INTO "auth"."mfa_amr_claims" ("session_id", "created_at", "updated_at", "
 
 INSERT INTO "auth"."refresh_tokens" ("instance_id", "id", "token", "user_id", "revoked", "created_at", "updated_at", "parent", "session_id") VALUES
 	('00000000-0000-0000-0000-000000000000', 5, 'xw6fb6oxln7z', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', true, '2025-11-28 05:57:03.703269+00', '2025-11-28 06:57:29.696997+00', NULL, 'ca05afaa-962c-421a-9357-87c12d4cd807'),
-	('00000000-0000-0000-0000-000000000000', 6, 'z2qcyodj2jpx', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', false, '2025-11-28 06:57:29.701036+00', '2025-11-28 06:57:29.701036+00', 'xw6fb6oxln7z', 'ca05afaa-962c-421a-9357-87c12d4cd807');
+	('00000000-0000-0000-0000-000000000000', 6, 'z2qcyodj2jpx', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', true, '2025-11-28 06:57:29.701036+00', '2025-11-28 07:56:23.443041+00', 'xw6fb6oxln7z', 'ca05afaa-962c-421a-9357-87c12d4cd807'),
+	('00000000-0000-0000-0000-000000000000', 7, 'am3hol336u2e', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', false, '2025-11-28 07:56:23.446868+00', '2025-11-28 07:56:23.446868+00', 'z2qcyodj2jpx', 'ca05afaa-962c-421a-9357-87c12d4cd807');
 
 
 --
@@ -326,11 +329,11 @@ INSERT INTO "public"."curriculum" ("noderegistro", "fechaactualizacion", "docent
 	('50f770ae-c20e-4be2-82b4-b49b96bedf0b', '2024-11-12', 'MÑLJ821102KD1'),
 	('84bef2c5-5c68-4752-9d8e-3764c2c38554', '2025-01-20', 'RMA921228TP9'),
 	('cd11cad6-3060-4971-8d53-245c0def7c94', '2024-09-15', 'LOP&850407XZ4'),
-	('1048b86d-734c-4bc5-9196-b5595ab4a291', '2024-12-02', 'ZULS830923ML2'),
 	('6b9f9ce7-a54e-4159-b1db-06b766cfc0ca', '2024-08-27', 'FERA990105QH6'),
 	('d69214a6-6988-4e2b-b680-5d63729e6f07', '2025-02-10', 'CÑTA770916BW8'),
 	('72b2c90b-9fb4-4554-b2c8-28323f601ad6', '2024-10-22', 'HERA880706C9A'),
-	('65ff36c7-e245-454a-b5d0-e7ae07476228', '2024-09-30', 'QTRÑ760530VF5');
+	('65ff36c7-e245-454a-b5d0-e7ae07476228', '2024-09-30', 'QTRÑ760530VF5'),
+	('cc6f393e-0abf-4a63-856e-bbc6007c3318', '2025-11-28', 'ZULS830923ML2');
 
 
 --
@@ -456,9 +459,7 @@ INSERT INTO "public"."tutores" ("tutoriaid", "periodo", "notutorados", "carrerat
 --
 
 INSERT INTO "public"."usuarios" ("id", "rol", "nombre", "ap_pat", "ap_mat", "puesto", "supabase_user", "docente_rfc", "generador_rfc", "revisor_rfc") VALUES
-	('a23d0701-0502-4b3a-b355-efe4c8ce9f04', 'generador', 'Bruno', 'Méndez', 'Paz', 'Capturista', NULL, NULL, 'GENB800102BB2', NULL),
 	('bd949366-d2e4-480b-b61d-c51ea82cfdc6', 'generador', 'Celia', 'Ramírez', 'Solís', 'Capturista', NULL, NULL, 'GENC800103CC3', NULL),
-	('44e4c1d3-db35-4f9e-9443-5ace7fff70c7', 'generador', 'Diego', 'Torres', 'Vega', 'Capturista', NULL, NULL, 'GEND800104DD4', NULL),
 	('a6af43d0-1e16-4e41-8a5f-c9573eb3c634', 'revisor', 'Beatriz', 'López', 'Cano', 'Revisor Académico', NULL, NULL, NULL, 'REV900102BB2'),
 	('3046f707-f40d-4acb-b9c4-bb3184f792e9', 'revisor', 'César', 'Martínez', 'Ortiz', 'Revisor Académico', NULL, NULL, NULL, 'REV900103CC3'),
 	('d0930d29-b31d-4676-a20e-cc5e1462e3a9', 'revisor', 'Daniela', 'Flores', 'Nava', 'Revisor Académico', NULL, NULL, NULL, 'REV900104DD4'),
@@ -474,7 +475,9 @@ INSERT INTO "public"."usuarios" ("id", "rol", "nombre", "ap_pat", "ap_mat", "pue
 	('c7b3cb2d-03d8-4464-8dcf-fbe0f9b50935', 'docente', 'Zulema', 'Santos', 'Lara', 'Profesor de Tiempo Completo', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', 'ZULS830923ML2', NULL, NULL),
 	('384d9b4d-28c5-441a-9c17-cad7b4187224', 'generador', 'Ana', 'Gómez', 'Luna', 'Capturista', '53798262-7c9d-4764-94e5-31e00c1790c5', NULL, 'GENA800101AA1', NULL),
 	('a2c573eb-1148-45e8-8e33-1ecd92167c06', 'revisor', 'Arturo', 'Santos', 'Ríos', 'Revisor Académico', '1d9c6248-0cc0-4496-b8ca-1fa012fbf38e', NULL, NULL, 'REV900101AA1'),
-	('011fc7ed-9c1b-44f3-a232-1dfa8f57394c', 'generador', 'Elisa', 'Hernández', 'Mora', 'Jefe de Departamento de Administración', NULL, NULL, 'GENE800105EE5', NULL);
+	('011fc7ed-9c1b-44f3-a232-1dfa8f57394c', 'generador', 'Elisa', 'Hernández', 'Mora', 'Jefe de Departamento de Administración', NULL, NULL, 'GENE800105EE5', NULL),
+	('44e4c1d3-db35-4f9e-9443-5ace7fff70c7', 'generador', 'Diego', 'Torres', 'Vega', 'Recursos Humanos', NULL, NULL, 'GEND800104DD4', NULL),
+	('a23d0701-0502-4b3a-b355-efe4c8ce9f04', 'generador', 'Bruno', 'Méndez', 'Paz', 'Jefe del Departamento de Desarrollo Academico', NULL, NULL, 'GENB800102BB2', NULL);
 
 
 --
@@ -547,7 +550,7 @@ INSERT INTO "public"."usuarios" ("id", "rol", "nombre", "ap_pat", "ap_mat", "pue
 -- Name: refresh_tokens_id_seq; Type: SEQUENCE SET; Schema: auth; Owner: supabase_auth_admin
 --
 
-SELECT pg_catalog.setval('"auth"."refresh_tokens_id_seq"', 6, true);
+SELECT pg_catalog.setval('"auth"."refresh_tokens_id_seq"', 7, true);
 
 
 --
@@ -561,6 +564,6 @@ SELECT pg_catalog.setval('"supabase_functions"."hooks_id_seq"', 1, false);
 -- PostgreSQL database dump complete
 --
 
--- \unrestrict cqNo2nmDaEdwiQ0N899GMc1miYEU99BwzNVJ9QRBwY0DYs0ckJGqBNGvKY6MhKz
+-- \unrestrict ICeltaRrYQ3QgE3O6ZNWOQBDphC8Xc8dHv1p1UfBTm0yyGj8iRv7dH3Fis853cJ
 
 RESET ALL;
