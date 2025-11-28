@@ -49,6 +49,10 @@ export async function generarDocumento(
   return { success: true };
 }
 
+export async function getDocumentLink(document_id: string): Promise<Result<string>> {
+  return {success: true, data: "/pdf/sample.pdf"}
+}
+
 
 export async function generarPdf() {
   // try {
