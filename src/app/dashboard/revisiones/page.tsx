@@ -1,8 +1,8 @@
 import CardBase from "@/components/common/CardBase";
-import VerPdf from "@/components/revisor/VerPdf";
 import { CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { getRevisorData } from "@/lib/actions/revisor";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 export default async function Page() {
@@ -45,7 +45,7 @@ export default async function Page() {
                 <TableCell>{event.observacion}</TableCell>
                 <TableCell>{event.documentoid}</TableCell>
                 <TableCell>
-                  <VerPdf document_id={event.documentoid}/>
+                  <Link href={`/dashboard/revisor/viewer/${event.documentoid}`}>Ver Pdf</Link>
                 </TableCell>
               </TableRow>
             ))}
