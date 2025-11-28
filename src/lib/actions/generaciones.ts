@@ -1,28 +1,24 @@
-import { Documento, Solicitante } from "@/types/revisor";
+import { EventoGeneracion } from "@/types/EventoGeneracion";
+import { getCurrentUser } from "./auth";
+import { getSupabaseCookiesClient } from "../supabase/clients";
+import { Result } from "@/types/Result";
 
-const docs: Record<string, Documento> = {
-  cse1: {
-    id: "doc1",
-    nombre: "Constancia de Servicios Escolares",
-    tipo: "Constancia de Servicios Escolares",
-    urlPDF: "/pdfs/constancia_servicios_1.pdf",
-  },
-  rh1: {
-    id: "doc2",
-    nombre: "Constancia de Recursos Humanos",
-    tipo: "Constancia de Recursos Humanos",
-    urlPDF: "/pdfs/constancia_rh_1.pdf",
-  },
-};
+export async function getEventos(): Promise<Result<EventoGeneracion[]>> {
+  const user = await getCurrentUser();
+  const supabase = await getSupabaseCookiesClient();
 
-export async function getSolicitantes(): Promise<Solicitante[]> {
-  return [
-    {
-      id: "1",
-      nombreCompleto: "Flores Saldaña Martín Alejandro",
-      documentos: [docs.cse1, docs.rh1],
-    },
-    { id: "2", nombreCompleto: "Meza Quiñonez César Iván", documentos: [] },
-    { id: "3", nombreCompleto: "Estrada Valenzuela Ernesto", documentos: [] },
-  ];
+  const { data, error } = await supabase
+    .from("eventogeneracion")
+    .select("*")
+    .eq("generador_rfc", user.rfc);
+
+  if (error) {
+    return { success: false, error: error.message };
+  }
+
+  return {
+    success: true,
+    data,
+  };
 }
+
