@@ -89,13 +89,15 @@ export default async function Page() {
                   <Solicitarpdf documentoId={doc.tipodocid} />
                 </TableCell>
                 <TableCell className="space-x-8 text-center">
-                  <Button
-                    variant="default"
-                    size="sm"
-                    className="rounded-2xl w-1/4"
-                  >
-                    Ver PDF
-                  </Button>
+                  <Link href={`/pdf/${doc.nombretipo}.pdf`} target="_blank">
+                    <Button
+                      variant="default"
+                      size="sm"
+                      className="rounded-2xl w-1/4"
+                    >
+                      Ver PDF
+                    </Button>
+                  </Link>
                   <Link
                     href={`/dashboard/expediente/documento_soporte?doc=${encodeURIComponent(
                       doc.nombretipo
