@@ -43,13 +43,6 @@ export default async function Page() {
             </div>
           )}
 
-          {(usuario.rol === "generador" || usuario.rol === "revisor") && (
-            <div className="flex gap-2">
-              <p className="font-semibold w-1/3">Puesto:</p>
-              <p className="w-2/3">{usuario.puesto}</p>
-            </div>
-          )}
-
           <div className="flex gap-2">
             <p className="font-semibold w-1/3">Puesto:</p>
             <p className="w-2/3">{usuario.puesto}</p>

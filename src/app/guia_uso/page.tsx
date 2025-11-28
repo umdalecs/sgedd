@@ -37,23 +37,23 @@ const sections: Section[] = [
     ],
   },
   {
-    id: "comite",
+      id: "revisores",
     icon: Users,
-    title: "Para Comité de Evaluación",
+    title: "Para Revisores",
     faqs: [
-      { q: "¿Cómo reviso solicitudes pendientes?", a: "En “Revisiones” verás pestañas con pendientes de firma y visto bueno." },
-      { q: "¿Cómo firmo un documento?", a: "Abre el documento en “Revisiones”, revisa su contenido y pulsa “Firmar”." },
-      { q: "¿Cómo veo el historial?", a: "En el detalle del documento, sección “Historial”, verás la trazabilidad." },
+      { q: "¿Cómo evalúo una solicitud?", a: "Ve a tu 'Bandeja de Entrada', abre el expediente del docente y usa el visor para aprobar o rechazar cada evidencia." },
+      { q: "¿Es obligatorio dejar comentarios al rechazar?", a: "Sí, debes especificar la razón del rechazo para que el docente pueda realizar las correcciones necesarias." },
+      { q: "¿Puedo cambiar un dictamen?", a: "Solo si el periodo de revisión sigue abierto; busca el documento en el historial y edita el estado." },
     ],
   },
   {
-    id: "subdireccion",
+    id: "generadores",
     icon: Shield,
-    title: "Para Subdirección Académica",
+    title: "Para Generadores",
     faqs: [
-      { q: "¿Cómo valido actas de resultados?", a: "En “Revisiones” filtra por Actas y usa aprobar o rechazar." },
-      { q: "¿Cómo gestiono solicitudes?", a: "En “Generadores” → “Solicitudes” puedes aprobar, rechazar o pedir correcciones." },
-      { q: "¿Dónde veo notificaciones globales?", a: "Haz clic en la campana de la barra superior para ver los mensajes." },
+      { q: "¿Cómo genero el acta final?", a: "Una vez que todos los documentos del docente estén validados, ve a 'Generar Acta' y el sistema creará el PDF oficial." },
+      { q: "¿Cómo aplico mi firma digital?", a: "El sistema usará tu firma cargada en el perfil automáticamente al generar los documentos oficiales." },
+      { q: "¿Dónde descargo los reportes semestrales?", a: "En el panel de administración, sección 'Reportes', puedes descargar el Excel con el resumen del periodo." },
     ],
   },
 ];
