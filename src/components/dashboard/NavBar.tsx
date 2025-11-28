@@ -25,9 +25,7 @@ export default function NavBar({
   usuario: { rol: string };
   pathname: string;
 }) {
-  const {url, routeName} = rutasRol[usuario.rol];
-
-  // const 
+  const {url, routeName} = rutasRol[usuario.rol.toLowerCase()];
 
   return (
     <div className="h-1/3 bg-sidebar-border flex justify-between">

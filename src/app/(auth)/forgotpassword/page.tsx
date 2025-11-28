@@ -29,8 +29,8 @@ export default function ForgotPasswordPage() {
     // } catch {
     //   setError("Error al conectar con el servidor");
     // } finally {
-    //   setIsLoading(false);
-    // }
+      // }
+    setIsLoading(false);
   };
 
   if (success) {

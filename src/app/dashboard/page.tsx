@@ -27,7 +27,7 @@ export default async function Page() {
           <div className="flex gap-2">
             <p className="font-semibold w-1/3">Nombre:</p>
             <p className="w-2/3">
-              {usuario.nombre} {usuario.apellido}
+              {usuario.nombre} {usuario.ap_mat} {usuario.ap_pat}
             </p>
           </div>
 
@@ -49,6 +49,11 @@ export default async function Page() {
               <p className="w-2/3">{usuario.puesto}</p>
             </div>
           )}
+
+          <div className="flex gap-2">
+            <p className="font-semibold w-1/3">Puesto:</p>
+            <p className="w-2/3">{usuario.puesto}</p>
+          </div>
 
           <div className="flex gap-2">
             <p className="font-semibold w-1/3">RFC:</p>

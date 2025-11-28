@@ -1,32 +1,37 @@
 import CardBase from "@/components/common/CardBase";
 import { CardContent } from "@/components/ui/card";
-import { getPeriodos } from "@/lib/actions/periodos";
+import { getConvocatorias } from "@/lib/actions/convocatorias";
 import { Dot } from "lucide-react";
+import { redirect } from "next/navigation";
 
 export default async function Page() {
-  const periodos = await getPeriodos();
+  const {data: convocatorias, error } = await getConvocatorias();
+
+  if (error) {
+    redirect("/")
+  }
 
   const hoy = new Date();
 
   return (
     <CardBase titulo="Convocatoria">
       <CardContent className="flex-col w-full space-y-4 my-4 overflow-y-auto">
-        {periodos.length > 0 ? (
-          periodos.map((n) => {
+        {convocatorias!.length > 0 ? (
+          convocatorias!.map((convocatoria) => {
             const fechaIni = new Date(
-              n.fechaIni.split("/").reverse().join("-")
+              convocatoria.fechainicio
             );
             const fechaFin = new Date(
-              n.fechaFin.split("/").reverse().join("-")
+              convocatoria.fechafin
             );
 
             const abierta = hoy >= fechaIni && hoy <= fechaFin;
             return (
               <div
                 className="p-5 flex justify-around w-full h-25 items-center bg-sidebar-border rounded-2xl"
-                key={n.id}
+                key={convocatoria.convocatoriaid}
               >
-                <div>{n.nombre}</div>
+                <div>{convocatoria.nombreconvocatoria}</div>
                 <div className="flex items-center">
                   <div>
                     <Dot

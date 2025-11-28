@@ -4,15 +4,11 @@ import { getSupabaseCookiesClient } from "@/lib/supabase/clients";
 import { redirect } from "next/navigation";
 import { RegisterSchema, LoginSchema } from "../schemas/authSchemas";
 import { z } from "zod";
-
-export interface AuthResult {
-  success: boolean;
-  error?: string;
-}
+import { Result } from "@/types/Result";
 
 export async function login(
   formData: z.infer<typeof LoginSchema>
-): Promise<AuthResult> {
+): Promise<Result> {
   const supabase = await getSupabaseCookiesClient();
 
   const { error } = await supabase.auth.signInWithPassword({
@@ -121,8 +117,9 @@ export async function getCurrentUser() {
     .single();
 
   let rfc = "";
+  const rol = profile.rol.toLowerCase();
 
-  switch (profile.rol) {
+  switch (rol) {
     case "docente":
       rfc = profile.docente_rfc;
       break;
@@ -145,6 +142,7 @@ export async function getCurrentUser() {
     ...user,
     ...profile,
     ...role,
+    rfc
   };
 }
 
