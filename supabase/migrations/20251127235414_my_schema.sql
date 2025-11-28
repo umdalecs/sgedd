@@ -1,5 +1,4 @@
-
-  create table "public"."docente" (
+create table "public"."docente" (
     "rfc" text not null,
     "fecha_ingreso" date not null,
     "hrs_carga" integer not null,
@@ -293,5 +292,3 @@ grant trigger on table "public"."usuarios" to "service_role";
 grant truncate on table "public"."usuarios" to "service_role";
 
 grant update on table "public"."usuarios" to "service_role";
-
-
