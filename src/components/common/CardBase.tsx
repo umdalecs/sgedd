@@ -1,9 +1,5 @@
 "use client";
-<<<<<<< Updated upstream
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-=======
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
->>>>>>> Stashed changes
 import { ReactNode } from "react";
 
 type CardBaseProps = {

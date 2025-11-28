@@ -1,10 +1,10 @@
 import CardBase from "@/components/common/CardBase";
 import RevisionesPanel from "@/components/revisor/RevisionesPanel";
 import { CardContent } from "@/components/ui/card";
-import { getMockRevisionData } from "@/lib/mock/revisor";
+import { getRevisorData } from "@/lib/actions/revisor";
 
-export default function Page() {
-  const data = getMockRevisionData();
+export default async function Page() {
+  const data = await getRevisorData();
   return (
     <CardBase titulo="Pendientes de visto bueno">
       <CardContent>

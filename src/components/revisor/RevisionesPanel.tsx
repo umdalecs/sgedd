@@ -29,7 +29,7 @@ function SolicitantesAccordion({ solicitantes }: { solicitantes: Solicitante[] }
         const expanded = !!open[s.id];
         return (
           <div key={s.id} className="rounded-2xl">
-           
+
             <div className="flex items-center justify-between bg-muted rounded-full px-4 py-3">
               <span className="font-semibold italic text-foreground">
                 {s.nombreCompleto}

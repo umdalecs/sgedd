@@ -19,7 +19,6 @@ import Link from "next/link";
 import { register } from "@/lib/actions/auth";
 import { RegisterSchema as formSchema } from "@/lib/schemas/authSchemas";
 
-
 export default function RegisterForm() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);

@@ -2,20 +2,9 @@
 
 import { getSupabaseCookiesClient } from "@/lib/supabase/clients";
 import { redirect } from "next/navigation";
-<<<<<<< Updated upstream
-import { RegisterSchema } from "../schemas/authSchemas";
-import { z } from "zod";
-
-export interface LoginFormData {
-  email: string;
-  password: string;
-}
-
-=======
 import { RegisterSchema, LoginSchema } from "../schemas/authSchemas";
 import { z } from "zod";
 
->>>>>>> Stashed changes
 export interface AuthResult {
   success: boolean;
   error?: string;
@@ -43,23 +32,12 @@ export async function register(values: z.infer<typeof RegisterSchema>) {
 
   // Buscar en la tabla de usuarios
   // si existe una tupla donde coincida el rfc
-
-<<<<<<< Updated upstream
-  console.log(values)
-=======
-  console.log(values);
->>>>>>> Stashed changes
-
   const { data: user, error: err1 } = await supabase
     .from("usuarios")
     .select("*")
-<<<<<<< Updated upstream
-    .or(`docente_rfc.eq.${values.rfc},generador_rfc.eq.${values.rfc},revisor_rfc.eq.${values.rfc}`)
-=======
     .or(
       `docente_rfc.eq.${values.rfc},generador_rfc.eq.${values.rfc},revisor_rfc.eq.${values.rfc}`
     )
->>>>>>> Stashed changes
     .single();
 
   if (err1) {
@@ -67,14 +45,6 @@ export async function register(values: z.infer<typeof RegisterSchema>) {
     return { success: false, error: err1.message };
   }
 
-<<<<<<< Updated upstream
-  // TODO: Si es docente y no cumple los requisitos de registro,
-  // no se permite el registro
-
-  return { success: false, error: "No cumples los requisitos para inscribirte en SGEDD" };
-
-  
-=======
   if (user.rol === "docente") {
     const { data: docente, error: err_docente } = await supabase
       .from("docente")
@@ -98,7 +68,6 @@ export async function register(values: z.infer<typeof RegisterSchema>) {
     }
   }
 
->>>>>>> Stashed changes
   // Crear el usuario en SupabaseAuth
   const {
     data: { user: supabaseUser },
@@ -118,13 +87,7 @@ export async function register(values: z.infer<typeof RegisterSchema>) {
   // el usuario de supabase auth
   user.supabase_user = supabaseUser!.id;
 
-<<<<<<< Updated upstream
-  const { error: err3 } = await supabase
-    .from("usuarios")
-    .upsert(user);
-=======
   const { error: err3 } = await supabase.from("usuarios").upsert(user);
->>>>>>> Stashed changes
 
     if (err3) {
       console.log(err3)
@@ -181,11 +144,7 @@ export async function getCurrentUser() {
   return {
     ...user,
     ...profile,
-<<<<<<< Updated upstream
-    ...role
-=======
     ...role,
->>>>>>> Stashed changes
   };
 }
 
