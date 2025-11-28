@@ -17,15 +17,8 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { login } from "@/lib/actions/auth";
+import { LoginSchema as formSchema } from "@/lib/schemas/authSchemas";
 
-const formSchema = z.object({
-  email: z.email("Introduce una dirección de correo válida"),
-  password: z
-    .string()
-    .min(6, "La contraseña debe contener al menos 6 caracteres")
-    .regex(/[a-zA-Z]/, "Debe tener al menos un caracter")
-    .regex(/[0-9]/, "Debe tener al menos un número"),
-});
 
 export default function LoginForm() {
   const [error, setError] = useState<string | null>(null);
@@ -43,20 +36,13 @@ export default function LoginForm() {
     setIsLoading(true);
     setError(null);
 
-    try {
-      const result = await login({
-        email: values.email,
-        password: values.password,
-      });
+    const result = await login(values);
 
-      if (!result.success) {
-        setError(result.error || "Error al iniciar sesión");
-      }
-    } catch {
-      setError("Error al conectar con el servidor");
-    } finally {
-      setIsLoading(false);
+    if (!result.success) {
+      setError(result.error || "Error al iniciar sesión");
     }
+
+    setIsLoading(false);
   };
 
   return (

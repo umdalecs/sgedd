@@ -1,4 +1,6 @@
+import CardBase from "@/components/common/CardBase";
 import { Button } from "@/components/ui/button";
+import { CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -6,11 +8,8 @@ const nombreDocumento = "Constancia de servicios escolares";
 
 export default function Page() {
   return (
-    <div className="max-w-5xl mx-auto mt-18 bg-background rounded-2xl shadow-lg overflow-hidden">
-      <div className="bg-primary text-white p-4 flex items-center space-x-2">
-        <h1 className="text-lg font-semibold">Reportar error en documento</h1>
-      </div>
-      <div className="p-6 grid gap-6">
+    <CardBase titulo="Reportar error en documento" className="">
+      <CardContent className="p-6 grid gap-6">
         <div className="grid gap-1.5">
           <Label
             htmlFor="documento"
@@ -43,7 +42,7 @@ export default function Page() {
             Enviar Mensaje
           </Button>
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </CardBase>
   );
 }
