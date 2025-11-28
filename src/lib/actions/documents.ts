@@ -2,6 +2,8 @@ import { PDFDocument } from "pdf-lib";
 import { getSupabaseCookiesClient } from "../supabase/clients";
 import path from "path";
 import { getCurrentUser } from "./auth";
+import { Result } from "@/types/Result";
+import { EventoGeneracion } from "@/types/EventoGeneracion";
 
 
 export async function getDocumentos() {
@@ -40,6 +42,13 @@ export async function getDocumentos() {
     },
   ];
 }
+
+export async function generarDocumento(
+  evento: EventoGeneracion
+): Promise<Result<object>> {
+  return { success: true };
+}
+
 
 export async function generarPdf() {
   // try {
