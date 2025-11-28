@@ -89,7 +89,7 @@ export default async function Page() {
                   <Solicitarpdf documentoId={doc.tipodocid} />
                 </TableCell>
                 <TableCell className="space-x-8 text-center">
-                  <Link href={`/pdf/${doc.nombretipo}.pdf`} target="_blank">
+                  <Link href={`/api/pdf/${encodeURIComponent(doc.nombretipo)}`} target="_blank">
                     <Button
                       variant="default"
                       size="sm"
