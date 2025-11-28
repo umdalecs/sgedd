@@ -86,7 +86,7 @@ export default async function Page() {
               <TableRow key={doc.tipodocid}>
                 <TableCell>{doc.nombretipo}</TableCell>
                 <TableCell className="text-center">
-                  <Solicitarpdf documentoId={doc.tipodocid}/>
+                  <Solicitarpdf documentoId={doc.tipodocid} />
                 </TableCell>
                 <TableCell className="space-x-8 text-center">
                   <Button
@@ -96,7 +96,11 @@ export default async function Page() {
                   >
                     Ver PDF
                   </Button>
-                  <Link href="/dashboard/expediente/documento_soporte">
+                  <Link
+                    href={`/dashboard/expediente/documento_soporte?doc=${encodeURIComponent(
+                      doc.nombretipo
+                    )}`}
+                  >
                     <Button
                       variant="destructive"
                       size="sm"
