@@ -4,6 +4,7 @@ import path from "path";
 import { getCurrentUser } from "./auth";
 import { Result } from "@/types/Result";
 import { EventoGeneracion } from "@/types/EventoGeneracion";
+import { Documento } from "@/types/Documento";
 
 
 export async function getDocumentos() {
@@ -49,8 +50,21 @@ export async function generarDocumento(
   return { success: true };
 }
 
-export async function getDocumentLink(document_id: string): Promise<Result<string>> {
-  return {success: true, data: "/pdf/sample.pdf"}
+export async function getDocumentByID(document_id: string): Promise<Result<Documento>> {
+  const supabase = await getSupabaseCookiesClient();
+
+  const {data, error} = await supabase
+    .from("documento")
+    .select("*")
+    .eq("documentoid", document_id)
+    .single();
+
+  if(error) {
+    return {success: false, error: error.message}
+  }
+
+  return {success: true, data}
+
 }
 
 
