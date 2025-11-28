@@ -16,3 +16,12 @@ export const RegisterSchema = z.object({
   message: "Las contraseñas no coinciden",
   path: ["confirmPassword"],
 });
+
+export const LoginSchema = z.object({
+  email: z.email("Introduce una dirección de correo válida"),
+  password: z
+    .string()
+    .min(6, "La contraseña debe contener al menos 6 caracteres")
+    .regex(/[a-zA-Z]/, "Debe tener al menos un caracter")
+    .regex(/[0-9]/, "Debe tener al menos un número"),
+});

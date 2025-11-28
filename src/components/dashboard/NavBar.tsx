@@ -1,10 +1,21 @@
 import Link from "next/link";
-import { Button } from "../ui/button";
 
-const rutaRol: Record<string, string> = {
-  Docente: "/dashboard/expediente",
-  Revisor: "/dashboard/revisiones",
-  Generador: "/dashboard/generaciones",
+const rutasRol: Record<string, {
+  url: string,
+  routeName: string
+}> = {
+  docente: {
+    url: "/dashboard/expediente",
+    routeName: "Expediente"
+  },
+  revisor: {
+    url: "/dashboard/revisiones",
+    routeName: "Revisiones"
+  },
+  generador: {
+    url: "/dashboard/generaciones",
+    routeName: "Generaciones"
+  },
 };
 
 export default function NavBar({
@@ -14,6 +25,10 @@ export default function NavBar({
   usuario: { rol: string };
   pathname: string;
 }) {
+  const {url, routeName} = rutasRol[usuario.rol];
+
+  // const 
+
   return (
     <div className="h-1/3 bg-sidebar-border flex justify-between">
       <div className="flex items-center justify-start gap-5 p-2 pl-8">
@@ -36,31 +51,15 @@ export default function NavBar({
           Período
         </Link>
         <Link
-          href={rutaRol[usuario.rol] || "#"}
+          href={url}
           className={`rounded-sm p-1 ${
-            pathname === rutaRol[usuario.rol]
+            pathname === url
               ? "bg-secondary/50"
               : "hover:bg-accent"
           }`}
         >
-          {usuario.rol === "docente"
-            ? "Mi expediente"
-            : usuario.rol === "revisor"
-            ? "Revisiones"
-            : "Generaciones"}
+          {routeName}
         </Link>
-        {usuario.rol === "generador" && (
-          <Link
-            href="/dashboard/plantillas"
-            className={`rounded-sm p-1 ${
-              pathname === "/dashboard/plantillas"
-                ? "bg-secondary/50"
-                : "hover:bg-accent"
-            }`}
-          >
-            Plantillas
-          </Link>
-        )}
         {usuario.rol === "revisor" && (
           <Link
             href="/dashboard/firmas"

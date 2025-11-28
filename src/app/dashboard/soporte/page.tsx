@@ -22,7 +22,7 @@ export default function Page() {
       </CardBase>
 
       <CardBase titulo="Información de contacto">
-        <CardContent className="p-8">
+        <CardContent className="p-4 pt-0">
           <div className="flex items-center gap-4">
             <Mail className="text-primary size-6" />
             <span className="text-base font-medium">

@@ -2,27 +2,20 @@
 
 import { useState } from "react";
 import type { RevisionData, Solicitante } from "@/types/revisor";
-import CardBase from "@/components/common/CardBase";
 import { ChevronDown, Minus, FileText } from "lucide-react";
 
 export default function RevisionesPanel({ data }: { data: RevisionData }) {
-  const titulo = "Pendientes de visto bueno";
   const solicitantes = data.pendientesVistoBueno;
 
   return (
-    <CardBase titulo={titulo}>
-      <div className="w-full max-w-5xl mx-auto">
-       
+      <div className="pb-8">
         <div className="w-full flex justify-center mb-4">
           <span className="inline-flex items-center justify-center rounded-full bg-foreground text-background px-5 py-1 text-sm font-semibold">
             Solicitantes:
           </span>
         </div>
-        <div className="border border-primary rounded-2xl bg-card p-3 sm:p-4">
-          <SolicitantesAccordion solicitantes={solicitantes} />
-        </div>
+        <SolicitantesAccordion solicitantes={solicitantes} />
       </div>
-    </CardBase>
   );
 }
 
