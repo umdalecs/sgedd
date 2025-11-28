@@ -10,14 +10,62 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { FilePlus } from "lucide-react"; // Importa el icono
 import Link from "next/link";
+import CardBase from "@/components/common/CardBase";
+import { CardContent } from "@/components/ui/card";
+import { getDocumentos } from "@/lib/actions/documents";
 
-export default function Page() {
+const getBadgeProps = (estado: string) => {
+  estado = estado.toLowerCase();
+
+  const catalog: Record<
+    string,
+    {
+      variant:
+        | "secondary"
+        | "destructive"
+        | "default"
+        | "outline"
+        | null
+        | undefined;
+      className: string;
+    }
+  > = {
+    aprobado: {
+      variant: "secondary",
+      className: "bg-green-100 text-green-800",
+    },
+    pendiente: {
+      variant: "secondary",
+      className: "bg-yellow-100 text-yellow-800",
+    },
+    rechazado: {
+      variant: "destructive",
+      className: "",
+    },
+    nogen: {
+      variant: "secondary",
+      className: "bg-gray-300 text-white",
+    },
+    default: {
+      variant: "secondary",
+      className: "",
+    },
+  };
+
+  const result = catalog[estado];
+
+  return result ?? catalog["default"];
+};
+
+export default async function Page() {
+  const documentos = await getDocumentos();
+
   return (
-    <div className="max-w-7xl mx-auto p-8">
-      <h1 className="text-2xl font-bold mt-4 mb-2">
-        MI EXPEDIENTE - PERIODO 2025
-      </h1>
-      <div className="rounded-2xl border shadow-2xl">
+    <CardBase
+      titulo="Mi Expediente - Periodo 2025"
+      className="rounded-2xl border shadow-2xl"
+    >
+      <CardContent className="p-4 pt-0">
         <Table>
           <TableHeader className="sticky top-0 bg-background">
             <TableRow>
@@ -99,76 +147,7 @@ export default function Page() {
             ))}
           </TableBody>
         </Table>
-      </div>
-    </div>
+      </CardContent>
+    </CardBase>
   );
 }
-
-const documentos = [
-  {
-    id: 1,
-    nombre: "Constancia de Recursos Humanos",
-    solicitar: false,
-    estado: "Aprobado",
-    ultimaActualizacion: "24/10/2025",
-    verPDF: true,
-  },
-  {
-    id: 2,
-    nombre: "Carta de Exclusividad  Laboral",
-    solicitar: true,
-    estado: "NoGen",
-    ultimaActualizacion: "24/10/2025",
-    verPDF: false,
-  },
-  {
-    id: 3,
-    nombre: "Carta de liberacion de Actividades",
-    solicitar: false,
-    estado: "Pendiente",
-    ultimaActualizacion: "20/10/2025",
-    verPDF: false,
-  },
-  {
-    id: 4,
-    nombre: "Constancia de servicios escolares",
-    solicitar: true,
-    estado: "Rechazado",
-    ultimaActualizacion: "18/10/2025",
-    verPDF: false,
-  },
-];
-
-const getBadgeProps = (estado: string) => {
-  switch (estado.toLowerCase()) {
-    case "aprobado":
-      return {
-        variant: "secondary" as const,
-        className: "bg-green-100 text-green-800",
-      };
-
-    case "pendiente":
-      return {
-        variant: "secondary" as const,
-        className: "bg-yellow-100 text-yellow-800",
-      };
-
-    case "rechazado":
-      return {
-        variant: "destructive" as const,
-        className: undefined,
-      };
-
-    case "nogen":
-      return {
-        variant: "secondary" as const,
-        className: "bg-gray-300 text-white",
-      };
-
-    default:
-      return {
-        variant: "secondary" as const,
-        className: undefined,
-      };
-  }
-};
