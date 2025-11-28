@@ -14,7 +14,7 @@ export default async function Page() {
 
   return (
     <CardBase titulo="Pendientes de visto bueno">
-      <CardContent>
+      <CardContent className="p-4">
         <Table>
           <TableHeader className="sticky top-0 bg-background">
             <TableRow>
