@@ -8,7 +8,7 @@ import { Result } from "@/types/Result";
 
 export async function login(
   formData: z.infer<typeof LoginSchema>
-): Promise<Result> {
+): Promise<Result<object>> {
   const supabase = await getSupabaseCookiesClient();
 
   const { error } = await supabase.auth.signInWithPassword({

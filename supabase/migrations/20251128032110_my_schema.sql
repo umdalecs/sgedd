@@ -69,6 +69,19 @@
 
 
 
+  create table "public"."docente" (
+    "rfc" text not null,
+    "fecha_ingreso" date not null,
+    "hrs_carga" integer not null,
+    "estatus_plaza" text not null,
+    "clave_presupuestal" text not null,
+    "departamento" text not null,
+    "numero_afiliacion" text,
+    "categoria_plaza" text
+      );
+
+
+
   create table "public"."documento" (
     "documentoid" uuid not null default gen_random_uuid(),
     "fechasolicitud" date,
@@ -127,6 +140,12 @@
 
 
 
+  create table "public"."generador" (
+    "rfc" text not null
+      );
+
+
+
   create table "public"."materia" (
     "materiaid" uuid not null default gen_random_uuid(),
     "clavemateria" text,
@@ -155,6 +174,12 @@
 
 
 
+  create table "public"."revisor" (
+    "rfc" text not null
+      );
+
+
+
   create table "public"."tipodocumento" (
     "tipodocid" uuid not null default gen_random_uuid(),
     "nombretipo" text,
@@ -174,6 +199,21 @@
       );
 
 
+
+  create table "public"."usuarios" (
+    "id" text not null,
+    "rol" text not null,
+    "nombre" text not null,
+    "ap_pat" text not null,
+    "ap_mat" text not null,
+    "puesto" text not null,
+    "supabase_user" uuid,
+    "docente_rfc" text,
+    "generador_rfc" text,
+    "revisor_rfc" text
+      );
+
+
 CREATE UNIQUE INDEX actividadcomplementaria_pkey ON public.actividadcomplementaria USING btree (actividadcomplementid);
 
 CREATE UNIQUE INDEX actividadesadministrativas_pkey ON public.actividadesadministrativas USING btree (actadministrativaid);
@@ -188,6 +228,8 @@ CREATE UNIQUE INDEX convocatoria_pkey ON public.convocatoria USING btree (convoc
 
 CREATE UNIQUE INDEX curriculum_pkey ON public.curriculum USING btree (noderegistro);
 
+CREATE UNIQUE INDEX docente_pkey ON public.docente USING btree (rfc);
+
 CREATE UNIQUE INDEX documento_pkey ON public.documento USING btree (documentoid);
 
 CREATE UNIQUE INDEX documentoinfoextra_pkey ON public.documentoinfoextra USING btree (docinfoextraid);
@@ -200,15 +242,21 @@ CREATE UNIQUE INDEX eventovistobueno_pkey ON public.eventovistobueno USING btree
 
 CREATE UNIQUE INDEX expediente_pkey ON public.expediente USING btree (expedienteid);
 
+CREATE UNIQUE INDEX generador_pkey ON public.generador USING btree (rfc);
+
 CREATE UNIQUE INDEX materia_pkey ON public.materia USING btree (materiaid);
 
 CREATE UNIQUE INDEX programa_pkey ON public.programa USING btree (programaid);
 
 CREATE UNIQUE INDEX recursoeducativo_pkey ON public.recursoeducativo USING btree (recursoeduid);
 
+CREATE UNIQUE INDEX revisor_pkey ON public.revisor USING btree (rfc);
+
 CREATE UNIQUE INDEX tipodocumento_pkey ON public.tipodocumento USING btree (tipodocid);
 
 CREATE UNIQUE INDEX tutores_pkey ON public.tutores USING btree (tutoriaid);
+
+CREATE UNIQUE INDEX usuarios_pkey ON public.usuarios USING btree (id);
 
 alter table "public"."actividadcomplementaria" add constraint "actividadcomplementaria_pkey" PRIMARY KEY using index "actividadcomplementaria_pkey";
 
@@ -224,6 +272,8 @@ alter table "public"."convocatoria" add constraint "convocatoria_pkey" PRIMARY K
 
 alter table "public"."curriculum" add constraint "curriculum_pkey" PRIMARY KEY using index "curriculum_pkey";
 
+alter table "public"."docente" add constraint "docente_pkey" PRIMARY KEY using index "docente_pkey";
+
 alter table "public"."documento" add constraint "documento_pkey" PRIMARY KEY using index "documento_pkey";
 
 alter table "public"."documentoinfoextra" add constraint "documentoinfoextra_pkey" PRIMARY KEY using index "documentoinfoextra_pkey";
@@ -236,15 +286,21 @@ alter table "public"."eventovistobueno" add constraint "eventovistobueno_pkey" P
 
 alter table "public"."expediente" add constraint "expediente_pkey" PRIMARY KEY using index "expediente_pkey";
 
+alter table "public"."generador" add constraint "generador_pkey" PRIMARY KEY using index "generador_pkey";
+
 alter table "public"."materia" add constraint "materia_pkey" PRIMARY KEY using index "materia_pkey";
 
 alter table "public"."programa" add constraint "programa_pkey" PRIMARY KEY using index "programa_pkey";
 
 alter table "public"."recursoeducativo" add constraint "recursoeducativo_pkey" PRIMARY KEY using index "recursoeducativo_pkey";
 
+alter table "public"."revisor" add constraint "revisor_pkey" PRIMARY KEY using index "revisor_pkey";
+
 alter table "public"."tipodocumento" add constraint "tipodocumento_pkey" PRIMARY KEY using index "tipodocumento_pkey";
 
 alter table "public"."tutores" add constraint "tutores_pkey" PRIMARY KEY using index "tutores_pkey";
+
+alter table "public"."usuarios" add constraint "usuarios_pkey" PRIMARY KEY using index "usuarios_pkey";
 
 alter table "public"."actividadcomplementaria" add constraint "fk_actcompl_docente" FOREIGN KEY (docente_rfc) REFERENCES public.docente(rfc) ON DELETE CASCADE not valid;
 
@@ -338,6 +394,22 @@ alter table "public"."tutores" add constraint "fk_tutor_docente" FOREIGN KEY (do
 
 alter table "public"."tutores" validate constraint "fk_tutor_docente";
 
+alter table "public"."usuarios" add constraint "usuarios_docente_rfc_fkey" FOREIGN KEY (docente_rfc) REFERENCES public.docente(rfc) not valid;
+
+alter table "public"."usuarios" validate constraint "usuarios_docente_rfc_fkey";
+
+alter table "public"."usuarios" add constraint "usuarios_generador_rfc_fkey" FOREIGN KEY (generador_rfc) REFERENCES public.generador(rfc) not valid;
+
+alter table "public"."usuarios" validate constraint "usuarios_generador_rfc_fkey";
+
+alter table "public"."usuarios" add constraint "usuarios_revisor_rfc_fkey" FOREIGN KEY (revisor_rfc) REFERENCES public.revisor(rfc) not valid;
+
+alter table "public"."usuarios" validate constraint "usuarios_revisor_rfc_fkey";
+
+alter table "public"."usuarios" add constraint "usuarios_supabase_user_fkey" FOREIGN KEY (supabase_user) REFERENCES auth.users(id) not valid;
+
+alter table "public"."usuarios" validate constraint "usuarios_supabase_user_fkey";
+
 grant delete on table "public"."actividadcomplementaria" to "anon";
 
 grant insert on table "public"."actividadcomplementaria" to "anon";
@@ -365,20 +437,6 @@ grant trigger on table "public"."actividadcomplementaria" to "authenticated";
 grant truncate on table "public"."actividadcomplementaria" to "authenticated";
 
 grant update on table "public"."actividadcomplementaria" to "authenticated";
-
-grant delete on table "public"."actividadcomplementaria" to "postgres";
-
-grant insert on table "public"."actividadcomplementaria" to "postgres";
-
-grant references on table "public"."actividadcomplementaria" to "postgres";
-
-grant select on table "public"."actividadcomplementaria" to "postgres";
-
-grant trigger on table "public"."actividadcomplementaria" to "postgres";
-
-grant truncate on table "public"."actividadcomplementaria" to "postgres";
-
-grant update on table "public"."actividadcomplementaria" to "postgres";
 
 grant delete on table "public"."actividadcomplementaria" to "service_role";
 
@@ -422,20 +480,6 @@ grant truncate on table "public"."actividadesadministrativas" to "authenticated"
 
 grant update on table "public"."actividadesadministrativas" to "authenticated";
 
-grant delete on table "public"."actividadesadministrativas" to "postgres";
-
-grant insert on table "public"."actividadesadministrativas" to "postgres";
-
-grant references on table "public"."actividadesadministrativas" to "postgres";
-
-grant select on table "public"."actividadesadministrativas" to "postgres";
-
-grant trigger on table "public"."actividadesadministrativas" to "postgres";
-
-grant truncate on table "public"."actividadesadministrativas" to "postgres";
-
-grant update on table "public"."actividadesadministrativas" to "postgres";
-
 grant delete on table "public"."actividadesadministrativas" to "service_role";
 
 grant insert on table "public"."actividadesadministrativas" to "service_role";
@@ -477,20 +521,6 @@ grant trigger on table "public"."apoyoadocencia" to "authenticated";
 grant truncate on table "public"."apoyoadocencia" to "authenticated";
 
 grant update on table "public"."apoyoadocencia" to "authenticated";
-
-grant delete on table "public"."apoyoadocencia" to "postgres";
-
-grant insert on table "public"."apoyoadocencia" to "postgres";
-
-grant references on table "public"."apoyoadocencia" to "postgres";
-
-grant select on table "public"."apoyoadocencia" to "postgres";
-
-grant trigger on table "public"."apoyoadocencia" to "postgres";
-
-grant truncate on table "public"."apoyoadocencia" to "postgres";
-
-grant update on table "public"."apoyoadocencia" to "postgres";
 
 grant delete on table "public"."apoyoadocencia" to "service_role";
 
@@ -534,20 +564,6 @@ grant truncate on table "public"."asignaciongenerador" to "authenticated";
 
 grant update on table "public"."asignaciongenerador" to "authenticated";
 
-grant delete on table "public"."asignaciongenerador" to "postgres";
-
-grant insert on table "public"."asignaciongenerador" to "postgres";
-
-grant references on table "public"."asignaciongenerador" to "postgres";
-
-grant select on table "public"."asignaciongenerador" to "postgres";
-
-grant trigger on table "public"."asignaciongenerador" to "postgres";
-
-grant truncate on table "public"."asignaciongenerador" to "postgres";
-
-grant update on table "public"."asignaciongenerador" to "postgres";
-
 grant delete on table "public"."asignaciongenerador" to "service_role";
 
 grant insert on table "public"."asignaciongenerador" to "service_role";
@@ -589,20 +605,6 @@ grant trigger on table "public"."cargamaterias" to "authenticated";
 grant truncate on table "public"."cargamaterias" to "authenticated";
 
 grant update on table "public"."cargamaterias" to "authenticated";
-
-grant delete on table "public"."cargamaterias" to "postgres";
-
-grant insert on table "public"."cargamaterias" to "postgres";
-
-grant references on table "public"."cargamaterias" to "postgres";
-
-grant select on table "public"."cargamaterias" to "postgres";
-
-grant trigger on table "public"."cargamaterias" to "postgres";
-
-grant truncate on table "public"."cargamaterias" to "postgres";
-
-grant update on table "public"."cargamaterias" to "postgres";
 
 grant delete on table "public"."cargamaterias" to "service_role";
 
@@ -646,20 +648,6 @@ grant truncate on table "public"."convocatoria" to "authenticated";
 
 grant update on table "public"."convocatoria" to "authenticated";
 
-grant delete on table "public"."convocatoria" to "postgres";
-
-grant insert on table "public"."convocatoria" to "postgres";
-
-grant references on table "public"."convocatoria" to "postgres";
-
-grant select on table "public"."convocatoria" to "postgres";
-
-grant trigger on table "public"."convocatoria" to "postgres";
-
-grant truncate on table "public"."convocatoria" to "postgres";
-
-grant update on table "public"."convocatoria" to "postgres";
-
 grant delete on table "public"."convocatoria" to "service_role";
 
 grant insert on table "public"."convocatoria" to "service_role";
@@ -702,20 +690,6 @@ grant truncate on table "public"."curriculum" to "authenticated";
 
 grant update on table "public"."curriculum" to "authenticated";
 
-grant delete on table "public"."curriculum" to "postgres";
-
-grant insert on table "public"."curriculum" to "postgres";
-
-grant references on table "public"."curriculum" to "postgres";
-
-grant select on table "public"."curriculum" to "postgres";
-
-grant trigger on table "public"."curriculum" to "postgres";
-
-grant truncate on table "public"."curriculum" to "postgres";
-
-grant update on table "public"."curriculum" to "postgres";
-
 grant delete on table "public"."curriculum" to "service_role";
 
 grant insert on table "public"."curriculum" to "service_role";
@@ -729,6 +703,48 @@ grant trigger on table "public"."curriculum" to "service_role";
 grant truncate on table "public"."curriculum" to "service_role";
 
 grant update on table "public"."curriculum" to "service_role";
+
+grant delete on table "public"."docente" to "anon";
+
+grant insert on table "public"."docente" to "anon";
+
+grant references on table "public"."docente" to "anon";
+
+grant select on table "public"."docente" to "anon";
+
+grant trigger on table "public"."docente" to "anon";
+
+grant truncate on table "public"."docente" to "anon";
+
+grant update on table "public"."docente" to "anon";
+
+grant delete on table "public"."docente" to "authenticated";
+
+grant insert on table "public"."docente" to "authenticated";
+
+grant references on table "public"."docente" to "authenticated";
+
+grant select on table "public"."docente" to "authenticated";
+
+grant trigger on table "public"."docente" to "authenticated";
+
+grant truncate on table "public"."docente" to "authenticated";
+
+grant update on table "public"."docente" to "authenticated";
+
+grant delete on table "public"."docente" to "service_role";
+
+grant insert on table "public"."docente" to "service_role";
+
+grant references on table "public"."docente" to "service_role";
+
+grant select on table "public"."docente" to "service_role";
+
+grant trigger on table "public"."docente" to "service_role";
+
+grant truncate on table "public"."docente" to "service_role";
+
+grant update on table "public"."docente" to "service_role";
 
 grant delete on table "public"."documento" to "anon";
 
@@ -757,20 +773,6 @@ grant trigger on table "public"."documento" to "authenticated";
 grant truncate on table "public"."documento" to "authenticated";
 
 grant update on table "public"."documento" to "authenticated";
-
-grant delete on table "public"."documento" to "postgres";
-
-grant insert on table "public"."documento" to "postgres";
-
-grant references on table "public"."documento" to "postgres";
-
-grant select on table "public"."documento" to "postgres";
-
-grant trigger on table "public"."documento" to "postgres";
-
-grant truncate on table "public"."documento" to "postgres";
-
-grant update on table "public"."documento" to "postgres";
 
 grant delete on table "public"."documento" to "service_role";
 
@@ -814,20 +816,6 @@ grant truncate on table "public"."documentoinfoextra" to "authenticated";
 
 grant update on table "public"."documentoinfoextra" to "authenticated";
 
-grant delete on table "public"."documentoinfoextra" to "postgres";
-
-grant insert on table "public"."documentoinfoextra" to "postgres";
-
-grant references on table "public"."documentoinfoextra" to "postgres";
-
-grant select on table "public"."documentoinfoextra" to "postgres";
-
-grant trigger on table "public"."documentoinfoextra" to "postgres";
-
-grant truncate on table "public"."documentoinfoextra" to "postgres";
-
-grant update on table "public"."documentoinfoextra" to "postgres";
-
 grant delete on table "public"."documentoinfoextra" to "service_role";
 
 grant insert on table "public"."documentoinfoextra" to "service_role";
@@ -869,20 +857,6 @@ grant trigger on table "public"."estrategiadidactica" to "authenticated";
 grant truncate on table "public"."estrategiadidactica" to "authenticated";
 
 grant update on table "public"."estrategiadidactica" to "authenticated";
-
-grant delete on table "public"."estrategiadidactica" to "postgres";
-
-grant insert on table "public"."estrategiadidactica" to "postgres";
-
-grant references on table "public"."estrategiadidactica" to "postgres";
-
-grant select on table "public"."estrategiadidactica" to "postgres";
-
-grant trigger on table "public"."estrategiadidactica" to "postgres";
-
-grant truncate on table "public"."estrategiadidactica" to "postgres";
-
-grant update on table "public"."estrategiadidactica" to "postgres";
 
 grant delete on table "public"."estrategiadidactica" to "service_role";
 
@@ -926,20 +900,6 @@ grant truncate on table "public"."eventogeneracion" to "authenticated";
 
 grant update on table "public"."eventogeneracion" to "authenticated";
 
-grant delete on table "public"."eventogeneracion" to "postgres";
-
-grant insert on table "public"."eventogeneracion" to "postgres";
-
-grant references on table "public"."eventogeneracion" to "postgres";
-
-grant select on table "public"."eventogeneracion" to "postgres";
-
-grant trigger on table "public"."eventogeneracion" to "postgres";
-
-grant truncate on table "public"."eventogeneracion" to "postgres";
-
-grant update on table "public"."eventogeneracion" to "postgres";
-
 grant delete on table "public"."eventogeneracion" to "service_role";
 
 grant insert on table "public"."eventogeneracion" to "service_role";
@@ -981,20 +941,6 @@ grant trigger on table "public"."eventovistobueno" to "authenticated";
 grant truncate on table "public"."eventovistobueno" to "authenticated";
 
 grant update on table "public"."eventovistobueno" to "authenticated";
-
-grant delete on table "public"."eventovistobueno" to "postgres";
-
-grant insert on table "public"."eventovistobueno" to "postgres";
-
-grant references on table "public"."eventovistobueno" to "postgres";
-
-grant select on table "public"."eventovistobueno" to "postgres";
-
-grant trigger on table "public"."eventovistobueno" to "postgres";
-
-grant truncate on table "public"."eventovistobueno" to "postgres";
-
-grant update on table "public"."eventovistobueno" to "postgres";
 
 grant delete on table "public"."eventovistobueno" to "service_role";
 
@@ -1038,20 +984,6 @@ grant truncate on table "public"."expediente" to "authenticated";
 
 grant update on table "public"."expediente" to "authenticated";
 
-grant delete on table "public"."expediente" to "postgres";
-
-grant insert on table "public"."expediente" to "postgres";
-
-grant references on table "public"."expediente" to "postgres";
-
-grant select on table "public"."expediente" to "postgres";
-
-grant trigger on table "public"."expediente" to "postgres";
-
-grant truncate on table "public"."expediente" to "postgres";
-
-grant update on table "public"."expediente" to "postgres";
-
 grant delete on table "public"."expediente" to "service_role";
 
 grant insert on table "public"."expediente" to "service_role";
@@ -1065,6 +997,48 @@ grant trigger on table "public"."expediente" to "service_role";
 grant truncate on table "public"."expediente" to "service_role";
 
 grant update on table "public"."expediente" to "service_role";
+
+grant delete on table "public"."generador" to "anon";
+
+grant insert on table "public"."generador" to "anon";
+
+grant references on table "public"."generador" to "anon";
+
+grant select on table "public"."generador" to "anon";
+
+grant trigger on table "public"."generador" to "anon";
+
+grant truncate on table "public"."generador" to "anon";
+
+grant update on table "public"."generador" to "anon";
+
+grant delete on table "public"."generador" to "authenticated";
+
+grant insert on table "public"."generador" to "authenticated";
+
+grant references on table "public"."generador" to "authenticated";
+
+grant select on table "public"."generador" to "authenticated";
+
+grant trigger on table "public"."generador" to "authenticated";
+
+grant truncate on table "public"."generador" to "authenticated";
+
+grant update on table "public"."generador" to "authenticated";
+
+grant delete on table "public"."generador" to "service_role";
+
+grant insert on table "public"."generador" to "service_role";
+
+grant references on table "public"."generador" to "service_role";
+
+grant select on table "public"."generador" to "service_role";
+
+grant trigger on table "public"."generador" to "service_role";
+
+grant truncate on table "public"."generador" to "service_role";
+
+grant update on table "public"."generador" to "service_role";
 
 grant delete on table "public"."materia" to "anon";
 
@@ -1093,20 +1067,6 @@ grant trigger on table "public"."materia" to "authenticated";
 grant truncate on table "public"."materia" to "authenticated";
 
 grant update on table "public"."materia" to "authenticated";
-
-grant delete on table "public"."materia" to "postgres";
-
-grant insert on table "public"."materia" to "postgres";
-
-grant references on table "public"."materia" to "postgres";
-
-grant select on table "public"."materia" to "postgres";
-
-grant trigger on table "public"."materia" to "postgres";
-
-grant truncate on table "public"."materia" to "postgres";
-
-grant update on table "public"."materia" to "postgres";
 
 grant delete on table "public"."materia" to "service_role";
 
@@ -1150,20 +1110,6 @@ grant truncate on table "public"."programa" to "authenticated";
 
 grant update on table "public"."programa" to "authenticated";
 
-grant delete on table "public"."programa" to "postgres";
-
-grant insert on table "public"."programa" to "postgres";
-
-grant references on table "public"."programa" to "postgres";
-
-grant select on table "public"."programa" to "postgres";
-
-grant trigger on table "public"."programa" to "postgres";
-
-grant truncate on table "public"."programa" to "postgres";
-
-grant update on table "public"."programa" to "postgres";
-
 grant delete on table "public"."programa" to "service_role";
 
 grant insert on table "public"."programa" to "service_role";
@@ -1206,20 +1152,6 @@ grant truncate on table "public"."recursoeducativo" to "authenticated";
 
 grant update on table "public"."recursoeducativo" to "authenticated";
 
-grant delete on table "public"."recursoeducativo" to "postgres";
-
-grant insert on table "public"."recursoeducativo" to "postgres";
-
-grant references on table "public"."recursoeducativo" to "postgres";
-
-grant select on table "public"."recursoeducativo" to "postgres";
-
-grant trigger on table "public"."recursoeducativo" to "postgres";
-
-grant truncate on table "public"."recursoeducativo" to "postgres";
-
-grant update on table "public"."recursoeducativo" to "postgres";
-
 grant delete on table "public"."recursoeducativo" to "service_role";
 
 grant insert on table "public"."recursoeducativo" to "service_role";
@@ -1233,6 +1165,48 @@ grant trigger on table "public"."recursoeducativo" to "service_role";
 grant truncate on table "public"."recursoeducativo" to "service_role";
 
 grant update on table "public"."recursoeducativo" to "service_role";
+
+grant delete on table "public"."revisor" to "anon";
+
+grant insert on table "public"."revisor" to "anon";
+
+grant references on table "public"."revisor" to "anon";
+
+grant select on table "public"."revisor" to "anon";
+
+grant trigger on table "public"."revisor" to "anon";
+
+grant truncate on table "public"."revisor" to "anon";
+
+grant update on table "public"."revisor" to "anon";
+
+grant delete on table "public"."revisor" to "authenticated";
+
+grant insert on table "public"."revisor" to "authenticated";
+
+grant references on table "public"."revisor" to "authenticated";
+
+grant select on table "public"."revisor" to "authenticated";
+
+grant trigger on table "public"."revisor" to "authenticated";
+
+grant truncate on table "public"."revisor" to "authenticated";
+
+grant update on table "public"."revisor" to "authenticated";
+
+grant delete on table "public"."revisor" to "service_role";
+
+grant insert on table "public"."revisor" to "service_role";
+
+grant references on table "public"."revisor" to "service_role";
+
+grant select on table "public"."revisor" to "service_role";
+
+grant trigger on table "public"."revisor" to "service_role";
+
+grant truncate on table "public"."revisor" to "service_role";
+
+grant update on table "public"."revisor" to "service_role";
 
 grant delete on table "public"."tipodocumento" to "anon";
 
@@ -1261,20 +1235,6 @@ grant trigger on table "public"."tipodocumento" to "authenticated";
 grant truncate on table "public"."tipodocumento" to "authenticated";
 
 grant update on table "public"."tipodocumento" to "authenticated";
-
-grant delete on table "public"."tipodocumento" to "postgres";
-
-grant insert on table "public"."tipodocumento" to "postgres";
-
-grant references on table "public"."tipodocumento" to "postgres";
-
-grant select on table "public"."tipodocumento" to "postgres";
-
-grant trigger on table "public"."tipodocumento" to "postgres";
-
-grant truncate on table "public"."tipodocumento" to "postgres";
-
-grant update on table "public"."tipodocumento" to "postgres";
 
 grant delete on table "public"."tipodocumento" to "service_role";
 
@@ -1318,20 +1278,6 @@ grant truncate on table "public"."tutores" to "authenticated";
 
 grant update on table "public"."tutores" to "authenticated";
 
-grant delete on table "public"."tutores" to "postgres";
-
-grant insert on table "public"."tutores" to "postgres";
-
-grant references on table "public"."tutores" to "postgres";
-
-grant select on table "public"."tutores" to "postgres";
-
-grant trigger on table "public"."tutores" to "postgres";
-
-grant truncate on table "public"."tutores" to "postgres";
-
-grant update on table "public"."tutores" to "postgres";
-
 grant delete on table "public"."tutores" to "service_role";
 
 grant insert on table "public"."tutores" to "service_role";
@@ -1345,5 +1291,47 @@ grant trigger on table "public"."tutores" to "service_role";
 grant truncate on table "public"."tutores" to "service_role";
 
 grant update on table "public"."tutores" to "service_role";
+
+grant delete on table "public"."usuarios" to "anon";
+
+grant insert on table "public"."usuarios" to "anon";
+
+grant references on table "public"."usuarios" to "anon";
+
+grant select on table "public"."usuarios" to "anon";
+
+grant trigger on table "public"."usuarios" to "anon";
+
+grant truncate on table "public"."usuarios" to "anon";
+
+grant update on table "public"."usuarios" to "anon";
+
+grant delete on table "public"."usuarios" to "authenticated";
+
+grant insert on table "public"."usuarios" to "authenticated";
+
+grant references on table "public"."usuarios" to "authenticated";
+
+grant select on table "public"."usuarios" to "authenticated";
+
+grant trigger on table "public"."usuarios" to "authenticated";
+
+grant truncate on table "public"."usuarios" to "authenticated";
+
+grant update on table "public"."usuarios" to "authenticated";
+
+grant delete on table "public"."usuarios" to "service_role";
+
+grant insert on table "public"."usuarios" to "service_role";
+
+grant references on table "public"."usuarios" to "service_role";
+
+grant select on table "public"."usuarios" to "service_role";
+
+grant trigger on table "public"."usuarios" to "service_role";
+
+grant truncate on table "public"."usuarios" to "service_role";
+
+grant update on table "public"."usuarios" to "service_role";
 
 
