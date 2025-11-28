@@ -93,7 +93,7 @@ export default function GuiaUsoPage() {
                   >
                     <AccordionTrigger className="py-3 sm:py-4 text-sm sm:text-base hover:no-underline">
                       <span className="inline-flex items-center gap-2">
-                        <Icon className="size-4 sm:size-5 text-primary flex-shrink-0" aria-hidden />
+                        <Icon className="size-4 sm:size-5 text-primary shrink-0" aria-hidden />
                         <span className="font-medium">{section.title}</span>
                       </span>
                     </AccordionTrigger>
