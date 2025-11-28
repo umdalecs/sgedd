@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   Form,
@@ -15,30 +16,35 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import Link from "next/link";
-
-const formSchema = z.object({
-  name: z.string().min(5, "El nombre debe medir al menos 5 caracteres"),
-  lastName: z.string(),
-  rfc: z.string(),
-  email: z.email(),
-  password: z.string(),
-  role: z.string(),
-});
+import { register } from "@/lib/actions/auth";
+import { RegisterSchema as formSchema } from "@/lib/schemas/authSchemas";
 
 export default function RegisterForm() {
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      lastName: "",
       rfc: "",
       email: "",
       password: "",
-      role: "",
+      confirmPassword: "",
     },
   });
 
-  const handleSubmit = (values: z.infer<typeof formSchema>) => {};
+  const handleSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsLoading(true);
+    setError(null);
+
+    const result = await register(values);
+
+    if (!result.success) {
+      setError(result.error || "Error al registrar usuario");
+    }
+
+    setIsLoading(false);
+  };
 
   return (
     <Form {...form}>
@@ -46,40 +52,11 @@ export default function RegisterForm() {
         onSubmit={form.handleSubmit(handleSubmit)}
         className="w-full space-y-3"
       >
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nombre</FormLabel>
-              <FormControl>
-                <Input
-                  type="text"
-                  {...field}
-                  className="shadow-2xl"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="lastName"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Apellido</FormLabel>
-              <FormControl>
-                <Input
-                  type="text"
-                  {...field}
-                  className="shadow-2xl"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        {error && (
+          <div className="p-3 text-sm text-red-500 bg-red-50 rounded-md">
+            {error}
+          </div>
+        )}
         <FormField
           control={form.control}
           name="rfc"
@@ -90,7 +67,7 @@ export default function RegisterForm() {
                 <Input
                   type="text"
                   {...field}
-                  className="shadow-2xl"
+                  className="shadow-2xl uppercase"
                 />
               </FormControl>
               <FormMessage />
@@ -104,54 +81,44 @@ export default function RegisterForm() {
             <FormItem>
               <FormLabel>Correo</FormLabel>
               <FormControl>
-                <Input
-                  type="email"
-                  {...field}
-                  className="shadow-2xl"
-                />
+                <Input type="email" {...field} className="shadow-2xl" />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Contraseña</FormLabel>
-              <FormControl>
-                <Input
-                  type="password"
-                  {...field}
-                  className="shadow-2xl"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="role"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Rol</FormLabel>
-              <FormControl>
-                <Input
-                  type="text"
-                  {...field}
-                  className="shadow-2xl"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="grid grid-cols-2 gap-3">
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Contraseña</FormLabel>
+                <FormControl>
+                  <Input type="password" {...field} className="shadow-2xl" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="confirmPassword"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Confirmar Contraseña</FormLabel>
+                <FormControl>
+                  <Input type="password" {...field} className="shadow-2xl" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
 
         <div className="text-center">
-          <Button type="submit" className="w-full">
-            Registrarse
+          <Button type="submit" className="w-full" disabled={isLoading}>
+            {isLoading ? "Registrando..." : "Registrarse"}
           </Button>
 
           <Link

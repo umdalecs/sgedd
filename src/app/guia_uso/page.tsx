@@ -65,7 +65,7 @@ export default function GuiaUsoPage() {
         <Card className="bg-card text-card-foreground w-full rounded-lg shadow-lg">
           <CardHeader>
             <div className="flex items-start gap-3">
-              <Info className="size-5 sm:size-6 text-primary mt-0.5 flex-shrink-0" aria-hidden />
+              <Info className="size-5 sm:size-6 text-primary mt-0.5 shrink-0" aria-hidden />
               <div className="space-y-1">
                 <CardTitle className="font-semibold text-base sm:text-lg md:text-xl">
                   Guía de Uso para el SGEDD
@@ -93,7 +93,7 @@ export default function GuiaUsoPage() {
                   >
                     <AccordionTrigger className="py-3 sm:py-4 text-sm sm:text-base hover:no-underline">
                       <span className="inline-flex items-center gap-2">
-                        <Icon className="size-4 sm:size-5 text-primary flex-shrink-0" aria-hidden />
+                        <Icon className="size-4 sm:size-5 text-primary shrink-0" aria-hidden />
                         <span className="font-medium">{section.title}</span>
                       </span>
                     </AccordionTrigger>

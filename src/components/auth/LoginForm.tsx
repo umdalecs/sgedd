@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import {
@@ -9,49 +10,60 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "../ui/form";
 
-import {z} from "zod";
+import { z } from "zod";
 import { useForm } from "react-hook-form";
-import {zodResolver} from "@hookform/resolvers/zod"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { login } from "@/lib/actions/auth";
+import { LoginSchema as formSchema } from "@/lib/schemas/authSchemas";
 
-const formSchema = z.object({
-  email: z.email("Introduce una dirección de correo válida"),
-  password: z.string()
-    .min(6, "La contraseña debe contener al menos 6 caracteres")
-    .regex(/[a-zA-Z]/, "Debe tener al menos un caracter")
-    .regex(/[0-9]/, "Debe tener al menos un número")
-})
 
 export default function LoginForm() {
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
-      password: ""
-    }
+      password: "",
+    },
   });
 
-  const handleSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
-  }
+  const handleSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsLoading(true);
+    setError(null);
+
+    const result = await login(values);
+
+    if (!result.success) {
+      setError(result.error || "Error al iniciar sesión");
+    }
+
+    setIsLoading(false);
+  };
 
   return (
     <Form {...form}>
-      <form className="w-full space-y-3" onSubmit={form.handleSubmit(handleSubmit)}>
-        <FormField 
+      <form
+        className="w-full space-y-3"
+        onSubmit={form.handleSubmit(handleSubmit)}
+      >
+        {error && (
+          <div className="p-3 text-sm text-red-500 bg-red-50 rounded-md">
+            {error}
+          </div>
+        )}
+        <FormField
           control={form.control}
           name="email"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Correo</FormLabel>
               <FormControl>
-                <Input
-                  type="email"
-                  {...field}
-                  className="shadow-2xl"
-                />
+                <Input type="email" {...field} className="shadow-2xl" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -64,11 +76,7 @@ export default function LoginForm() {
             <FormItem>
               <FormLabel>Contraseña</FormLabel>
               <FormControl>
-                <Input
-                  type="password"
-                  {...field}
-                  className="shadow-2xl"
-                />
+                <Input type="password" {...field} className="shadow-2xl" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -76,10 +84,8 @@ export default function LoginForm() {
         />
 
         <div className="text-center">
-          <Button
-            type="submit"
-            className="bg-primary w-full">
-            Iniciar sesión
+          <Button type="submit" className="bg-primary w-full" disabled={isLoading}>
+            {isLoading ? "Iniciando sesión..." : "Iniciar sesión"}
           </Button>
 
           <Link
