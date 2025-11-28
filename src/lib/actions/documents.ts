@@ -1,3 +1,4 @@
+"use server";
 import { PDFDocument } from "pdf-lib";
 import { getSupabaseCookiesClient } from "../supabase/clients";
 import path from "path";
@@ -6,43 +7,6 @@ import { Result } from "@/types/Result";
 import { EventoGeneracion } from "@/types/EventoGeneracion";
 import { Documento } from "@/types/Documento";
 import { file } from "zod";
-
-export async function getDocumentos() {
-  return [
-    {
-      id: 1,
-      nombre: "Constancia de Recursos Humanos",
-      solicitar: false,
-      estado: "Aprobado",
-      ultimaActualizacion: "24/10/2025",
-      verPDF: true,
-    },
-    {
-      id: 2,
-      nombre: "Carta de Exclusividad  Laboral",
-      solicitar: true,
-      estado: "NoGen",
-      ultimaActualizacion: "24/10/2025",
-      verPDF: false,
-    },
-    {
-      id: 3,
-      nombre: "Carta de liberacion de Actividades",
-      solicitar: false,
-      estado: "Pendiente",
-      ultimaActualizacion: "20/10/2025",
-      verPDF: false,
-    },
-    {
-      id: 4,
-      nombre: "Constancia de servicios escolares",
-      solicitar: true,
-      estado: "Rechazado",
-      ultimaActualizacion: "18/10/2025",
-      verPDF: false,
-    },
-  ];
-}
 
 export async function getDocumentByID(
   document_id: string
@@ -62,52 +26,69 @@ export async function getDocumentByID(
   return { success: true, data };
 }
 
-export async function generarPdf(event: EventoGeneracion): Promise<Result<object>> {
-  try {
-    // const user = await getCurrentUser();
+const TEMPLATES: Record<string, string> = {
+  "068fe9fd-c111-4753-be14-a101729b2748": "Doc 1 - Constancia de Docente.pdf",
+  "5f76042e-fffe-40ab-a950-8c083839e7b0": "Doc 3 - Carta de Exclusividad Laboral.pdf",
+  "9d1749bd-0136-4b3b-8ff4-c686fcf0a766": "Doc 4 - Constancia Actualizacion Curriculum",
+};
 
-    // // Leer el PDF template desde el sistema de archivos
-    // const templatePath = path.join(process.cwd(), "public", "pdf", "cambioH3.pdf");
-    // const arrayBuffer = await fs.readFile(templatePath);
-    // // Cargar y modificar el PDF
-    // const pdfDoc = await PDFDocument.load(arrayBuffer);
-    // const form = pdfDoc.getForm();
-    // // Opcional: ver todos los campos disponibles
-    // const fields = form.getFields();
-    // fields.forEach(f => console.log("Campo:", f.getName()));
-    // // Llenar el formulario
-    // // form.getTextField("Nombre").setText(nombreUsuario);
-    // // form.flatten();
-    // // Generar el PDF
+function getTemplatePath(tipoDocumentoId: number): string {
+  const template = TEMPLATES[tipoDocumentoId];
 
-    // const pdfBytes = await pdfDoc.save();
-    // Crear nombre único para el archivo
-    const fileName = `documento-${Date.now()}.pdf`;
+  if (!template) {
+    throw new Error(`No existe un template para tipoDocumentoId=${tipoDocumentoId}`);
+  }
 
-    // Subir a Supabase Storage
-    const {data, error} = await savePdf(pdfBytes,fileName);
-
-    if (error) {
-      return {success: false, error}
-    }
-
-    return {
-      success: true,
-      data: {
-        ...data,
-        fileName
-      }
-    };
-
-
-  } catch (error) {
-    console.error("Error generando PDF:", error);
-    return {
-      success: false,
-      error: error instanceof Error ? error.message : "Error desconocido",
-    };
-  } 
+  return path.join(process.cwd(), "public", "pdf", template);
 }
+
+
+// export async function generarPdf(event: EventoGeneracion): Promise<Result<object>> {
+//   try {
+//     // const user = await getCurrentUser();
+
+//     // // Leer el PDF template desde el sistema de archivos
+//     // const templatePath = path.join(process.cwd(), "public", "pdf", "cambioH3.pdf");
+//     // const arrayBuffer = await fs.readFile(templatePath);
+//     // // Cargar y modificar el PDF
+//     // const pdfDoc = await PDFDocument.load(arrayBuffer);
+//     // const form = pdfDoc.getForm();
+//     // // Opcional: ver todos los campos disponibles
+//     // const fields = form.getFields();
+//     // fields.forEach(f => console.log("Campo:", f.getName()));
+//     // // Llenar el formulario
+//     // // form.getTextField("Nombre").setText(nombreUsuario);
+//     // // form.flatten();
+//     // // Generar el PDF
+
+//     // const pdfBytes = await pdfDoc.save();
+//     // Crear nombre único para el archivo
+//     const fileName = `documento-${Date.now()}.pdf`;
+
+//     // Subir a Supabase Storage
+//     const {data, error} = await savePdf(pdfBytes,fileName);
+
+//     if (error) {
+//       return {success: false, error}
+//     }
+
+//     return {
+//       success: true,
+//       data: {
+//         ...data,
+//         fileName
+//       }
+//     };
+
+
+//   } catch (error) {
+//     console.error("Error generando PDF:", error);
+//     return {
+//       success: false,
+//       error: error instanceof Error ? error.message : "Error desconocido",
+//     };
+//   } 
+// }
 
 async function savePdf(pdf: Uint8Array<ArrayBufferLike>, fileName: string): Promise<Result<{publicUrl: string}>> {
   const supabase = await getSupabaseCookiesClient();

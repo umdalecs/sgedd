@@ -16,7 +16,7 @@ export default function Page() {
   return (
     <>
       <DocContent />
-      <PDFViewerCard>
+      <PDFViewerCard url="">
         <div className="flex flex-col w-full h-full items-center justify-around">
           <Button className="flex w-3/4 h-15 text-2xl font-bold">
             <div>Firmar</div>
