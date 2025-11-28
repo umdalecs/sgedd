@@ -4,7 +4,7 @@ SET session_replication_role = replica;
 -- PostgreSQL database dump
 --
 
--- \restrict GhY6Mc5tlGXYl1jPqfdAaMx0rUXwkI02bc2AodgjsWPF0rEtfajpn9yqQYikG1Y
+-- \restrict cqNo2nmDaEdwiQ0N899GMc1miYEU99BwzNVJ9QRBwY0DYs0ckJGqBNGvKY6MhKz
 
 -- Dumped from database version 17.6
 -- Dumped by pg_dump version 17.6
@@ -34,7 +34,14 @@ INSERT INTO "auth"."audit_log_entries" ("instance_id", "id", "payload", "created
 	('00000000-0000-0000-0000-000000000000', 'afc7ce97-5ded-493a-aaf7-8e8c6a51e70c', '{"action":"logout","actor_id":"53798262-7c9d-4764-94e5-31e00c1790c5","actor_username":"cesar1@sgedd.com","actor_via_sso":false,"log_type":"account"}', '2025-11-28 03:43:20.980965+00', ''),
 	('00000000-0000-0000-0000-000000000000', 'cdbceb17-e72b-436c-a212-7e4de9226227', '{"action":"user_signedup","actor_id":"1d9c6248-0cc0-4496-b8ca-1fa012fbf38e","actor_username":"diego1@sgedd.com","actor_via_sso":false,"log_type":"team","traits":{"provider":"email"}}', '2025-11-28 03:43:36.979819+00', ''),
 	('00000000-0000-0000-0000-000000000000', '6f9c50cd-924d-44fc-912b-d0616b5173e6', '{"action":"login","actor_id":"1d9c6248-0cc0-4496-b8ca-1fa012fbf38e","actor_username":"diego1@sgedd.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2025-11-28 03:43:36.990798+00', ''),
-	('00000000-0000-0000-0000-000000000000', '053e755e-ef1a-4d79-9489-d9d5030e6284', '{"action":"logout","actor_id":"1d9c6248-0cc0-4496-b8ca-1fa012fbf38e","actor_username":"diego1@sgedd.com","actor_via_sso":false,"log_type":"account"}', '2025-11-28 03:43:39.477166+00', '');
+	('00000000-0000-0000-0000-000000000000', '053e755e-ef1a-4d79-9489-d9d5030e6284', '{"action":"logout","actor_id":"1d9c6248-0cc0-4496-b8ca-1fa012fbf38e","actor_username":"diego1@sgedd.com","actor_via_sso":false,"log_type":"account"}', '2025-11-28 03:43:39.477166+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'da8bc367-6ca6-4d3d-a951-29e5229eb433', '{"action":"login","actor_id":"53798262-7c9d-4764-94e5-31e00c1790c5","actor_username":"cesar1@sgedd.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2025-11-28 05:56:19.202968+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'ded0b41b-6339-4ace-9d65-3b9354d26806', '{"action":"logout","actor_id":"53798262-7c9d-4764-94e5-31e00c1790c5","actor_username":"cesar1@sgedd.com","actor_via_sso":false,"log_type":"account"}', '2025-11-28 05:56:53.318014+00', ''),
+	('00000000-0000-0000-0000-000000000000', '5aef1d6d-5226-4e7f-9c5a-b1ac06ef3d5f', '{"action":"login","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2025-11-28 05:57:03.698698+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'f9a193fe-3dab-48e8-91c4-c25ff6f9e330', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-11-28 06:57:29.690022+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'd067cec0-9753-4949-b708-d8c95fbd6834', '{"action":"token_revoked","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-11-28 06:57:29.694714+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'e4c4c4da-dbfc-491a-bf14-bf52e5d351e8', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-11-28 06:57:30.514597+00', ''),
+	('00000000-0000-0000-0000-000000000000', '9bf26fa5-6c52-42bc-bfc0-1504b6f0e414', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-11-28 06:57:30.697209+00', '');
 
 
 --
@@ -49,8 +56,8 @@ INSERT INTO "auth"."audit_log_entries" ("instance_id", "id", "payload", "created
 
 INSERT INTO "auth"."users" ("instance_id", "id", "aud", "role", "email", "encrypted_password", "email_confirmed_at", "invited_at", "confirmation_token", "confirmation_sent_at", "recovery_token", "recovery_sent_at", "email_change_token_new", "email_change", "email_change_sent_at", "last_sign_in_at", "raw_app_meta_data", "raw_user_meta_data", "is_super_admin", "created_at", "updated_at", "phone", "phone_confirmed_at", "phone_change", "phone_change_token", "phone_change_sent_at", "email_change_token_current", "email_change_confirm_status", "banned_until", "reauthentication_token", "reauthentication_sent_at", "is_sso_user", "deleted_at", "is_anonymous") VALUES
 	('00000000-0000-0000-0000-000000000000', '1d9c6248-0cc0-4496-b8ca-1fa012fbf38e', 'authenticated', 'authenticated', 'diego1@sgedd.com', '$2a$10$azxS.YxVfX4sPQQsEcuBzuTbotYnByqjGsju4ckEQ9RdKFlcY..l6', '2025-11-28 03:43:36.980086+00', NULL, '', NULL, '', NULL, '', '', NULL, '2025-11-28 03:43:36.99158+00', '{"provider": "email", "providers": ["email"]}', '{"sub": "1d9c6248-0cc0-4496-b8ca-1fa012fbf38e", "email": "diego1@sgedd.com", "email_verified": true, "phone_verified": false}', NULL, '2025-11-28 03:43:36.976052+00', '2025-11-28 03:43:36.99353+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
-	('00000000-0000-0000-0000-000000000000', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', 'authenticated', 'authenticated', 'alejandro1@sgedd.com', '$2a$10$jkAMamNVz.3xuvoLSxVGAuvW7ixb3Rb.5WZKuAP/a3FLUSJvx31c.', '2025-11-28 03:42:47.029909+00', NULL, '', NULL, '', NULL, '', '', NULL, '2025-11-28 03:42:47.039356+00', '{"provider": "email", "providers": ["email"]}', '{"sub": "748ba0b1-73d2-49ec-b48c-1f7a20df69bb", "email": "alejandro1@sgedd.com", "email_verified": true, "phone_verified": false}', NULL, '2025-11-28 03:42:47.02484+00', '2025-11-28 03:42:47.041803+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
-	('00000000-0000-0000-0000-000000000000', '53798262-7c9d-4764-94e5-31e00c1790c5', 'authenticated', 'authenticated', 'cesar1@sgedd.com', '$2a$10$fQttNyo9OzymuNVcaWwzW.v0a5snB30VoXyT8vUwS3BprfoiKEJKG', '2025-11-28 03:43:17.069043+00', NULL, '', NULL, '', NULL, '', '', NULL, '2025-11-28 03:43:17.080283+00', '{"provider": "email", "providers": ["email"]}', '{"sub": "53798262-7c9d-4764-94e5-31e00c1790c5", "email": "cesar1@sgedd.com", "email_verified": true, "phone_verified": false}', NULL, '2025-11-28 03:43:17.063834+00', '2025-11-28 03:43:17.08236+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false);
+	('00000000-0000-0000-0000-000000000000', '53798262-7c9d-4764-94e5-31e00c1790c5', 'authenticated', 'authenticated', 'cesar1@sgedd.com', '$2a$10$fQttNyo9OzymuNVcaWwzW.v0a5snB30VoXyT8vUwS3BprfoiKEJKG', '2025-11-28 03:43:17.069043+00', NULL, '', NULL, '', NULL, '', '', NULL, '2025-11-28 05:56:19.20765+00', '{"provider": "email", "providers": ["email"]}', '{"sub": "53798262-7c9d-4764-94e5-31e00c1790c5", "email": "cesar1@sgedd.com", "email_verified": true, "phone_verified": false}', NULL, '2025-11-28 03:43:17.063834+00', '2025-11-28 05:56:19.21816+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
+	('00000000-0000-0000-0000-000000000000', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', 'authenticated', 'authenticated', 'alejandro1@sgedd.com', '$2a$10$jkAMamNVz.3xuvoLSxVGAuvW7ixb3Rb.5WZKuAP/a3FLUSJvx31c.', '2025-11-28 03:42:47.029909+00', NULL, '', NULL, '', NULL, '', '', NULL, '2025-11-28 05:57:03.700395+00', '{"provider": "email", "providers": ["email"]}', '{"sub": "748ba0b1-73d2-49ec-b48c-1f7a20df69bb", "email": "alejandro1@sgedd.com", "email_verified": true, "phone_verified": false}', NULL, '2025-11-28 03:42:47.02484+00', '2025-11-28 06:57:29.703387+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false);
 
 
 --
@@ -79,12 +86,16 @@ INSERT INTO "auth"."identities" ("provider_id", "user_id", "identity_data", "pro
 -- Data for Name: sessions; Type: TABLE DATA; Schema: auth; Owner: supabase_auth_admin
 --
 
+INSERT INTO "auth"."sessions" ("id", "user_id", "created_at", "updated_at", "factor_id", "aal", "not_after", "refreshed_at", "user_agent", "ip", "tag", "oauth_client_id", "refresh_token_hmac_key", "refresh_token_counter") VALUES
+	('ca05afaa-962c-421a-9357-87c12d4cd807', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', '2025-11-28 05:57:03.70047+00', '2025-11-28 06:57:30.702288+00', NULL, 'aal1', NULL, '2025-11-28 06:57:30.702156', 'node', '172.18.0.1', NULL, NULL, NULL, NULL);
 
 
 --
 -- Data for Name: mfa_amr_claims; Type: TABLE DATA; Schema: auth; Owner: supabase_auth_admin
 --
 
+INSERT INTO "auth"."mfa_amr_claims" ("session_id", "created_at", "updated_at", "authentication_method", "id") VALUES
+	('ca05afaa-962c-421a-9357-87c12d4cd807', '2025-11-28 05:57:03.706171+00', '2025-11-28 05:57:03.706171+00', 'password', '3471dde3-da42-4846-b7ab-fd6c13ec246f');
 
 
 --
@@ -121,6 +132,9 @@ INSERT INTO "auth"."identities" ("provider_id", "user_id", "identity_data", "pro
 -- Data for Name: refresh_tokens; Type: TABLE DATA; Schema: auth; Owner: supabase_auth_admin
 --
 
+INSERT INTO "auth"."refresh_tokens" ("instance_id", "id", "token", "user_id", "revoked", "created_at", "updated_at", "parent", "session_id") VALUES
+	('00000000-0000-0000-0000-000000000000', 5, 'xw6fb6oxln7z', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', true, '2025-11-28 05:57:03.703269+00', '2025-11-28 06:57:29.696997+00', NULL, 'ca05afaa-962c-421a-9357-87c12d4cd807'),
+	('00000000-0000-0000-0000-000000000000', 6, 'z2qcyodj2jpx', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', false, '2025-11-28 06:57:29.701036+00', '2025-11-28 06:57:29.701036+00', 'xw6fb6oxln7z', 'ca05afaa-962c-421a-9357-87c12d4cd807');
 
 
 --
@@ -228,10 +242,10 @@ INSERT INTO "public"."generador" ("rfc") VALUES
 --
 
 INSERT INTO "public"."tipodocumento" ("tipodocid", "nombretipo", "tipoinf", "plantillaruta", "docintegrado") VALUES
-	('068fe9fd-c111-4753-be14-a101729b2748', 'Constancia docente', 'Documento que acredita la identidad del docente', '/plantillas/constancia_docente.docx', NULL),
-	('5f76042e-fffe-40ab-a950-8c083839e7b0', 'Formato para el horario de actividades A', 'Documento en que especifica el horario en que se van a realizar las actividades version A', '/plantillas/formato_horario_actividades_A.docx', NULL),
-	('a0473e8a-832f-4565-8a84-71a25a263930', 'Formato para el horario de actividades B', 'Documento en que especifica el horario en que se van a realizar las actividades version B', '/plantillas/formato_horario_actividades_B.docx', NULL),
-	('9d1749bd-0136-4b3b-8ff4-c686fcf0a766', 'Formato para el horario de actividades C', 'Documento en que especifica el horario en que se van a realizar las actividades version C', '/plantillas/formato_horario_actividades_C.docx', NULL);
+	('5f76042e-fffe-40ab-a950-8c083839e7b0', 'Carta de Exclusividad Laboral', 'Documento en que especifica el horario en que se van a realizar las actividades version A', '/plantillas/formato_horario_actividades_A.docx', NULL),
+	('9d1749bd-0136-4b3b-8ff4-c686fcf0a766', 'Constancia Actualizacion Curriculum', 'Documento en que especifica el horario en que se van a realizar las actividades version C', '/plantillas/formato_horario_actividades_C.docx', NULL),
+	('a0473e8a-832f-4565-8a84-71a25a263930', 'Constancia Alumnos Atendidos', 'Documento en que especifica el horario en que se van a realizar las actividades version B', '/plantillas/formato_horario_actividades_B.docx', NULL),
+	('068fe9fd-c111-4753-be14-a101729b2748', 'Constancia Docente', 'Documento que acredita la identidad del docente', '/plantillas/constancia_docente.docx', NULL);
 
 
 --
@@ -445,7 +459,6 @@ INSERT INTO "public"."usuarios" ("id", "rol", "nombre", "ap_pat", "ap_mat", "pue
 	('a23d0701-0502-4b3a-b355-efe4c8ce9f04', 'generador', 'Bruno', 'Méndez', 'Paz', 'Capturista', NULL, NULL, 'GENB800102BB2', NULL),
 	('bd949366-d2e4-480b-b61d-c51ea82cfdc6', 'generador', 'Celia', 'Ramírez', 'Solís', 'Capturista', NULL, NULL, 'GENC800103CC3', NULL),
 	('44e4c1d3-db35-4f9e-9443-5ace7fff70c7', 'generador', 'Diego', 'Torres', 'Vega', 'Capturista', NULL, NULL, 'GEND800104DD4', NULL),
-	('011fc7ed-9c1b-44f3-a232-1dfa8f57394c', 'generador', 'Elisa', 'Hernández', 'Mora', 'Capturista', NULL, NULL, 'GENE800105EE5', NULL),
 	('a6af43d0-1e16-4e41-8a5f-c9573eb3c634', 'revisor', 'Beatriz', 'López', 'Cano', 'Revisor Académico', NULL, NULL, NULL, 'REV900102BB2'),
 	('3046f707-f40d-4acb-b9c4-bb3184f792e9', 'revisor', 'César', 'Martínez', 'Ortiz', 'Revisor Académico', NULL, NULL, NULL, 'REV900103CC3'),
 	('d0930d29-b31d-4676-a20e-cc5e1462e3a9', 'revisor', 'Daniela', 'Flores', 'Nava', 'Revisor Académico', NULL, NULL, NULL, 'REV900104DD4'),
@@ -460,7 +473,8 @@ INSERT INTO "public"."usuarios" ("id", "rol", "nombre", "ap_pat", "ap_mat", "pue
 	('9cd11827-9b0b-4475-bac4-d64323f54daa', 'docente', 'Quetzal', 'Trujillo', 'Ñanco', 'Profesor de Tiempo Completo', NULL, 'QTRÑ760530VF5', NULL, NULL),
 	('c7b3cb2d-03d8-4464-8dcf-fbe0f9b50935', 'docente', 'Zulema', 'Santos', 'Lara', 'Profesor de Tiempo Completo', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', 'ZULS830923ML2', NULL, NULL),
 	('384d9b4d-28c5-441a-9c17-cad7b4187224', 'generador', 'Ana', 'Gómez', 'Luna', 'Capturista', '53798262-7c9d-4764-94e5-31e00c1790c5', NULL, 'GENA800101AA1', NULL),
-	('a2c573eb-1148-45e8-8e33-1ecd92167c06', 'revisor', 'Arturo', 'Santos', 'Ríos', 'Revisor Académico', '1d9c6248-0cc0-4496-b8ca-1fa012fbf38e', NULL, NULL, 'REV900101AA1');
+	('a2c573eb-1148-45e8-8e33-1ecd92167c06', 'revisor', 'Arturo', 'Santos', 'Ríos', 'Revisor Académico', '1d9c6248-0cc0-4496-b8ca-1fa012fbf38e', NULL, NULL, 'REV900101AA1'),
+	('011fc7ed-9c1b-44f3-a232-1dfa8f57394c', 'generador', 'Elisa', 'Hernández', 'Mora', 'Jefe de Departamento de Administración', NULL, NULL, 'GENE800105EE5', NULL);
 
 
 --
@@ -533,7 +547,7 @@ INSERT INTO "public"."usuarios" ("id", "rol", "nombre", "ap_pat", "ap_mat", "pue
 -- Name: refresh_tokens_id_seq; Type: SEQUENCE SET; Schema: auth; Owner: supabase_auth_admin
 --
 
-SELECT pg_catalog.setval('"auth"."refresh_tokens_id_seq"', 3, true);
+SELECT pg_catalog.setval('"auth"."refresh_tokens_id_seq"', 6, true);
 
 
 --
@@ -547,6 +561,6 @@ SELECT pg_catalog.setval('"supabase_functions"."hooks_id_seq"', 1, false);
 -- PostgreSQL database dump complete
 --
 
--- \unrestrict GhY6Mc5tlGXYl1jPqfdAaMx0rUXwkI02bc2AodgjsWPF0rEtfajpn9yqQYikG1Y
+-- \unrestrict cqNo2nmDaEdwiQ0N899GMc1miYEU99BwzNVJ9QRBwY0DYs0ckJGqBNGvKY6MhKz
 
 RESET ALL;
