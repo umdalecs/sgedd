@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { CardFooter } from "../ui/card";
 import { useForm } from "react-hook-form";
 import { supportSchema as formSchema } from "@/lib/schemas/supportSchemas";
-import z from "zod";
+import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
@@ -17,8 +17,10 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Textarea } from "../ui/textarea";
+import { placeTicket } from "@/lib/actions/tickets";
+import { TipoDocumento } from "@/types/Documento";
 
-export function SupportForm() {
+export function SupportForm({ document }: { document?: TipoDocumento }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>("");
 
@@ -34,22 +36,27 @@ export function SupportForm() {
     setIsLoading(true);
     setError(null);
 
-    // TODO: Place tickets
-    // const result = await login(values);
+    const payload: typeof values & { document_id?: string } = {
+      ...values,
+    };
 
-    // if (!result.success) {
-    //   setError(result.error || "Error al iniciar sesión");
-    // }
+    if (document) {
+      payload.document_id = document.tipodocid;
+    }
+
+    const { error } = await placeTicket(payload);
+
+    if (error) {
+      setError(error || "Error al mandar el ticket");
+      return;
+    }
 
     setIsLoading(false);
   };
 
   return (
     <Form {...form}>
-      <form
-        className="space-y-3"
-        onSubmit={form.handleSubmit(handleSubmit)}
-      >
+      <form className="space-y-3" onSubmit={form.handleSubmit(handleSubmit)}>
         {error && (
           <div className="p-3 text-sm text-red-500 bg-red-50 rounded-md">
             {error}
@@ -60,7 +67,7 @@ export function SupportForm() {
           name="matter"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Asunto</FormLabel>
+              <FormLabel>{document && "Error en documento: " + document.nombretipo + ", " } Asunto</FormLabel>
               <FormControl>
                 <Input type="text" {...field} className="shadow-2xl" />
               </FormControl>

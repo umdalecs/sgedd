@@ -13,11 +13,11 @@ export async function getRevisorData(): Promise<Result<EventoVistoBueno[]>> {
     .eq("revisor_rfc", user.rfc);
 
   if (error) {
-    return { success: false, error: error.message };
+    return { error: error.message };
   }
 
   return {
-    success: true,
+    
     data,
   };
 }

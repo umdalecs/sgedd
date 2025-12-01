@@ -1,4 +1,3 @@
-import { Convocatoria } from "@/types/Convocatoria";
 import { getSupabaseCookiesClient } from "../supabase/clients";
 import { Result } from "@/types/Result";
 import { TipoDocumento } from "@/types/TipoDocumento";
@@ -11,8 +10,8 @@ export async function getDocumentos(): Promise<Result<TipoDocumento[]>>{
     .select("*")
 
     if (error) {
-        return {success: false, error: error.message}
+        return {error: error.message}
     }
 
-    return {data, success: true};
+    return {data};
 }

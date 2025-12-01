@@ -17,7 +17,6 @@ export async function generarDocumento3(): Promise<Result<object>> {
   if (errCurr || !curriculum) {
     console.error("El docente no tiene registro de curriculum activo.")
     return {
-      success: false,
       error:
         "No cuenta con un curriculum actualizado. Actualice su curriculum antes de generar este documento.",
     };
@@ -32,7 +31,7 @@ export async function generarDocumento3(): Promise<Result<object>> {
 
   if (genErr || !generador) {
     console.error("INSERT ERROR:", genErr);
-    return { success: false, error: "No existe un generador con ese puesto" };
+    return { error: "No existe un generador con ese puesto" };
   }
  //Genera el evento con el insert
   const fechaActual = new Date().toISOString();
@@ -46,7 +45,7 @@ export async function generarDocumento3(): Promise<Result<object>> {
   ]);
   if (evErr) {
     console.error("INSERT ERROR:", evErr);
-    return { success: false, error: "No se pudo crear el evento" };
+    return {  error: "No se pudo crear el evento" };
   }
-  return { success: true };
+  return { };
 }

@@ -13,12 +13,11 @@ export async function getEventos(): Promise<Result<EventoGeneracion[]>> {
     .eq("generador_rfc", user.rfc);
 
   if (error) {
-    return { success: false, error: error.message };
+    return { error: error.message };
   }
 
   return {
-    success: true,
-    data,
+    data
   };
 }
 
