@@ -27,6 +27,13 @@ type Docente = {
   categoria_plaza: string;
 };
 
+type Expediente = {
+  fechacreacion: string;
+  estado: string;
+  convocatoriaid: string;
+  docente_rfc: string;
+}
+
 //Ruta GET
 
 export async function GET(
@@ -53,6 +60,20 @@ export async function GET(
       return NextResponse.json(
         { error: "Docente no encontrado" },
         { status: 404 }
+      );
+    }
+
+    //Cargar datos del expediente
+    const { data: expediente } = await supabase
+      .from("expediente")
+      .select("*")
+      .eq("docente_rfc", docente.rfc)
+      .single();
+    
+    if (!expediente) {
+      return NextResponse.json(
+        {error: "Expediente no encontrado"},
+        { status: 404}
       );
     }
 
@@ -198,6 +219,38 @@ export async function GET(
 
     form.flatten();
     const finalPdf = await pdfDoc.save();
+
+    const fileName = `${usuario.docente_rfc}-${Date.now()}.pdf`;
+
+    const { error: uploadErr } = await supabase.storage
+      .from("documentos")
+      .upload(fileName, finalPdf, {
+        contentType: "application/pdf",
+        upsert: false,
+      });
+
+    if (uploadErr) {
+      console.error(uploadErr);
+      return NextResponse.json(
+        { error: "No se pudo almacenar el PDF" },
+        { status: 500 }
+      );
+    }
+
+    const { data: publicUrlData } = supabase.storage
+      .from("documentos")
+      .getPublicUrl(fileName);
+
+    const pdfUrl = publicUrlData.publicUrl;
+
+    await supabase.from("documentos").insert([
+      {
+        estadoactual: "Generador",
+        rutaarchivo: fileName,
+        tipodoc: tipodoc,
+        expedienteid: expediente.expedienteid
+      },
+    ]);
 
     return new NextResponse(Buffer.from(finalPdf), {
       headers: {
