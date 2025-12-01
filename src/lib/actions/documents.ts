@@ -1,29 +1,25 @@
 "use server";
-import { PDFDocument } from "pdf-lib";
 import { getSupabaseCookiesClient } from "../supabase/clients";
 import path from "path";
-import { getCurrentUser } from "./auth";
 import { Result } from "@/types/Result";
-import { EventoGeneracion } from "@/types/EventoGeneracion";
-import { Documento } from "@/types/Documento";
-import { file } from "zod";
+import {  TipoDocumento } from "@/types/Documento";
 
-export async function getDocumentByID(
+export async function getDocumentTypeByID(
   document_id: string
-): Promise<Result<Documento>> {
+): Promise<Result<TipoDocumento>> {
   const supabase = await getSupabaseCookiesClient();
 
   const { data, error } = await supabase
-    .from("documento")
+    .from("tipodocumento")
     .select("*")
-    .eq("documentoid", document_id)
+    .eq("tipodocid", document_id)
     .single();
 
   if (error) {
-    return { success: false, error: error.message };
+    return { error: error.message };
   }
 
-  return { success: true, data };
+  return { data };
 }
 
 const TEMPLATES: Record<string, string> = {
@@ -69,11 +65,10 @@ function getTemplatePath(tipoDocumentoId: number): string {
 //     const {data, error} = await savePdf(pdfBytes,fileName);
 
 //     if (error) {
-//       return {success: false, error}
+//       return {error}
 //     }
 
 //     return {
-//       success: true,
 //       data: {
 //         ...data,
 //         fileName
@@ -101,7 +96,7 @@ async function savePdf(pdf: Uint8Array<ArrayBufferLike>, fileName: string): Prom
       });
 
   if (error) {
-    return {error: error.message, success: false};
+    return {error: error.message};
   }
 
   const { data: urlData } = supabase
@@ -109,5 +104,5 @@ async function savePdf(pdf: Uint8Array<ArrayBufferLike>, fileName: string): Prom
       .from('documentos')
       .getPublicUrl(fileName);
 
-  return {data: urlData, success: true};
+  return {data: urlData};
 }

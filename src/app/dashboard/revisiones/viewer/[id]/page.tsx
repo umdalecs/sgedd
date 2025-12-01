@@ -2,14 +2,14 @@
 import DocContent from "@/components/common/DocContent";
 import PDFViewerCard from "@/components/common/PDFViewerCard";
 import { Button } from "@/components/ui/button";
-import { getDocumentByID } from "@/lib/actions/documents";
+import { getDocumentTypeByID } from "@/lib/actions/documents";
 import { CheckLine, TriangleAlert, X } from "lucide-react";
 import { redirect } from "next/navigation";
 
 export default async function Page({params}: PageProps<"/dashboard/revisiones/viewer/[id]">) {
   const { id } = await params;
 
-  const {data: document, error} = await getDocumentByID(id);
+  const {data: document, error} = await getDocumentTypeByID(id);
 
   if (error) {
     redirect("/dashboard")

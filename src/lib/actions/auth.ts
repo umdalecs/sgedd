@@ -17,7 +17,7 @@ export async function login(
   });
 
   if (error) {
-    return { success: false, error: error.message };
+    return { error: error.message };
   }
 
   redirect("/dashboard");
@@ -38,7 +38,7 @@ export async function register(values: z.infer<typeof RegisterSchema>) {
 
   if (err1) {
     console.log(err1)
-    return { success: false, error: err1.message };
+    return { error: err1.message };
   }
 
   if (user.rol === "docente") {
@@ -49,7 +49,7 @@ export async function register(values: z.infer<typeof RegisterSchema>) {
       .single();
 
     if (err_docente) {
-      return { success: false, error: err_docente.message };
+      return { error: err_docente.message };
     }
 
     const now = new Date().getFullYear();
@@ -58,8 +58,7 @@ export async function register(values: z.infer<typeof RegisterSchema>) {
     // Si  no cumple los requisitos de registro no se permite el registro
     if (docente.hrs_carga < 8 || (now - fecha_ingreso) < 1) {
       return {
-        success: false,
-        error: "No cumples los requisitos para inscribirte en SGEDD",
+                error: "No cumples los requisitos para inscribirte en SGEDD",
       };
     }
   }
@@ -76,7 +75,7 @@ export async function register(values: z.infer<typeof RegisterSchema>) {
   if (err2) {
     console.log(err2)
 
-    return { success: false, error: err2.message };
+    return { error: err2.message };
   }
 
   // Agrega la relación entre el rol y
@@ -87,7 +86,7 @@ export async function register(values: z.infer<typeof RegisterSchema>) {
 
     if (err3) {
       console.log(err3)
-    return { success: false, error: err3.message };
+    return { error: err3.message };
   }
 
   redirect("/dashboard");
@@ -169,10 +168,10 @@ export async function getCurrentUser() {
 //     .eq("id", userId);
 
 //   if (error) {
-//     return { success: false, error: error.message };
+//     return { error: error.message };
 //   }
 
-//   return { success: true };
+//   return { };
 // }
 
 // TODO: No considerado prioridad
@@ -184,10 +183,10 @@ export async function getCurrentUser() {
 //   });
 
 //   if (error) {
-//     return { success: false, error: error.message };
+//     return { error: error.message };
 //   }
 
-//   return { success: true };
+//   return { };
 // }
 
 // TODO: No considerado prioridad
@@ -199,8 +198,8 @@ export async function getCurrentUser() {
 //   });
 
 //   if (error) {
-//     return { success: false, error: error.message };
+//     return { error: error.message };
 //   }
 
-//   return { success: true };
+//   return { };
 // }

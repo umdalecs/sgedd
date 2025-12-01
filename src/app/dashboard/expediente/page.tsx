@@ -6,61 +6,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { FilePlus } from "lucide-react";
 import Link from "next/link";
 import CardBase from "@/components/common/CardBase";
 import { CardContent } from "@/components/ui/card";
 import Solicitarpdf from "@/components/docente/solicitarpdf";
 import { getDocumentos } from "@/lib/actions/expediente";
 
-const getBadgeProps = (estado: string) => {
-  estado = estado.toLowerCase();
-
-  const catalog: Record<
-    string,
-    {
-      variant:
-        | "secondary"
-        | "destructive"
-        | "default"
-        | "outline"
-        | null
-        | undefined;
-      className: string;
-    }
-  > = {
-    aprobado: {
-      variant: "secondary",
-      className: "bg-green-100 text-green-800",
-    },
-    pendiente: {
-      variant: "secondary",
-      className: "bg-yellow-100 text-yellow-800",
-    },
-    rechazado: {
-      variant: "destructive",
-      className: "",
-    },
-    nogen: {
-      variant: "secondary",
-      className: "bg-gray-300 text-white",
-    },
-    default: {
-      variant: "secondary",
-      className: "",
-    },
-  };
-
-  const result = catalog[estado];
-
-  return result ?? catalog["default"];
-};
-
 export default async function Page() {
-  //const documentos = await getDocumentos();
   const { data: documentos, error } = await getDocumentos();
+
   return (
     <CardBase
       titulo="Mi Expediente - Periodo 2025"
@@ -89,7 +44,10 @@ export default async function Page() {
                   <Solicitarpdf documentoId={doc.tipodocid} />
                 </TableCell>
                 <TableCell className="space-x-8 text-center">
-                  <Link href={`/api/pdf/${encodeURIComponent(doc.nombretipo)}`} target="_blank">
+                  <Link
+                    href={`/api/pdf/${encodeURIComponent(doc.nombretipo)}`}
+                    target="_blank"
+                  >
                     <Button
                       variant="default"
                       size="sm"
@@ -98,11 +56,7 @@ export default async function Page() {
                       Ver PDF
                     </Button>
                   </Link>
-                  <Link
-                    href={`/dashboard/expediente/documento_soporte?doc=${encodeURIComponent(
-                      doc.nombretipo
-                    )}`}
-                  >
+                  <Link href={`/dashboard/expediente/${doc.tipodocid}`}>
                     <Button
                       variant="destructive"
                       size="sm"

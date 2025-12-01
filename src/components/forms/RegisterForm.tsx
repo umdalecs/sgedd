@@ -37,10 +37,10 @@ export default function RegisterForm() {
     setIsLoading(true);
     setError(null);
 
-    const result = await register(values);
+    const { error } = await register(values);
 
-    if (!result.success) {
-      setError(result.error || "Error al registrar usuario");
+    if (error) {
+      setError(error || "Error al registrar usuario");
     }
 
     setIsLoading(false);

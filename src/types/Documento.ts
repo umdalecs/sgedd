@@ -6,3 +6,12 @@ export interface Documento {
   tipodocid: string;
   expedienteid: string;
 }
+
+
+export interface TipoDocumento {
+  tipodocid: string;
+  nombretipo: string;
+  tipoinf: string;
+  plantillaruta: string;
+  docintegrado: string;
+}
