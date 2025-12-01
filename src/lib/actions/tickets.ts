@@ -7,7 +7,7 @@ import { getSupabaseCookiesClient } from "../supabase/clients";
 
 
 export async function placeTicket(
-  formData: z.infer<typeof formSchema>
+  data: z.infer<typeof formSchema> & { document_id?: string }
 ): Promise<Result<object>> {
   const supabase = await getSupabaseCookiesClient();
 

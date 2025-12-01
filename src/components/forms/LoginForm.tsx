@@ -19,7 +19,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { login } from "@/lib/actions/auth";
 import { LoginSchema as formSchema } from "@/lib/schemas/authSchemas";
 
-
 export default function LoginForm() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -36,10 +35,10 @@ export default function LoginForm() {
     setIsLoading(true);
     setError(null);
 
-    const result = await login(values);
+    const { error } = await login(values);
 
-    if (!result.success) {
-      setError(result.error || "Error al iniciar sesión");
+    if (error) {
+      setError(error || "Error al iniciar sesión");
     }
 
     setIsLoading(false);
@@ -84,7 +83,11 @@ export default function LoginForm() {
         />
 
         <div className="text-center">
-          <Button type="submit" className="bg-primary w-full" disabled={isLoading}>
+          <Button
+            type="submit"
+            className="bg-primary w-full"
+            disabled={isLoading}
+          >
             {isLoading ? "Iniciando sesión..." : "Iniciar sesión"}
           </Button>
 

@@ -89,7 +89,10 @@ export default async function Page() {
                   <Solicitarpdf documentoId={doc.tipodocid} />
                 </TableCell>
                 <TableCell className="space-x-8 text-center">
-                  <Link href={`/api/pdf/${encodeURIComponent(doc.nombretipo)}`} target="_blank">
+                  <Link
+                    href={`/api/pdf/${encodeURIComponent(doc.nombretipo)}`}
+                    target="_blank"
+                  >
                     <Button
                       variant="default"
                       size="sm"
@@ -98,11 +101,7 @@ export default async function Page() {
                       Ver PDF
                     </Button>
                   </Link>
-                  <Link
-                    href={`/dashboard/expediente/documento_soporte?doc=${encodeURIComponent(
-                      doc.nombretipo
-                    )}`}
-                  >
+                  <Link href={`/dashboard/expediente/${doc.tipodocid}`}>
                     <Button
                       variant="destructive"
                       size="sm"

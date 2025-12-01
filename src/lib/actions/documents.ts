@@ -1,22 +1,18 @@
 "use server";
-import { PDFDocument } from "pdf-lib";
 import { getSupabaseCookiesClient } from "../supabase/clients";
 import path from "path";
-import { getCurrentUser } from "./auth";
 import { Result } from "@/types/Result";
-import { EventoGeneracion } from "@/types/EventoGeneracion";
-import { Documento } from "@/types/Documento";
-import { file } from "zod";
+import {  TipoDocumento } from "@/types/Documento";
 
-export async function getDocumentByID(
+export async function getDocumentTypeByID(
   document_id: string
-): Promise<Result<Documento>> {
+): Promise<Result<TipoDocumento>> {
   const supabase = await getSupabaseCookiesClient();
 
   const { data, error } = await supabase
-    .from("documento")
+    .from("tipodocumento")
     .select("*")
-    .eq("documentoid", document_id)
+    .eq("tipodocid", document_id)
     .single();
 
   if (error) {
