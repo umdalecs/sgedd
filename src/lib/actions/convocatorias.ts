@@ -10,8 +10,8 @@ export async function getConvocatorias(): Promise<Result<Convocatoria[]>> {
     .select("*");
 
   if (error) {
-    return {success: false, error: error.message}
+    return { error: error.message}
   }
 
-  return { data, success: true};
+  return { data } ;
 }

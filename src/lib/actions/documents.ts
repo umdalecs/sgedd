@@ -20,10 +20,10 @@ export async function getDocumentByID(
     .single();
 
   if (error) {
-    return { success: false, error: error.message };
+    return { error: error.message };
   }
 
-  return { success: true, data };
+  return { data };
 }
 
 const TEMPLATES: Record<string, string> = {
@@ -69,11 +69,10 @@ function getTemplatePath(tipoDocumentoId: number): string {
 //     const {data, error} = await savePdf(pdfBytes,fileName);
 
 //     if (error) {
-//       return {success: false, error}
+//       return {error}
 //     }
 
 //     return {
-//       success: true,
 //       data: {
 //         ...data,
 //         fileName
@@ -101,7 +100,7 @@ async function savePdf(pdf: Uint8Array<ArrayBufferLike>, fileName: string): Prom
       });
 
   if (error) {
-    return {error: error.message, success: false};
+    return {error: error.message};
   }
 
   const { data: urlData } = supabase
@@ -109,5 +108,5 @@ async function savePdf(pdf: Uint8Array<ArrayBufferLike>, fileName: string): Prom
       .from('documentos')
       .getPublicUrl(fileName);
 
-  return {data: urlData, success: true};
+  return {data: urlData};
 }
