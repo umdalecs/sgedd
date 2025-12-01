@@ -1,4 +1,4 @@
-import BotonPDF from "@/components/generador/botonPdf";
+import BotonPDF from "@/components/generador/BotonPdf";
 
 export default function Page() {
   return (

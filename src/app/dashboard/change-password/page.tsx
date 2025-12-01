@@ -1,7 +1,10 @@
-import { ChangePasswordCard } from "@/components/dashboard/change-password";
+import CardBase from "@/components/common/CardBase";
+import ChangePasswordForm from "@/components/forms/ChangePasswordForm";
 
 export default function Page() {
   return (
-    <ChangePasswordCard />
+    <CardBase titulo="Cambio de Contraseña">
+      <ChangePasswordForm />
+    </CardBase>
   );
 }
