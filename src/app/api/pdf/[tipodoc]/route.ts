@@ -32,7 +32,7 @@ type Expediente = {
   estado: string;
   convocatoriaid: string;
   docente_rfc: string;
-}
+};
 
 //Ruta GET
 
@@ -69,11 +69,11 @@ export async function GET(
       .select("*")
       .eq("docente_rfc", docente.rfc)
       .single();
-    
+
     if (!expediente) {
       return NextResponse.json(
-        {error: "Expediente no encontrado"},
-        { status: 404}
+        { error: "Expediente no encontrado" },
+        { status: 404 }
       );
     }
 
@@ -243,20 +243,28 @@ export async function GET(
 
     const pdfUrl = publicUrlData.publicUrl;
 
-    await supabase.from("documentos").insert([
+    const tipoDocumentoUUID = eventHandler.documentoUUID;
+
+    const { error: insertErr } = await supabase.from("documento").insert([
       {
-        estadoactual: "Generador",
-        rutaarchivo: fileName,
-        tipodoc: tipodoc,
-        expedienteid: expediente.expedienteid
+        estadoactual: "Generado",
+        rutaarchivo: pdfUrl,
+        tipodocid: tipoDocumentoUUID,
+        expedienteid: expediente.expedienteid,
       },
     ]);
 
-    return new NextResponse(Buffer.from(finalPdf), {
-      headers: {
-        "Content-Type": "application/pdf",
-        "Content-Disposition": `inline; filename="${tipodoc}.pdf"`,
-      },
+    if (insertErr) {
+      console.error("Error al insertar documento:", insertErr);
+      return NextResponse.json(
+        { error: "No se pudo insertar en tabla documento" },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({
+      success: true,
+      url: pdfUrl,
     });
   } catch (e) {
     console.error(e);
