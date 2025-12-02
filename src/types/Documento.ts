@@ -1,3 +1,5 @@
+import { Expediente } from "./Expediente";
+import { TipoDocumento } from "./TipoDocumento";
 
 export interface Documento {
   documentoid: string;
@@ -5,13 +7,6 @@ export interface Documento {
   rutaarchivo: string;
   tipodocid: string;
   expedienteid: string;
-}
-
-
-export interface TipoDocumento {
-  tipodocid: string;
-  nombretipo: string;
-  tipoinf: string;
-  plantillaruta: string;
-  docintegrado: string;
+  tipodocumento?: TipoDocumento;
+  expediente?: Expediente;
 }
