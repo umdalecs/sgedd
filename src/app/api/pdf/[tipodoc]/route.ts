@@ -262,10 +262,7 @@ export async function GET(
       );
     }
 
-    return NextResponse.json({
-      success: true,
-      url: pdfUrl,
-    });
+    return Response.redirect(pdfUrl, 302);
   } catch (e) {
     console.error(e);
     return NextResponse.json(
