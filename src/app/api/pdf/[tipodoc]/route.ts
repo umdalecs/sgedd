@@ -4,6 +4,7 @@ import fs from "fs/promises";
 import path from "path";
 import { getSupabaseCookiesClient } from "@/lib/supabase/clients";
 import { getCurrentUser } from "@/lib/actions/auth";
+import { getDate } from "date-fns";
 
 //Tipos usados de momento
 
@@ -33,6 +34,17 @@ type Expediente = {
   convocatoriaid: string;
   docente_rfc: string;
 };
+
+function obtenerFechaFormateada() {
+  const hoy = new Date();
+  const opciones = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  } as Intl.DateTimeFormatOptions;
+
+  return hoy.toLocaleDateString("es-ES", opciones);
+}
 
 //Ruta GET
 
@@ -77,6 +89,38 @@ export async function GET(
       );
     }
 
+    //Cargar datos del personal
+    const { data: desarrolloAcademico } = await supabase
+      .from("usuarios")
+      .select("*")
+      .eq("puesto", "Jefe del Departamento de Desarrollo Academico")
+      .single();
+
+    //Cargar datos del curriculum
+    const { data: curriculum } = await supabase
+      .from("curriculum")
+      .select("*")
+      .eq("docente_rfc", usuario.docente_rfc)
+      .single();
+
+    //Cargar datos de la carga de materia
+    const { data: materias } = await supabase
+      .from("cargamaterias")
+      .select(
+        `
+    *,
+    materia (
+      materiaid,
+      clavemateria,
+      nombre,
+      creditos,
+      carrera
+    )
+  `
+      )
+      .eq("docente_rfc", usuario.docente_rfc);
+
+      console.log(materias)
     // Handlers del PDF
     const documentHandlers: Record<
       string,
@@ -109,24 +153,82 @@ export async function GET(
       "Carta de Exclusividad Laboral": {
         template: "Carta de Exclusividad Laboral.pdf",
         fill: (form, usuario, docente) => {
-          form.getTextField("Nombre").setText(usuario.nombre);
-          form.getTextField("Categoria").setText(docente.categoria_plaza);
+          form.getTextField("Fecha").setText(obtenerFechaFormateada());
+          form
+            .getTextField("Nombre_Docente")
+            .setText(
+              usuario.nombre + " " + usuario.ap_pat + " " + usuario.ap_mat
+            );
+          form
+            .getTextField("Num_Afiliacion")
+            .setText(docente.numero_afiliacion);
+          form
+            .getTextField("Clave_Presupuestal")
+            .setText(docente.clave_presupuestal);
+          form
+            .getTextField("Nombre_Docente2")
+            .setText(
+              usuario.nombre + " " + usuario.ap_pat + " " + usuario.ap_mat
+            );
         },
       },
 
       "Constancia Actualizacion Curriculum": {
         template: "Constancia Actualizacion Curriculum.pdf",
         fill: (form, usuario) => {
-          form.getTextField("NombreEvaluado").setText(usuario.nombre);
-          form.getTextField("Periodo").setText("2025");
+          form
+            .getTextField("Nombre_Depto")
+            .setText(
+              desarrolloAcademico.nombre +
+                " " +
+                desarrolloAcademico.ap_pat +
+                " " +
+                desarrolloAcademico.ap_mat
+            );
+          form
+            .getTextField("Nombre_Docente")
+            .setText(
+              usuario.nombre + " " + usuario.ap_pat + " " + usuario.ap_mat
+            );
+          form.getTextField("No_Registro").setText(curriculum.noderegistro);
+          form
+            .getTextField("Año_Act")
+            .setText(curriculum.fechaactualizacion.substring(0, 4));
+          form
+            .getTextField("Nombre_Depto2")
+            .setText(
+              usuario.nombre + " " + usuario.ap_pat + " " + usuario.ap_mat
+            );
         },
       },
 
       "Constancia Alumnos Atendidos": {
         template: "Constancia Alumnos Atendidos.pdf",
-        fill: (form, usuario) => {
-          form.getTextField("NombreEvaluado").setText(usuario.nombre);
-          form.getTextField("Periodo").setText("2025");
+        fill: (form, usuario, docente) => {
+          if (!materias || materias.length === 0) return;
+          form
+            .getTextField("Nombre_Docente")
+            .setText(
+              usuario.nombre + " " + usuario.ap_pat + " " + usuario.ap_mat
+            );
+          form.getTextField("No_Expediente").setText(curriculum.noderegistro);
+          materias.forEach((carga, index) => {
+            const idx = index + 1;
+
+            form.getTextField(`Periodo_${idx}`).setText(carga.periodo ?? "");
+
+            form
+              .getTextField(`ClaveM_${idx}`)
+              .setText(carga.materia?.clavemateria ?? "");
+
+            form
+              .getTextField(`Materia_${idx}`)
+              .setText(carga.materia?.nombre ?? "");
+
+            form
+              .getTextField(`Alumnos_${idx}`)
+              .setText(String(carga.noalumnos ?? ""));
+          });
         },
       },
     };
@@ -168,6 +270,12 @@ export async function GET(
           return Boolean(curriculum);
         },
       },
+
+      "Constancia Alumnos Atendidos": {
+        documentoUUID: "a0473e8a-832f-4565-8a84-71a25a263930",
+        puestoGenerador: "Jefe del Departamento de Servicios Escolares",
+        validar: async () => true
+      },
     } as const;
 
     const eventHandler = eventHandlers[tipodoc as keyof typeof eventHandlers];
@@ -177,8 +285,7 @@ export async function GET(
     if (!(await eventHandler.validar())) {
       return NextResponse.json(
         {
-          error:
-            "No cumple los requisitos para generar este documento (ej. curriculum no actualizado)",
+          error: "No cumple los requisitos para generar este documento",
         },
         { status: 400 }
       );
