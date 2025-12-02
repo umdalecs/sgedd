@@ -14,7 +14,7 @@ import CardBase from "@/components/common/CardBase";
 import Solicitarpdf from "@/components/docente/solicitarpdf";
 import { getDocumentByTypeID } from "@/lib/actions/documents";
 import { TipoDocumento } from "@/types/TipoDocumento";
-import { NavigationButton } from "@/components/docente/NavigationButton";
+import { ReportaDocente } from "@/components/docente/ReportaDocente";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
@@ -67,9 +67,9 @@ async function Row({ tipoDoc }: { tipoDoc: TipoDocumento }) {
         ) : (
           <Button disabled>Ver PDF</Button>
         )}
-        <NavigationButton
+        <ReportaDocente
           exists={exists}
-          path={`/dashboard/expediente/${tipoDoc.tipodocid}`}
+          path={`/dashboard/expediente/report/${tipoDoc.tipodocid}`}
         />
       </TableCell>
     </TableRow>

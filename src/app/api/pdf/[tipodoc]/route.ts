@@ -1,39 +1,12 @@
+import { Docente } from "@/types/Docente";
+import { Expediente } from "@/types/Expediente";
+import { getCurrentUser } from "@/lib/actions/auth";
+import { getSupabaseCookiesClient } from "@/lib/supabase/clients";
 import { NextResponse } from "next/server";
 import { PDFDocument, PDFForm } from "pdf-lib";
+import { Usuario } from "@/types/Usuario";
 import fs from "fs/promises";
 import path from "path";
-import { getSupabaseCookiesClient } from "@/lib/supabase/clients";
-import { getCurrentUser } from "@/lib/actions/auth";
-import { getDate } from "date-fns";
-
-//Tipos usados de momento
-
-type Usuario = {
-  rol: string;
-  nombre: string;
-  ap_pat: string;
-  ap_mat: string;
-  puesto: string;
-  docente_rfc: string;
-};
-
-type Docente = {
-  rfc: string;
-  fecha_ingreso: string;
-  hrs_carga: string;
-  estatus_plaza: string;
-  clave_presupuestal: string;
-  departamento: string;
-  numero_afiliacion: string;
-  categoria_plaza: string;
-};
-
-type Expediente = {
-  fechacreacion: string;
-  estado: string;
-  convocatoriaid: string;
-  docente_rfc: string;
-};
 
 function obtenerFechaFormateada() {
   const hoy = new Date();
@@ -45,8 +18,6 @@ function obtenerFechaFormateada() {
 
   return hoy.toLocaleDateString("es-ES", opciones);
 }
-
-//Ruta GET
 
 export async function POST(
   request: Request,
@@ -120,7 +91,7 @@ export async function POST(
       )
       .eq("docente_rfc", usuario.docente_rfc);
 
-      console.log(materias)
+    console.log(materias);
     // Handlers del PDF
     const documentHandlers: Record<
       string,
@@ -274,7 +245,7 @@ export async function POST(
       "Constancia Alumnos Atendidos": {
         documentoUUID: "a0473e8a-832f-4565-8a84-71a25a263930",
         puestoGenerador: "Jefe del Departamento de Servicios Escolares",
-        validar: async () => true
+        validar: async () => true,
       },
     } as const;
 
@@ -303,16 +274,6 @@ export async function POST(
         { status: 400 }
       );
     }
-
-    //Insertar eventoGeneracion
-    await supabase.from("eventogeneracion").insert([
-      {
-        fechasolicitud: new Date().toISOString(),
-        tipodocumento: eventHandler.documentoUUID,
-        idsolicitante: usuario.docente_rfc,
-        generador_rfc: generador.generador_rfc,
-      },
-    ]);
 
     // Leer PDF base
     const pdfPath = path.join(process.cwd(), "public", "pdf", handler.template);
@@ -352,24 +313,45 @@ export async function POST(
 
     const tipoDocumentoUUID = eventHandler.documentoUUID;
 
-    const { error: insertErr } = await supabase.from("documento").insert([
-      {
+    // Insertar Documento
+    const { error: insertDocErr, data } = await supabase.from("documento").insert({
         estadoactual: "Generado",
         rutaarchivo: pdfUrl,
         tipodocid: tipoDocumentoUUID,
         expedienteid: expediente.expedienteid,
-      },
-    ]);
+      })
+      .select()
+      .single();
 
-    if (insertErr) {
-      console.error("Error al insertar documento:", insertErr);
+    if (insertDocErr) {
+      console.error("Error al insertar documento:", insertDocErr);
       return NextResponse.json(
         { error: "No se pudo insertar en tabla documento" },
         { status: 500 }
       );
     }
 
-    return Response.redirect(pdfUrl, 302);
+    //Insertar eventoGeneracion
+    const { error: insertEvErr } = await supabase
+      .from("eventogeneracion")
+      .insert([
+        {
+          fechasolicitud: new Date().toISOString(),
+          idsolicitante: usuario.docente_rfc,
+          generador_rfc: generador.generador_rfc,
+          documento_id: data.documentoid,
+        },
+      ]);
+
+    if (insertEvErr) {
+      console.error("Error al insertar documento:", insertEvErr);
+      return NextResponse.json(
+        { error: "No se pudo insertar en tabla documento" },
+        { status: 500 }
+      );
+    }
+
+    return Response.json({ status: 200, error: null });
   } catch (e) {
     console.error(e);
     return NextResponse.json(

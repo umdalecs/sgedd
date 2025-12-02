@@ -9,15 +9,34 @@ export async function getEventos(): Promise<Result<EventoGeneracion[]>> {
 
   const { data, error } = await supabase
     .from("eventogeneracion")
-    .select("*")
+    .select(
+      `
+      idevento,
+      fechasolicitud,
+      idsolicitante,
+      generador_rfc,
+      documento_id,
+        documento!inner(
+          documentoid,
+          estadoactual,
+          rutaarchivo,
+          tipodocid,
+          expedienteid,
+          tipodocumento!inner(
+            tipodocid,
+            nombretipo,
+            tipoinf,
+            plantillaruta,
+            docintegrado
+          )
+        )
+      `
+    )
     .eq("generador_rfc", user.rfc);
 
   if (error) {
     return { error: error.message };
   }
 
-  return {
-    data
-  };
+  return { data };
 }
-

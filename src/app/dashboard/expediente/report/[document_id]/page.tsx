@@ -5,7 +5,7 @@ import { CardContent } from "@/components/ui/card";
 import { getDocumentByTypeID } from "@/lib/actions/documents";
 import { redirect } from "next/navigation";
 
-export default async function Page({ params }: PageProps<"/dashboard/expediente/[document_id]">) {
+export default async function Page({ params }: PageProps<"/dashboard/expediente/report/[document_id]">) {
   const { document_id } = await params;
 
   if (!document_id){
