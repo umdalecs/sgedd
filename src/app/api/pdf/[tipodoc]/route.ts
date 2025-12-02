@@ -32,11 +32,9 @@ type Expediente = {
   estado: string;
   convocatoriaid: string;
   docente_rfc: string;
-}
+};
 
-//Ruta GET
-
-export async function GET(
+export async function POST(
   request: Request,
   context: { params: Promise<{ tipodoc: string }> }
 ) {
@@ -69,11 +67,11 @@ export async function GET(
       .select("*")
       .eq("docente_rfc", docente.rfc)
       .single();
-    
+
     if (!expediente) {
       return NextResponse.json(
-        {error: "Expediente no encontrado"},
-        { status: 404}
+        { error: "Expediente no encontrado" },
+        { status: 404 }
       );
     }
 
@@ -248,15 +246,13 @@ export async function GET(
         estadoactual: "Generador",
         rutaarchivo: fileName,
         tipodoc: tipodoc,
-        expedienteid: expediente.expedienteid
+        expedienteid: expediente.expedienteid,
       },
     ]);
 
-    return new NextResponse(Buffer.from(finalPdf), {
-      headers: {
-        "Content-Type": "application/pdf",
-        "Content-Disposition": `inline; filename="${tipodoc}.pdf"`,
-      },
+    return NextResponse.json({
+      status: 200,
+      url: pdfUrl
     });
   } catch (e) {
     console.error(e);

@@ -1,3 +1,6 @@
+import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -6,15 +9,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import CardBase from "@/components/common/CardBase";
 import { CardContent } from "@/components/ui/card";
-import Solicitarpdf from "@/components/docente/solicitarpdf";
+import { FileWarning } from "lucide-react";
+
 import { getDocumentos } from "@/lib/actions/expediente";
+import CardBase from "@/components/common/CardBase";
+import Solicitarpdf from "@/components/docente/SolicitarPdf";
 
 export default async function Page() {
-  const { data: documentos, error } = await getDocumentos();
+  const { data: documentos } = await getDocumentos();
 
   return (
     <CardBase
@@ -28,9 +31,9 @@ export default async function Page() {
               <TableHead className="text-center text-gray-500">
                 Documento
               </TableHead>
-              <TableHead className="text-center text-gray-500">
+              {/* <TableHead className="text-center text-gray-500">
                 Solicitar
-              </TableHead>
+              </TableHead> */}
               <TableHead className="text-center text-gray-500">
                 Acción
               </TableHead>
@@ -40,11 +43,14 @@ export default async function Page() {
             {documentos!.map((doc) => (
               <TableRow key={doc.tipodocid}>
                 <TableCell>{doc.nombretipo}</TableCell>
-                <TableCell className="text-center">
-                  <Solicitarpdf documentoId={doc.tipodocid} />
-                </TableCell>
+                {/* <TableCell className="text-center">
+                </TableCell> */}
                 <TableCell className="space-x-8 text-center">
-                  <Link
+                  
+                  <Solicitarpdf nombretipo={doc.nombretipo} />
+
+
+                  {/* <Link
                     href={`/api/pdf/${encodeURIComponent(doc.nombretipo)}`}
                     target="_blank"
                   >
@@ -55,16 +61,20 @@ export default async function Page() {
                     >
                       Ver PDF
                     </Button>
-                  </Link>
+                  </Link> */}
+
+
                   <Link href={`/dashboard/expediente/${doc.tipodocid}`}>
                     <Button
                       variant="destructive"
-                      size="sm"
-                      className="rounded-2xl w-1/4"
+                      size="default"
                     >
+                      <FileWarning />
                       Reportar
                     </Button>
                   </Link>
+
+
                 </TableCell>
               </TableRow>
             ))}
