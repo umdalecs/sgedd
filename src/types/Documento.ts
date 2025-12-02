@@ -7,6 +7,6 @@ export interface Documento {
   rutaarchivo: string;
   tipodocid: string;
   expedienteid: string;
-  tipodocumento?: TipoDocumento;
-  expediente?: Expediente;
+  tipodocumento: TipoDocumento | null;
+  expediente: Expediente | null;
 }

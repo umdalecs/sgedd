@@ -3,7 +3,7 @@ import { FileWarning } from "lucide-react";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 
-export const NavigationButton = ({hasError: error, path}: {hasError:boolean, path: string}) => {
+export const NavigationButton = ({exists, path}: {exists:boolean, path: string}) => {
   "use client";
   const router = useRouter();
 
@@ -12,7 +12,7 @@ export const NavigationButton = ({hasError: error, path}: {hasError:boolean, pat
   }
 
   return (
-    <Button variant="destructive" size="default" disabled={error} onClick={handleClick}>
+    <Button variant="destructive" size="default" disabled={!exists} onClick={handleClick}>
       <FileWarning />
       Reportar
     </Button>

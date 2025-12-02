@@ -1,39 +1,58 @@
 "use client";
+
 import { useState } from "react";
 import { FilePlus } from "lucide-react";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
+import { Spinner } from "../ui/spinner";
 
-export default function Solicitarpdf({ nombretipo }: { nombretipo: string }) {
+export default function Solicitarpdf({
+  nombretipo,
+  exists,
+}: {
+  nombretipo: string;
+  exists: boolean;
+}) {
   const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const handleClick = async () => {
     setIsLoading(true);
-    setError(null);
 
-    fetch(`http://localhost:3000/api/pdf/${encodeURIComponent(nombretipo)}`, {
-      method: "POST",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // AQUI VAMOS A MOSTRAR UN POPOVER CON LA OPCION DE VER EL URL,
-        // NO DEBERIAMOS REDIRECCIONAR
-        router.push(data.url);
-      })
-      .catch((err) => {
-        setError(err.message);
-      });
+    try {
+      await fetch(
+        `http://localhost:3000/api/pdf/${encodeURIComponent(nombretipo)}`,
+        {
+          method: "POST",
+        }
+      );
 
-    setIsLoading(false);
+      router.replace("/dashboard/expediente");
+
+      setIsLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
-    <Button onClick={handleClick} variant="default" size="default">
-      <FilePlus />
-      {isLoading ? "Cargando..." : "Solicitar Documento"}
+    <Button
+      onClick={handleClick}
+      variant="default"
+      size="default"
+      disabled={exists}
+    >
+      {isLoading ? (
+        <>
+          <Spinner /> Cargando...
+        </>
+      ) : (
+        <>
+          <FilePlus />
+          Solicitar Documento
+        </>
+      )}
     </Button>
   );
 }
