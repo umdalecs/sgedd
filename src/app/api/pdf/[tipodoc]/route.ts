@@ -241,19 +241,26 @@ export async function POST(
 
     const pdfUrl = publicUrlData.publicUrl;
 
-    await supabase.from("documentos").insert([
+    const tipoDocumentoUUID = eventHandler.documentoUUID;
+
+    const { error: insertErr } = await supabase.from("documento").insert([
       {
-        estadoactual: "Generador",
-        rutaarchivo: fileName,
-        tipodoc: tipodoc,
+        estadoactual: "Generado",
+        rutaarchivo: pdfUrl,
+        tipodocid: tipoDocumentoUUID,
         expedienteid: expediente.expedienteid,
       },
     ]);
 
-    return NextResponse.json({
-      status: 200,
-      url: pdfUrl
-    });
+    if (insertErr) {
+      console.error("Error al insertar documento:", insertErr);
+      return NextResponse.json(
+        { error: "No se pudo insertar en tabla documento" },
+        { status: 500 }
+      );
+    }
+
+    return Response.redirect(pdfUrl, 302);
   } catch (e) {
     console.error(e);
     return NextResponse.json(
