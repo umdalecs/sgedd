@@ -1,7 +1,7 @@
 export interface TipoDocumento {
-    tipodocid: string;
-    nombretipo: string;
-    tipoinf: string;
-    plantillaruta: string;
-    docintegrado: boolean;
+  tipodocid: string;
+  nombretipo: string;
+  tipoinf: string;
+  plantillaruta: string;
+  docintegrado: string;
 }

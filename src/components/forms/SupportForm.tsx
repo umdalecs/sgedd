@@ -18,11 +18,16 @@ import {
 } from "../ui/form";
 import { Textarea } from "../ui/textarea";
 import { placeTicket } from "@/lib/actions/tickets";
-import { TipoDocumento } from "@/types/Documento";
+import { Documento } from "@/types/Documento";
+import { useRouter } from "next/navigation";
+import { Spinner } from "../ui/spinner";
+import { Mail } from "lucide-react";
 
-export function SupportForm({ document }: { document?: TipoDocumento }) {
+export function SupportForm({ document }: { document?: Documento }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>("");
+
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -41,7 +46,7 @@ export function SupportForm({ document }: { document?: TipoDocumento }) {
     };
 
     if (document) {
-      payload.document_id = document.tipodocid;
+      payload.document_id = document.documentoid;
     }
 
     const { error } = await placeTicket(payload);
@@ -52,7 +57,15 @@ export function SupportForm({ document }: { document?: TipoDocumento }) {
     }
 
     setIsLoading(false);
+
+    // TODO: Feedback de mandar ticket, probablemente un pop up?
+    router.push("/dashboard/expediente");
   };
+
+  const titleText =
+    document && document.tipodocumento
+      ? "Documento: " + document.tipodocumento.nombretipo + ", "
+      : "";
 
   return (
     <Form {...form}>
@@ -67,7 +80,7 @@ export function SupportForm({ document }: { document?: TipoDocumento }) {
           name="matter"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{document && "Error en documento: " + document.nombretipo + ", " } Asunto</FormLabel>
+              <FormLabel>{titleText} Asunto</FormLabel>
               <FormControl>
                 <Input type="text" {...field} className="shadow-2xl" />
               </FormControl>
@@ -93,7 +106,17 @@ export function SupportForm({ document }: { document?: TipoDocumento }) {
             type="submit"
             className="bg-primary mx-auto hover:bg-primary/90 text-primary-foreground h-12 rounded-l font-medium italic"
           >
-            {isLoading ? "Enviando mensaje..." : "Enviar Mensaje"}
+            {isLoading ? (
+              <>
+                <Spinner />
+                Enviando mensaje...
+              </>
+            ) : (
+              <>
+                <Mail />
+                Enviar Mensaje
+              </>
+            )}
           </Button>
         </CardFooter>
       </form>
