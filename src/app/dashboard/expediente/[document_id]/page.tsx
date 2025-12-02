@@ -2,7 +2,7 @@
 import CardBase from "@/components/common/CardBase";
 import { SupportForm } from "@/components/forms/SupportForm";
 import { CardContent } from "@/components/ui/card";
-import { getDocumentTypeByID } from "@/lib/actions/documents";
+import { getDocumentByTypeID } from "@/lib/actions/documents";
 import { redirect } from "next/navigation";
 
 export default async function Page({ params }: PageProps<"/dashboard/expediente/[document_id]">) {
@@ -12,7 +12,7 @@ export default async function Page({ params }: PageProps<"/dashboard/expediente/
     redirect("/dashboard/expediente")
   }
 
-  const {data: document, error} = await getDocumentTypeByID(document_id);
+  const {data: document, error} = await getDocumentByTypeID(document_id);
 
   if (error) {
     redirect("/dashboard/expediente")

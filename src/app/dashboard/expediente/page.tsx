@@ -11,10 +11,12 @@ import { CardContent } from "@/components/ui/card";
 
 import { getDocumentos } from "@/lib/actions/expediente";
 import CardBase from "@/components/common/CardBase";
-import Solicitarpdf from "@/components/docente/SolicitarPdf";
+import Solicitarpdf from "@/components/docente/solicitarpdf";
 import { getDocumentByTypeID } from "@/lib/actions/documents";
 import { TipoDocumento } from "@/types/TipoDocumento";
 import { NavigationButton } from "@/components/docente/NavigationButton";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default async function Page() {
   const { data: documentos } = await getDocumentos();
@@ -31,17 +33,14 @@ export default async function Page() {
               <TableHead className="text-center text-gray-500">
                 Documento
               </TableHead>
-              {/* <TableHead className="text-center text-gray-500">
-                Solicitar
-              </TableHead> */}
               <TableHead className="text-center text-gray-500">
                 Acción
               </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {documentos!.map((doc) => (
-              <Row tipoDoc={doc} key={doc.tipodocid} />
+            {documentos!.map((tipoDoc) => (
+              <Row tipoDoc={tipoDoc} key={tipoDoc.tipodocid} />
             ))}
           </TableBody>
         </Table>
@@ -51,21 +50,28 @@ export default async function Page() {
 }
 
 async function Row({ tipoDoc }: { tipoDoc: TipoDocumento }) {
-  const { data: document, error } = await getDocumentByTypeID(
-    tipoDoc.tipodocid
-  );
+  const { data: document } = await getDocumentByTypeID(tipoDoc.tipodocid);
+
+  const exists = !!document;
 
   return (
     <TableRow key={tipoDoc.tipodocid}>
       <TableCell>{tipoDoc.nombretipo}</TableCell>
 
       <TableCell className="space-x-8 text-center">
-        <Solicitarpdf nombretipo={tipoDoc.nombretipo} />
-
-        <NavigationButton hasError={!!error} path={`/dashboard/expediente/${tipoDoc.tipodocid}`}/>
+        <Solicitarpdf exists={exists} nombretipo={tipoDoc.nombretipo} />
+        {document ? (
+          <Button>
+            <Link href={document.rutaarchivo} target="_blank">Ver PDF</Link>
+          </Button>
+        ) : (
+          <Button disabled>Ver PDF</Button>
+        )}
+        <NavigationButton
+          exists={exists}
+          path={`/dashboard/expediente/${tipoDoc.tipodocid}`}
+        />
       </TableCell>
     </TableRow>
   );
 }
-
-
