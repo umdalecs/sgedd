@@ -7,7 +7,20 @@ export async function getDocumentos(): Promise<Result<TipoDocumento[]>>{
 
     const {data, error} = await supabase
     .from("tipodocumento")
-    .select("*")
+    .select(`
+        tipodocid,
+        nombretipo,
+        tipoinf,
+        plantillaruta,
+        docintegrado,
+        documento (
+            documentoid,
+            estadoactual,
+            rutaarchivo,
+            tipodocid,
+            expedienteid
+        )
+    `)
 
     if (error) {
         return {error: error.message}

@@ -34,9 +34,7 @@ type Expediente = {
   docente_rfc: string;
 };
 
-//Ruta GET
-
-export async function GET(
+export async function POST(
   request: Request,
   context: { params: Promise<{ tipodoc: string }> }
 ) {

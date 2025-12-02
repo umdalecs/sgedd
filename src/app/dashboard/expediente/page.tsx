@@ -1,3 +1,4 @@
+"use server";
 import {
   Table,
   TableBody,
@@ -6,15 +7,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import CardBase from "@/components/common/CardBase";
 import { CardContent } from "@/components/ui/card";
-import Solicitarpdf from "@/components/docente/solicitarpdf";
+
 import { getDocumentos } from "@/lib/actions/expediente";
+import CardBase from "@/components/common/CardBase";
+import Solicitarpdf from "@/components/docente/SolicitarPdf";
+import { getDocumentByTypeID } from "@/lib/actions/documents";
+import { TipoDocumento } from "@/types/TipoDocumento";
+import { NavigationButton } from "@/components/docente/NavigationButton";
 
 export default async function Page() {
-  const { data: documentos, error } = await getDocumentos();
+  const { data: documentos } = await getDocumentos();
 
   return (
     <CardBase
@@ -28,9 +31,9 @@ export default async function Page() {
               <TableHead className="text-center text-gray-500">
                 Documento
               </TableHead>
-              <TableHead className="text-center text-gray-500">
+              {/* <TableHead className="text-center text-gray-500">
                 Solicitar
-              </TableHead>
+              </TableHead> */}
               <TableHead className="text-center text-gray-500">
                 Acción
               </TableHead>
@@ -38,35 +41,7 @@ export default async function Page() {
           </TableHeader>
           <TableBody>
             {documentos!.map((doc) => (
-              <TableRow key={doc.tipodocid}>
-                <TableCell>{doc.nombretipo}</TableCell>
-                <TableCell className="text-center">
-                  <Solicitarpdf documentoId={doc.tipodocid} />
-                </TableCell>
-                <TableCell className="space-x-8 text-center">
-                  <Link
-                    href={`/api/pdf/${encodeURIComponent(doc.nombretipo)}`}
-                    target="_blank"
-                  >
-                    <Button
-                      variant="default"
-                      size="sm"
-                      className="rounded-2xl w-1/4"
-                    >
-                      Ver PDF
-                    </Button>
-                  </Link>
-                  <Link href={`/dashboard/expediente/${doc.tipodocid}`}>
-                    <Button
-                      variant="destructive"
-                      size="sm"
-                      className="rounded-2xl w-1/4"
-                    >
-                      Reportar
-                    </Button>
-                  </Link>
-                </TableCell>
-              </TableRow>
+              <Row tipoDoc={doc} key={doc.tipodocid} />
             ))}
           </TableBody>
         </Table>
@@ -74,3 +49,23 @@ export default async function Page() {
     </CardBase>
   );
 }
+
+async function Row({ tipoDoc }: { tipoDoc: TipoDocumento }) {
+  const { data: document, error } = await getDocumentByTypeID(
+    tipoDoc.tipodocid
+  );
+
+  return (
+    <TableRow key={tipoDoc.tipodocid}>
+      <TableCell>{tipoDoc.nombretipo}</TableCell>
+
+      <TableCell className="space-x-8 text-center">
+        <Solicitarpdf nombretipo={tipoDoc.nombretipo} />
+
+        <NavigationButton hasError={!!error} path={`/dashboard/expediente/${tipoDoc.tipodocid}`}/>
+      </TableCell>
+    </TableRow>
+  );
+}
+
+

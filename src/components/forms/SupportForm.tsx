@@ -67,7 +67,7 @@ export function SupportForm({ document }: { document?: TipoDocumento }) {
           name="matter"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{document && "Error en documento: " + document.nombretipo + ", " } Asunto</FormLabel>
+              <FormLabel>{document && "Documento: " + document.nombretipo + ", " } Asunto</FormLabel>
               <FormControl>
                 <Input type="text" {...field} className="shadow-2xl" />
               </FormControl>

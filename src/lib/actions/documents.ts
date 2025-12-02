@@ -2,24 +2,55 @@
 import { getSupabaseCookiesClient } from "../supabase/clients";
 import path from "path";
 import { Result } from "@/types/Result";
-import {  TipoDocumento } from "@/types/Documento";
+import {  Documento } from "@/types/Documento";
+import { getCurrentUser } from "./auth";
+import { Expediente } from "@/types/Expediente";
+import { TipoDocumento } from "@/types/TipoDocumento";
 
-export async function getDocumentTypeByID(
+export async function getDocumentByTypeID(
   document_id: string
-): Promise<Result<TipoDocumento>> {
+): Promise<Result<Documento>> {
+  const user = await getCurrentUser();
   const supabase = await getSupabaseCookiesClient();
 
   const { data, error } = await supabase
-    .from("tipodocumento")
-    .select("*")
-    .eq("tipodocid", document_id)
+    .from("documento")
+    .select(`
+      documentoid,
+      estadoactual,
+      rutaarchivo,
+      tipodocid,
+      expedienteid,
+      tipodocumento(
+        tipodocid,
+        nombretipo,
+        tipoinf,
+        plantillaruta,
+        docintegrado
+      ),
+      expediente(
+          expedienteid,
+          fechacreacion,
+          estado,
+          convocatoriaid,
+          docente_rfc
+        )
+    `)
+    .eq("tipodocumento.tipodocid", document_id)
+    .eq("expediente.docente_rfc", user.rfc)
     .single();
-
-  if (error) {
-    return { error: error.message };
-  }
-
-  return { data };
+    
+    if (error) {
+      return { error: error.message };
+    }
+    
+    const documento: Documento = {
+      ...data,
+      tipodocumento: data.tipodocumento[0],
+      expediente: data.expediente[0]
+    };
+    
+    return { data: documento };
 }
 
 const TEMPLATES: Record<string, string> = {
