@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { getEventos } from "@/lib/actions/generaciones";
+import { getEventos } from "@/actions/generaciones";
 import { redirect } from "next/navigation";
 
 export default async function Page() {

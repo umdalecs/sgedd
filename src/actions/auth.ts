@@ -1,6 +1,6 @@
 "use server";
 
-import { getSupabaseCookiesClient } from "@/lib/supabase/clients";
+import { getSupabaseCookiesClient } from "@/supabase/clients";
 import { redirect } from "next/navigation";
 import { RegisterSchema, LoginSchema } from "../schemas/authSchemas";
 import { z } from "zod";

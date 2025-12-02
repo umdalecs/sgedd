@@ -16,8 +16,8 @@ import {
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { login } from "@/lib/actions/auth";
-import { LoginSchema as formSchema } from "@/lib/schemas/authSchemas";
+import { login } from "@/actions/auth";
+import { LoginSchema as formSchema } from "@/schemas/authSchemas";
 
 export default function LoginForm() {
   const [error, setError] = useState<string | null>(null);

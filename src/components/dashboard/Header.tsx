@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getCurrentUser } from "@/lib/actions/auth";
+import { getCurrentUser } from "@/actions/auth";
 import { headers } from "next/headers";
 import NavBar from "./NavBar";
 import NotificationsMenu from "./NotificationsMenu";

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { changePasswordSchema as formSchema } from "@/lib/schemas/changePasswordSchema";
+import { changePasswordSchema as formSchema } from "@/schemas/changePasswordSchema";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";

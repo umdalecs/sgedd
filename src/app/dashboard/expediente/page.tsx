@@ -9,10 +9,10 @@ import {
 } from "@/components/ui/table";
 import { CardContent } from "@/components/ui/card";
 
-import { getDocumentos } from "@/lib/actions/expediente";
+import { getDocumentos } from "@/actions/expediente";
 import CardBase from "@/components/common/CardBase";
 import Solicitarpdf from "@/components/docente/solicitarpdf";
-import { getDocumentByTypeID } from "@/lib/actions/documents";
+import { getDocumentByTypeID } from "@/actions/documents";
 import { TipoDocumento } from "@/types/TipoDocumento";
 import { ReportaDocente } from "@/components/docente/ReportaDocente";
 import Link from "next/link";

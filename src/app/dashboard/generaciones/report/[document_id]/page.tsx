@@ -2,7 +2,7 @@
 import CardBase from "@/components/common/CardBase";
 import { SupportForm } from "@/components/forms/SupportForm";
 import { CardContent } from "@/components/ui/card";
-import { getDocumentByID } from "@/lib/actions/documents";
+import { getDocumentByID } from "@/actions/documents";
 import { redirect } from "next/navigation";
 
 export default async function Page({ params }: PageProps<"/dashboard/generaciones/report/[document_id]">) {

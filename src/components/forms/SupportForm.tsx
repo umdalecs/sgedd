@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CardFooter } from "../ui/card";
 import { useForm } from "react-hook-form";
-import { supportSchema as formSchema } from "@/lib/schemas/supportSchemas";
+import { supportSchema as formSchema } from "@/schemas/supportSchemas";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -17,7 +17,7 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Textarea } from "../ui/textarea";
-import { placeTicket } from "@/lib/actions/tickets";
+import { placeTicket } from "@/actions/tickets";
 import { Documento } from "@/types/Documento";
 import { useRouter } from "next/navigation";
 import { Spinner } from "../ui/spinner";

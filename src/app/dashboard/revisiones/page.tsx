@@ -1,7 +1,7 @@
 import CardBase from "@/components/common/CardBase";
 import { CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { getRevisorData } from "@/lib/actions/revisor";
+import { getRevisorData } from "@/actions/revisor";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 

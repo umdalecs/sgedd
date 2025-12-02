@@ -2,7 +2,7 @@
 import CardBase from "@/components/common/CardBase";
 import { SupportForm } from "@/components/forms/SupportForm";
 import { CardContent } from "@/components/ui/card";
-import { getDocumentByTypeID } from "@/lib/actions/documents";
+import { getDocumentByTypeID } from "@/actions/documents";
 import { redirect } from "next/navigation";
 
 export default async function Page({ params }: PageProps<"/dashboard/expediente/report/[document_id]">) {

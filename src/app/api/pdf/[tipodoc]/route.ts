@@ -1,7 +1,7 @@
 import { Docente } from "@/types/Docente";
 import { Expediente } from "@/types/Expediente";
-import { getCurrentUser } from "@/lib/actions/auth";
-import { getSupabaseCookiesClient } from "@/lib/supabase/clients";
+import { getCurrentUser } from "@/actions/auth";
+import { getSupabaseCookiesClient } from "@/supabase/clients";
 import { NextResponse } from "next/server";
 import { PDFDocument, PDFForm } from "pdf-lib";
 import { Usuario } from "@/types/Usuario";

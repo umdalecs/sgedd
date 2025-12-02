@@ -5,7 +5,7 @@ import { ReportaGenerador } from "@/components/generador/ReportaGenerador";
 import SolicitarFirmas from "@/components/generador/SolicitarFirmas";
 import { Button } from "@/components/ui/button";
 
-import { getDocumentByID } from "@/lib/actions/documents";
+import { getDocumentByID } from "@/actions/documents";
 import { CheckLine } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";

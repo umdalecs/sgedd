@@ -1,6 +1,6 @@
 import CardBase from "@/components/common/CardBase";
 import { CardContent } from "@/components/ui/card";
-import { getConvocatorias } from "@/lib/actions/convocatorias";
+import { getConvocatorias } from "@/actions/convocatorias";
 import { Dot } from "lucide-react";
 import { redirect } from "next/navigation";
 

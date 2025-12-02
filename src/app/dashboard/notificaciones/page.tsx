@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { getNotifications } from "@/lib/actions/notifications";
+import { getNotifications } from "@/actions/notifications";
 import { MessageCircleQuestionIcon } from "lucide-react";
 
 export default async function Page() {
