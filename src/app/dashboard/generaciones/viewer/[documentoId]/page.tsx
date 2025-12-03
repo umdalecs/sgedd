@@ -2,7 +2,6 @@
 import PDFViewerCard from "@/components/common/PDFViewerCard";
 import Firmar from "@/components/generador/Firmar";
 import { ReportaGenerador } from "@/components/generador/ReportaGenerador";
-import SolicitarFirmas from "@/components/generador/SolicitarFirmas";
 import { getDocumentByID } from "@/actions/documents";
 import { redirect } from "next/navigation";
 import MarcarFinalizado from "@/components/generador/MarcarFinalizado";

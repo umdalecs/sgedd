@@ -4,7 +4,14 @@ import { useForm } from "react-hook-form";
 import { changePasswordSchema as formSchema } from "@/schemas/changePasswordSchema";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../ui/form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 
@@ -26,25 +33,16 @@ export default function ChangePasswordForm() {
     setIsLoading(true);
 
     // TODO: handle change password
-    // try {
-    //   const result = await updatePassword(newPassword);
-    //   if (result.success) {
-    //     setSuccess(true);
-    //     setNewPassword('');
-    //     setConfirmPassword('');
-    //   } else {
-    //     setError(result.error || 'Error al actualizar la contraseña');
-    //   }
-    // } catch {
-    //   setError('Error al conectar con el servidor');
-    // } finally {
-    //   setIsLoading(false);
+    // const result = await updatePassword(newPassword);
+    // if (result.error) {
+    //   setError(result.error || "Error al actualizar la contraseña");
     // }
+    // setIsLoading(false);
   };
 
   return (
     <Form {...form}>
-      <form 
+      <form
         className="space-y-6 w-full px-10 py-8"
         onSubmit={form.handleSubmit(handleSubmit)}
       >

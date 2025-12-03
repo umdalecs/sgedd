@@ -46,6 +46,7 @@ export async function getEventosGeneracion(): Promise<
 }
 
 export async function marcarFinalizado(documento: Documento) {
+  const user = await getCurrentUser();
   const supabase = await getSupabaseCookiesClient();
 
   const documento_actualizado = {
@@ -67,9 +68,11 @@ export async function marcarFinalizado(documento: Documento) {
   const {error: errorDel} = await supabase
     .from("eventogeneracion")
     .delete()
-    .eq("documentoid", documento.documentoid);
+    .eq("documento_id", documento.documentoid)
+    .eq("generador_rfc", user.rfc);
 
   if (errorDel) {
+    console.log(errorDel);
     return { error: errorDel.message };
   } 
 
