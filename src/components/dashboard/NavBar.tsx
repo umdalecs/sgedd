@@ -58,18 +58,6 @@ export default function NavBar({
         >
           {routeName}
         </Link>
-        {usuario.rol === "revisor" && (
-          <Link
-            href="/dashboard/firmas"
-            className={`rounded-sm p-1 ${
-              pathname === "/dashboard/firmas"
-                ? "bg-secondary/50"
-                : "hover:bg-accent"
-            }`}
-          >
-            Mis Firmas
-          </Link>
-        )}
       </div>
       <div className="flex items-center justify-start gap-5 p-2 pr-8">
         <Link

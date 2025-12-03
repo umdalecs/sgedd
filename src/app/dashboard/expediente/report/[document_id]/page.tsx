@@ -2,10 +2,10 @@
 import CardBase from "@/components/common/CardBase";
 import { SupportForm } from "@/components/forms/SupportForm";
 import { CardContent } from "@/components/ui/card";
-import { getDocumentByTypeID } from "@/lib/actions/documents";
+import { getDocumentByTypeID } from "@/actions/documents";
 import { redirect } from "next/navigation";
 
-export default async function Page({ params }: PageProps<"/dashboard/expediente/[document_id]">) {
+export default async function Page({ params }: PageProps<"/dashboard/expediente/report/[document_id]">) {
   const { document_id } = await params;
 
   if (!document_id){

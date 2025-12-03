@@ -1,5 +1,5 @@
 import { type NextRequest } from "next/server";
-import { checkSession } from "@/lib/supabase/checkSession";
+import { checkSession } from "@/supabase/checkSession";
 
 export async function proxy(request: NextRequest) {
   return await checkSession(request);

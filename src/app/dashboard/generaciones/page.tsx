@@ -1,5 +1,5 @@
 import CardBase from "@/components/common/CardBase";
-import Generador from "@/components/generador/Generador";
+import NavegarVerPDF from "@/components/generador/Generador";
 import { CardContent } from "@/components/ui/card";
 import {
   Table,
@@ -9,14 +9,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { getEventos } from "@/lib/actions/generaciones";
+import { getEventos } from "@/actions/generaciones";
 import { redirect } from "next/navigation";
 
 export default async function Page() {
   const { data: eventos, error } = await getEventos();
 
   if (error) {
-    redirect("/dashboard")
+    console.log(error);
+    redirect("/dashboard");
   }
 
   return (
@@ -28,12 +29,14 @@ export default async function Page() {
         <Table>
           <TableHeader className="sticky top-0 bg-background">
             <TableRow>
-              <TableHead className="text-center text-gray-500">ID</TableHead>
+              <TableHead className="text-center text-gray-500">
+                Estado
+              </TableHead>
               <TableHead className="text-center text-gray-500">
                 Fecha Solicitud
               </TableHead>
               <TableHead className="text-center text-gray-500">
-                Tipo Documento
+                Documento
               </TableHead>
               <TableHead className="text-center text-gray-500">
                 RFC Solicitante
@@ -44,14 +47,18 @@ export default async function Page() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {eventos!.map((event) => (
-              <TableRow key={event.idevento}>
-                <TableCell>{event.idevento}</TableCell>
-                <TableCell>{event.fechasolicitud}</TableCell>
-                <TableCell>{event.tipodocumento}</TableCell>
-                <TableCell>{event.idsolicitante}</TableCell>
+            {eventos!.map((evento) => (
+              <TableRow key={evento.idevento}>
                 <TableCell>
-                  <Generador evento={event}/>
+                  {evento.documento!.estadoactual}
+                </TableCell>
+                <TableCell>{evento.fechasolicitud}</TableCell>
+                <TableCell>
+                  {evento.documento!.tipodocumento!.nombretipo}
+                </TableCell>
+                <TableCell>{evento.idsolicitante}</TableCell>
+                <TableCell>
+                  <NavegarVerPDF documentoid={evento.documento!.documentoid} />
                 </TableCell>
               </TableRow>
             ))}

@@ -2,7 +2,7 @@
 import DocContent from "@/components/common/DocContent";
 import PDFViewerCard from "@/components/common/PDFViewerCard";
 import { Button } from "@/components/ui/button";
-import { getDocumentTypeByID } from "@/lib/actions/documents";
+import { getDocumentTypeByID } from "@/actions/documents";
 import { CheckLine, TriangleAlert, X } from "lucide-react";
 import { redirect } from "next/navigation";
 

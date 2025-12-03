@@ -46,3 +46,46 @@ export async function getDocumentByTypeID(
 
   return { data };
 }
+
+export async function getDocumentByID(
+  documentId: string
+): Promise<Result<Documento>> {
+  const user = await getCurrentUser();
+  const supabase = await getSupabaseCookiesClient();
+
+  const { data, error } = await supabase
+    .from("documento")
+    .select(
+    `
+      documentoid,
+      estadoactual,
+      rutaarchivo,
+      tipodocid,
+      expedienteid,
+      tipodocumento!inner(
+        tipodocid,
+        nombretipo,
+        tipoinf,
+        plantillaruta,
+        docintegrado
+      ),
+      expediente!inner(
+        expedienteid,
+        fechacreacion,
+        estado,
+        convocatoriaid,
+        docente_rfc
+      )
+    `
+    )
+    .eq("documentoid", documentId)
+    .single();
+
+  if (error) {
+    console.log(error)
+    return { error: error.message };
+  }
+
+  return { data };
+}
+

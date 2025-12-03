@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { logout } from "@/lib/actions/auth";
+import { logout } from "@/actions/auth";
 import Link from "next/link";
 
 export default function UserMenu() {

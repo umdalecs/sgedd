@@ -1,6 +1,6 @@
 import CardBase from "@/components/common/CardBase";
 import { CircleUserRound } from "lucide-react";
-import { getCurrentUser } from "@/lib/actions/auth";
+import { getCurrentUser } from "@/actions/auth";
 import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { CardContent } from "@/components/ui/card";

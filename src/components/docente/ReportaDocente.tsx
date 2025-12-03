@@ -3,7 +3,7 @@ import { FileWarning } from "lucide-react";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 
-export const NavigationButton = ({exists, path}: {exists:boolean, path: string}) => {
+export const ReportaDocente = ({exists, path}: {exists:boolean, path: string}) => {
   "use client";
   const router = useRouter();
 

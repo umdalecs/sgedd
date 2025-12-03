@@ -1,17 +1,17 @@
 "use client";
-import { EventoGeneracion } from "@/types/EventoGeneracion";
 import { Button } from "../ui/button";
-// import { generarPdf } from "@/lib/actions/documents";
+import { useRouter } from "next/navigation";
 
-export default function Generador({ evento }: { evento: EventoGeneracion }) {
+export default function NavegarVerPDF({ documentoid }: { documentoid: string }) {
+  const router = useRouter();
 
-  const handleClick = async (evento: EventoGeneracion) => {
-    // await generarPdf(evento);
+  const handleClick = async () => {
+    router.push(`/dashboard/generaciones/viewer/${documentoid}`)
   };
 
   return (
-    <Button variant="default" onClick={() => handleClick(evento)}>
-      Generar PDF
+    <Button variant="default" onClick={handleClick}>
+      Firmar PDF
     </Button>
   );
 }

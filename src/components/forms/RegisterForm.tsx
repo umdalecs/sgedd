@@ -16,8 +16,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { register } from "@/lib/actions/auth";
-import { RegisterSchema as formSchema } from "@/lib/schemas/authSchemas";
+import { register } from "@/actions/auth";
+import { RegisterSchema as formSchema } from "@/schemas/authSchemas";
 
 export default function RegisterForm() {
   const [error, setError] = useState<string | null>(null);
