@@ -9,11 +9,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { getEventos } from "@/actions/generaciones";
+import { getEventosGeneracion } from "@/actions/generaciones";
 import { redirect } from "next/navigation";
 
 export default async function Page() {
-  const { data: eventos, error } = await getEventos();
+  const { data: eventos, error } = await getEventosGeneracion();
 
   if (error) {
     console.log(error);

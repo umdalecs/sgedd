@@ -1,9 +1,13 @@
+"use server";
 import { EventoGeneracion } from "@/types/EventoGeneracion";
 import { getCurrentUser } from "./auth";
 import { getSupabaseCookiesClient } from "../supabase/clients";
 import { Result } from "@/types/Result";
+import { Documento } from "@/types/Documento";
 
-export async function getEventos(): Promise<Result<EventoGeneracion[]>> {
+export async function getEventosGeneracion(): Promise<
+  Result<EventoGeneracion[]>
+> {
   const user = await getCurrentUser();
   const supabase = await getSupabaseCookiesClient();
 
@@ -39,4 +43,35 @@ export async function getEventos(): Promise<Result<EventoGeneracion[]>> {
   }
 
   return { data };
+}
+
+export async function marcarFinalizado(documento: Documento) {
+  const supabase = await getSupabaseCookiesClient();
+
+  const documento_actualizado = {
+    documentoid: documento.documentoid,
+    estadoactual: "FIRMADO",
+    rutaarchivo: documento.rutaarchivo,
+    tipodocid: documento.tipodocid,
+    expedienteid: documento.expedienteid,
+  };
+
+  const { error } = await supabase
+    .from("documento")
+    .upsert(documento_actualizado);
+
+  if (error) {
+    return { error: error.message };
+  }
+
+  const {error: errorDel} = await supabase
+    .from("eventogeneracion")
+    .delete()
+    .eq("documentoid", documento.documentoid);
+
+  if (errorDel) {
+    return { error: errorDel.message };
+  } 
+
+  return {};
 }
