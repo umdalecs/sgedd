@@ -14,26 +14,34 @@ export default function Solicitarpdf({
   exists: boolean;
 }) {
   const router = useRouter();
-
   const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = async () => {
     setIsLoading(true);
 
     try {
-      await fetch(
-        `http://localhost:3000/api/pdf/${encodeURIComponent(nombretipo)}`,
-        {
-          method: "POST",
-        }
+      const resp = await fetch(
+        `/api/pdf/${encodeURIComponent(nombretipo)}`,
+        { method: "POST" }
       );
 
-      router.replace("/dashboard/expediente");
+      const data = await resp.json();
 
-      setIsLoading(false);
+      if (!resp.ok) {
+        alert(data.error || "Ocurrió un error al generar el PDF");
+        setIsLoading(false);
+        return;
+      }
+
+      alert("Documento generado correctamente");
+      router.replace("/dashboard/expediente");
+      
     } catch (err) {
       console.log(err);
+      alert("Error inesperado al generar el PDF");
     }
+
+    setIsLoading(false);
   };
 
   return (

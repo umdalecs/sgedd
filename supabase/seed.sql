@@ -4,7 +4,7 @@ SET session_replication_role = replica;
 -- PostgreSQL database dump
 --
 
--- \restrict U4ULVffY8bNyGccqpEwMppQD2Qt4nYovZLRyeKE6oeMRDkHRoB3Z5xJOedIKb1G
+-- \restrict fHtfjNa2OhBuYqJ9X0fB8RVWGYFZZmW70FSGLarE05rLHW1Yj1C9RW3UA0WWdHi
 
 -- Dumped from database version 17.6
 -- Dumped by pg_dump version 17.6
@@ -114,7 +114,88 @@ INSERT INTO "auth"."audit_log_entries" ("instance_id", "id", "payload", "created
 	('00000000-0000-0000-0000-000000000000', '37362997-09c9-4fb5-83fc-ef9579629947', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-02 20:59:32.23328+00', ''),
 	('00000000-0000-0000-0000-000000000000', '2daf1f9b-c520-490c-bfd5-3160084ed7ac', '{"action":"token_revoked","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-02 20:59:32.237518+00', ''),
 	('00000000-0000-0000-0000-000000000000', '4848352e-a84b-492e-9edc-3525e1f28689', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-02 20:59:33.00127+00', ''),
-	('00000000-0000-0000-0000-000000000000', 'a032801c-f89c-4b99-8159-8fc2e4be338a', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-02 20:59:33.200185+00', '');
+	('00000000-0000-0000-0000-000000000000', 'a032801c-f89c-4b99-8159-8fc2e4be338a', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-02 20:59:33.200185+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'ef0686d6-34f5-4847-ac9a-4b71433b8ddb', '{"action":"login","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2025-12-03 00:46:15.348999+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'aebece85-551a-46a5-8cce-6d1eddd475d8', '{"action":"logout","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"account"}', '2025-12-03 00:47:48.329045+00', ''),
+	('00000000-0000-0000-0000-000000000000', '179b9510-4918-45fd-81a0-69dcba342ecb', '{"action":"login","actor_id":"d1e7797e-7e6e-423f-9056-f1bda4a3bc1d","actor_username":"abel1@sgedd.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2025-12-03 00:47:57.215306+00', ''),
+	('00000000-0000-0000-0000-000000000000', '60bf6a7f-6a66-45f3-966d-e1dcf54eaa3d', '{"action":"logout","actor_id":"d1e7797e-7e6e-423f-9056-f1bda4a3bc1d","actor_username":"abel1@sgedd.com","actor_via_sso":false,"log_type":"account"}', '2025-12-03 00:48:06.898313+00', ''),
+	('00000000-0000-0000-0000-000000000000', '020b0c17-af1e-4352-8595-2a810d31521d', '{"action":"login","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2025-12-03 00:48:14.060523+00', ''),
+	('00000000-0000-0000-0000-000000000000', '3925cd41-5c70-4995-a9af-44836660e52e', '{"action":"logout","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"account"}', '2025-12-03 00:48:50.659791+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'b6ef2c6b-3b2f-40b7-96c3-d5a4b419eae9', '{"action":"login","actor_id":"d1e7797e-7e6e-423f-9056-f1bda4a3bc1d","actor_username":"abel1@sgedd.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2025-12-03 00:48:56.756101+00', ''),
+	('00000000-0000-0000-0000-000000000000', '01821b53-1ae5-431c-b77f-9667dc283e27', '{"action":"logout","actor_id":"d1e7797e-7e6e-423f-9056-f1bda4a3bc1d","actor_username":"abel1@sgedd.com","actor_via_sso":false,"log_type":"account"}', '2025-12-03 00:49:40.278224+00', ''),
+	('00000000-0000-0000-0000-000000000000', '162845b0-5efb-448d-b012-0658dbc920fa', '{"action":"login","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2025-12-03 00:49:51.360903+00', ''),
+	('00000000-0000-0000-0000-000000000000', '9bcdb583-59eb-452a-a68a-5bb3b852d1d0', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 02:04:38.600166+00', ''),
+	('00000000-0000-0000-0000-000000000000', '843302e6-8eeb-4eb9-985c-de6e2c48eb64', '{"action":"token_revoked","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 02:04:38.603526+00', ''),
+	('00000000-0000-0000-0000-000000000000', '42dfbac3-9d8a-4392-87d2-db25abeae485', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 02:04:39.098804+00', ''),
+	('00000000-0000-0000-0000-000000000000', '741c575b-4d66-495e-9ee3-993bb40c34b4', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 02:04:39.272742+00', ''),
+	('00000000-0000-0000-0000-000000000000', '9bd85e79-6288-47b6-9951-b6c57bb1af51', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 02:04:41.319345+00', ''),
+	('00000000-0000-0000-0000-000000000000', '06e4fe9c-3d53-4c09-9b97-13f6c1be6774', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 02:04:41.399474+00', ''),
+	('00000000-0000-0000-0000-000000000000', '0fbf16a9-7294-43a9-80a8-6f97446b5513', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 02:04:41.638673+00', ''),
+	('00000000-0000-0000-0000-000000000000', '945ddca5-c06f-41de-87c4-052e71339d8d', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 02:04:41.733484+00', ''),
+	('00000000-0000-0000-0000-000000000000', '01e85cd8-1700-431a-9adb-d348160ebf4a', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 02:04:41.952314+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'ca681738-6b7c-4fe4-a52c-51b901087dcb', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 02:04:44.370729+00', ''),
+	('00000000-0000-0000-0000-000000000000', '8630fae0-ddcc-40be-b29c-c55758ba0557', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 02:04:44.493817+00', ''),
+	('00000000-0000-0000-0000-000000000000', '66dd0bac-3682-4f92-89fa-0250a7f9dfe5', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 02:04:44.67601+00', ''),
+	('00000000-0000-0000-0000-000000000000', '64d23761-f890-47ee-a60f-2eea31726be8', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 02:04:44.916091+00', ''),
+	('00000000-0000-0000-0000-000000000000', '7c98423c-47f8-4c06-afe9-828ba664adaa', '{"action":"token_refreshed","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 02:04:45.18049+00', ''),
+	('00000000-0000-0000-0000-000000000000', '32cdca74-8e48-4a14-a162-70641f374ab4', '{"action":"logout","actor_id":"748ba0b1-73d2-49ec-b48c-1f7a20df69bb","actor_username":"alejandro1@sgedd.com","actor_via_sso":false,"log_type":"account"}', '2025-12-03 02:39:51.232121+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'b7eff075-c9c0-4af3-97bd-aa1b476b812d', '{"action":"user_signedup","actor_id":"30d54813-b057-4497-ad0e-7ee8cf9c7876","actor_username":"carlos1@sgedd.com","actor_via_sso":false,"log_type":"team","traits":{"provider":"email"}}', '2025-12-03 02:40:45.586678+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'c95e9f41-38de-4f49-a1be-fc474bf3adca', '{"action":"login","actor_id":"30d54813-b057-4497-ad0e-7ee8cf9c7876","actor_username":"carlos1@sgedd.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2025-12-03 02:40:45.608364+00', ''),
+	('00000000-0000-0000-0000-000000000000', '1e8bffe1-92a7-4013-8509-ec80a04ab8e4', '{"action":"logout","actor_id":"30d54813-b057-4497-ad0e-7ee8cf9c7876","actor_username":"carlos1@sgedd.com","actor_via_sso":false,"log_type":"account"}', '2025-12-03 02:44:27.311307+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'e098efdb-07bb-46d8-a552-8ea2d8a360a1', '{"action":"user_signedup","actor_id":"ce17b815-ebb2-44e5-befc-87815ee6188f","actor_username":"kevin1@sgedd.com","actor_via_sso":false,"log_type":"team","traits":{"provider":"email"}}', '2025-12-03 02:44:41.454882+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'e0d7350c-d743-4a4b-9f22-2cf3125bcb57', '{"action":"login","actor_id":"ce17b815-ebb2-44e5-befc-87815ee6188f","actor_username":"kevin1@sgedd.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2025-12-03 02:44:41.510655+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'e30547b9-ebc5-48c1-8a4b-3e66060f22f1', '{"action":"logout","actor_id":"ce17b815-ebb2-44e5-befc-87815ee6188f","actor_username":"kevin1@sgedd.com","actor_via_sso":false,"log_type":"account"}', '2025-12-03 03:34:42.921636+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'fbdbded8-6303-4f4b-902b-dc658fec43c0', '{"action":"user_signedup","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"team","traits":{"provider":"email"}}', '2025-12-03 03:35:03.971118+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'd3851a4f-92a7-43ff-b1f3-9b535ac9e7a8', '{"action":"login","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2025-12-03 03:35:04.015268+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'c29576de-1f52-4968-9c47-6413769be523', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 04:36:02.560371+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'd9e23678-41f4-44cf-9c7c-8ac4b1cba28e', '{"action":"token_revoked","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 04:36:02.593016+00', ''),
+	('00000000-0000-0000-0000-000000000000', '54d21d7a-3dab-4c0a-8ea3-d251c186548f', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 04:36:02.658314+00', ''),
+	('00000000-0000-0000-0000-000000000000', '87232a35-f5bf-4f1b-a673-99b97b737f33', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 04:36:03.743691+00', ''),
+	('00000000-0000-0000-0000-000000000000', '307449af-cbe5-4fc4-b8bc-80c00c5ee45f', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 04:36:03.985221+00', ''),
+	('00000000-0000-0000-0000-000000000000', '096956a7-f416-4d34-b798-94c4bc96ceac', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 04:36:04.055506+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'e93a6dad-b8ef-4647-8492-6f8bbd61a6e5', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 04:36:06.291132+00', ''),
+	('00000000-0000-0000-0000-000000000000', '5e404928-7340-46aa-bb51-ba1206a11445', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 04:36:16.471265+00', ''),
+	('00000000-0000-0000-0000-000000000000', '6a162274-2a79-44c3-84bf-4244ba8e9405', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 04:36:17.336812+00', ''),
+	('00000000-0000-0000-0000-000000000000', '13b3d772-6162-417a-898a-21e5057e7529', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 04:36:17.918333+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'a28600e9-b12a-41cd-839f-e84471131c74', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 04:36:18.018967+00', ''),
+	('00000000-0000-0000-0000-000000000000', '70b66f5c-fc3c-40f0-94fc-ce3e614eeae7', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 04:36:18.458428+00', ''),
+	('00000000-0000-0000-0000-000000000000', '672d28ab-4aa5-428b-a0e1-a3dc36cde23b', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 04:36:18.581065+00', ''),
+	('00000000-0000-0000-0000-000000000000', '24888033-a20a-4de3-a5c9-8f062f6a536e', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 04:36:18.811492+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'f03015b1-f42d-4596-b0af-0180bf079592', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 04:36:18.864849+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'ed9d0307-d37a-48f6-9fd4-8a2113923e67', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 04:36:30.475535+00', ''),
+	('00000000-0000-0000-0000-000000000000', '4f9cdf7d-59d4-448a-9de7-3076ca9953b3', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 04:36:31.053247+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'f7e3e296-d34f-43ed-a621-1ef36ec6d4bd', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 04:36:31.394113+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'dfdff79f-3ce4-4cf2-ae68-4b8b92efc336', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 04:36:31.569666+00', ''),
+	('00000000-0000-0000-0000-000000000000', '6261b65f-ab3d-48ea-ac2d-95ef2b6c1947', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 04:36:31.873911+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'a27f051e-f108-4721-8cfc-39fe6a54c762', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 04:36:32.190725+00', ''),
+	('00000000-0000-0000-0000-000000000000', '98f63aa6-9b5d-4845-9fac-391d2be51a65', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 04:36:32.262264+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'ca470f82-9c7a-4b1e-8a58-6800bddb81e6', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 04:36:32.451462+00', ''),
+	('00000000-0000-0000-0000-000000000000', '2fc82a00-4775-4582-ae70-3c65be7898df', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:48:49.881709+00', ''),
+	('00000000-0000-0000-0000-000000000000', '6edaefcc-407d-48e5-a251-37ac7b30a1f6', '{"action":"token_revoked","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:48:49.885929+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'aa1afa06-0925-4c5a-923c-9d0c30521434', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:48:50.239963+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'ed0700cd-26c9-4766-9278-e19de6cd35c1', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:48:50.399151+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'de0c33a6-de55-4ad8-9d54-1add61dd67ae', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:48:52.67916+00', ''),
+	('00000000-0000-0000-0000-000000000000', '812d270d-b865-4b45-ab93-522bb59bc00c', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:48:53.074044+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'f066ffa2-9b3b-437a-8464-69ca28fca6bf', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:48:53.277066+00', ''),
+	('00000000-0000-0000-0000-000000000000', '0de067f3-cee5-4aa0-bde7-07f3efa54d1c', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:48:53.781237+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'c31c132d-ef05-48e8-8954-28de059e76a5', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:48:54.234006+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'c9f91e28-66c1-4c18-a15d-8120fedc04d7', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:48:54.569229+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'f007a369-3a58-49ab-bfa6-5bc582632034', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:48:54.624796+00', ''),
+	('00000000-0000-0000-0000-000000000000', '6da4b13b-e096-4094-a424-429fbf05f1ba', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:48:54.67376+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'f4184267-e3dc-4586-bfc6-c444bc90ca6e', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:48:54.814005+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'cbc7a55d-a052-413e-ad86-9de29d499d23', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:48:54.934628+00', ''),
+	('00000000-0000-0000-0000-000000000000', '577d037a-b884-463c-be1b-d2cb20c2fe62', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:48:55.050665+00', ''),
+	('00000000-0000-0000-0000-000000000000', '1fb48a77-857f-403c-94da-498333caf7c1', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:49:00.868438+00', ''),
+	('00000000-0000-0000-0000-000000000000', '0489cc67-a820-4653-a206-2f68a6b98bf3', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:49:01.090152+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'e846c6f0-ae09-45f2-a6f4-1e588b4db484', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:49:01.318448+00', ''),
+	('00000000-0000-0000-0000-000000000000', '00f96912-5ee9-45e0-91a5-0203cbaa998a', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:49:01.420376+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'b0dfc342-30bb-462a-9df3-86e32d29e67f', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:49:01.734111+00', ''),
+	('00000000-0000-0000-0000-000000000000', '912f9614-571f-46ec-bab2-090c95c14cea', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:49:04.299622+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'ecdd8584-079a-44c5-b477-63df62e8c229', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:49:04.362153+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'b4a5edf6-62d8-4d91-b088-619d9284d277', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:49:04.461856+00', ''),
+	('00000000-0000-0000-0000-000000000000', '65ee254a-55e2-406d-bdb3-19d7362b252d', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:49:04.52534+00', ''),
+	('00000000-0000-0000-0000-000000000000', '094e08ea-6385-4de9-bf7a-598fd2fa29b9', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:49:04.609633+00', ''),
+	('00000000-0000-0000-0000-000000000000', '4ce97d18-c883-4978-9065-4d9f1a668b24', '{"action":"token_refreshed","actor_id":"4bbeb609-723c-4da9-b214-8583d29c2c02","actor_username":"ernesto1@sgedd.com","actor_via_sso":false,"log_type":"token"}', '2025-12-03 05:49:04.677441+00', '');
 
 
 --
@@ -129,9 +210,12 @@ INSERT INTO "auth"."audit_log_entries" ("instance_id", "id", "payload", "created
 
 INSERT INTO "auth"."users" ("instance_id", "id", "aud", "role", "email", "encrypted_password", "email_confirmed_at", "invited_at", "confirmation_token", "confirmation_sent_at", "recovery_token", "recovery_sent_at", "email_change_token_new", "email_change", "email_change_sent_at", "last_sign_in_at", "raw_app_meta_data", "raw_user_meta_data", "is_super_admin", "created_at", "updated_at", "phone", "phone_confirmed_at", "phone_change", "phone_change_token", "phone_change_sent_at", "email_change_token_current", "email_change_confirm_status", "banned_until", "reauthentication_token", "reauthentication_sent_at", "is_sso_user", "deleted_at", "is_anonymous") VALUES
 	('00000000-0000-0000-0000-000000000000', '1d9c6248-0cc0-4496-b8ca-1fa012fbf38e', 'authenticated', 'authenticated', 'diego1@sgedd.com', '$2a$10$azxS.YxVfX4sPQQsEcuBzuTbotYnByqjGsju4ckEQ9RdKFlcY..l6', '2025-11-28 03:43:36.980086+00', NULL, '', NULL, '', NULL, '', '', NULL, '2025-12-01 21:49:17.97347+00', '{"provider": "email", "providers": ["email"]}', '{"sub": "1d9c6248-0cc0-4496-b8ca-1fa012fbf38e", "email": "diego1@sgedd.com", "email_verified": true, "phone_verified": false}', NULL, '2025-11-28 03:43:36.976052+00', '2025-12-01 21:49:17.979506+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
-	('00000000-0000-0000-0000-000000000000', 'd1e7797e-7e6e-423f-9056-f1bda4a3bc1d', 'authenticated', 'authenticated', 'abel1@sgedd.com', '$2a$10$BEP.DDUIDwC3sR0QjqwYWe0SM0TrvPeJec2TGpVJoo8JrEeL9xm0W', '2025-12-01 21:49:59.829337+00', NULL, '', NULL, '', NULL, '', '', NULL, '2025-12-02 06:42:01.52145+00', '{"provider": "email", "providers": ["email"]}', '{"sub": "d1e7797e-7e6e-423f-9056-f1bda4a3bc1d", "email": "abel1@sgedd.com", "email_verified": true, "phone_verified": false}', NULL, '2025-12-01 21:49:59.808037+00', '2025-12-02 06:42:01.526709+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
-	('00000000-0000-0000-0000-000000000000', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', 'authenticated', 'authenticated', 'alejandro1@sgedd.com', '$2a$10$jkAMamNVz.3xuvoLSxVGAuvW7ixb3Rb.5WZKuAP/a3FLUSJvx31c.', '2025-11-28 03:42:47.029909+00', NULL, '', NULL, '', NULL, '', '', NULL, '2025-12-02 06:57:50.86976+00', '{"provider": "email", "providers": ["email"]}', '{"sub": "748ba0b1-73d2-49ec-b48c-1f7a20df69bb", "email": "alejandro1@sgedd.com", "email_verified": true, "phone_verified": false}', NULL, '2025-11-28 03:42:47.02484+00', '2025-12-02 20:59:32.246433+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
-	('00000000-0000-0000-0000-000000000000', '53798262-7c9d-4764-94e5-31e00c1790c5', 'authenticated', 'authenticated', 'cesar1@sgedd.com', '$2a$10$fQttNyo9OzymuNVcaWwzW.v0a5snB30VoXyT8vUwS3BprfoiKEJKG', '2025-11-28 03:43:17.069043+00', NULL, '', NULL, '', NULL, '', '', NULL, '2025-12-02 06:02:24.179956+00', '{"provider": "email", "providers": ["email"]}', '{"sub": "53798262-7c9d-4764-94e5-31e00c1790c5", "email": "cesar1@sgedd.com", "email_verified": true, "phone_verified": false}', NULL, '2025-11-28 03:43:17.063834+00', '2025-12-02 06:02:24.184986+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false);
+	('00000000-0000-0000-0000-000000000000', '53798262-7c9d-4764-94e5-31e00c1790c5', 'authenticated', 'authenticated', 'cesar1@sgedd.com', '$2a$10$fQttNyo9OzymuNVcaWwzW.v0a5snB30VoXyT8vUwS3BprfoiKEJKG', '2025-11-28 03:43:17.069043+00', NULL, '', NULL, '', NULL, '', '', NULL, '2025-12-02 06:02:24.179956+00', '{"provider": "email", "providers": ["email"]}', '{"sub": "53798262-7c9d-4764-94e5-31e00c1790c5", "email": "cesar1@sgedd.com", "email_verified": true, "phone_verified": false}', NULL, '2025-11-28 03:43:17.063834+00', '2025-12-02 06:02:24.184986+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
+	('00000000-0000-0000-0000-000000000000', '4bbeb609-723c-4da9-b214-8583d29c2c02', 'authenticated', 'authenticated', 'ernesto1@sgedd.com', '$2a$10$6tKRfRvDzIke2X4heG9JHOJ7erTzRm6q6.O4lT4sl/XFWwTSdwiGW', '2025-12-03 03:35:03.972513+00', NULL, '', NULL, '', NULL, '', '', NULL, '2025-12-03 03:35:04.017857+00', '{"provider": "email", "providers": ["email"]}', '{"sub": "4bbeb609-723c-4da9-b214-8583d29c2c02", "email": "ernesto1@sgedd.com", "email_verified": true, "phone_verified": false}', NULL, '2025-12-03 03:35:03.956215+00', '2025-12-03 05:48:49.89289+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
+	('00000000-0000-0000-0000-000000000000', 'd1e7797e-7e6e-423f-9056-f1bda4a3bc1d', 'authenticated', 'authenticated', 'abel1@sgedd.com', '$2a$10$BEP.DDUIDwC3sR0QjqwYWe0SM0TrvPeJec2TGpVJoo8JrEeL9xm0W', '2025-12-01 21:49:59.829337+00', NULL, '', NULL, '', NULL, '', '', NULL, '2025-12-03 00:48:56.758703+00', '{"provider": "email", "providers": ["email"]}', '{"sub": "d1e7797e-7e6e-423f-9056-f1bda4a3bc1d", "email": "abel1@sgedd.com", "email_verified": true, "phone_verified": false}', NULL, '2025-12-01 21:49:59.808037+00', '2025-12-03 00:48:56.763565+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
+	('00000000-0000-0000-0000-000000000000', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', 'authenticated', 'authenticated', 'alejandro1@sgedd.com', '$2a$10$jkAMamNVz.3xuvoLSxVGAuvW7ixb3Rb.5WZKuAP/a3FLUSJvx31c.', '2025-11-28 03:42:47.029909+00', NULL, '', NULL, '', NULL, '', '', NULL, '2025-12-03 00:49:51.363105+00', '{"provider": "email", "providers": ["email"]}', '{"sub": "748ba0b1-73d2-49ec-b48c-1f7a20df69bb", "email": "alejandro1@sgedd.com", "email_verified": true, "phone_verified": false}', NULL, '2025-11-28 03:42:47.02484+00', '2025-12-03 02:04:38.61243+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
+	('00000000-0000-0000-0000-000000000000', 'ce17b815-ebb2-44e5-befc-87815ee6188f', 'authenticated', 'authenticated', 'kevin1@sgedd.com', '$2a$10$I4LvGKMXz0otxVpJdv1kOOF7nLqyHscsIQBwsgsNPNeQuEUpXCDHa', '2025-12-03 02:44:41.456248+00', NULL, '', NULL, '', NULL, '', '', NULL, '2025-12-03 02:44:41.512787+00', '{"provider": "email", "providers": ["email"]}', '{"sub": "ce17b815-ebb2-44e5-befc-87815ee6188f", "email": "kevin1@sgedd.com", "email_verified": true, "phone_verified": false}', NULL, '2025-12-03 02:44:41.442892+00', '2025-12-03 02:44:41.518541+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
+	('00000000-0000-0000-0000-000000000000', '30d54813-b057-4497-ad0e-7ee8cf9c7876', 'authenticated', 'authenticated', 'carlos1@sgedd.com', '$2a$10$RsfOHilavicCmNSW7KsZHObPBlS6OVKGTiBSslRh//USu0fN5lc8u', '2025-12-03 02:40:45.587803+00', NULL, '', NULL, '', NULL, '', '', NULL, '2025-12-03 02:40:45.6106+00', '{"provider": "email", "providers": ["email"]}', '{"sub": "30d54813-b057-4497-ad0e-7ee8cf9c7876", "email": "carlos1@sgedd.com", "email_verified": true, "phone_verified": false}', NULL, '2025-12-03 02:40:45.553673+00', '2025-12-03 02:40:45.619299+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false);
 
 
 --
@@ -142,7 +226,10 @@ INSERT INTO "auth"."identities" ("provider_id", "user_id", "identity_data", "pro
 	('748ba0b1-73d2-49ec-b48c-1f7a20df69bb', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', '{"sub": "748ba0b1-73d2-49ec-b48c-1f7a20df69bb", "email": "alejandro1@sgedd.com", "email_verified": false, "phone_verified": false}', 'email', '2025-11-28 03:42:47.027989+00', '2025-11-28 03:42:47.028016+00', '2025-11-28 03:42:47.028016+00', 'c81c0004-14db-447d-a4b2-f8430635f7aa'),
 	('53798262-7c9d-4764-94e5-31e00c1790c5', '53798262-7c9d-4764-94e5-31e00c1790c5', '{"sub": "53798262-7c9d-4764-94e5-31e00c1790c5", "email": "cesar1@sgedd.com", "email_verified": false, "phone_verified": false}', 'email', '2025-11-28 03:43:17.067216+00', '2025-11-28 03:43:17.067249+00', '2025-11-28 03:43:17.067249+00', '122088c4-a10a-4a2e-b127-6952a31b83f1'),
 	('1d9c6248-0cc0-4496-b8ca-1fa012fbf38e', '1d9c6248-0cc0-4496-b8ca-1fa012fbf38e', '{"sub": "1d9c6248-0cc0-4496-b8ca-1fa012fbf38e", "email": "diego1@sgedd.com", "email_verified": false, "phone_verified": false}', 'email', '2025-11-28 03:43:36.978709+00', '2025-11-28 03:43:36.978736+00', '2025-11-28 03:43:36.978736+00', 'dc181434-fe69-4e61-93ee-656d8570bc7b'),
-	('d1e7797e-7e6e-423f-9056-f1bda4a3bc1d', 'd1e7797e-7e6e-423f-9056-f1bda4a3bc1d', '{"sub": "d1e7797e-7e6e-423f-9056-f1bda4a3bc1d", "email": "abel1@sgedd.com", "email_verified": false, "phone_verified": false}', 'email', '2025-12-01 21:49:59.822297+00', '2025-12-01 21:49:59.822403+00', '2025-12-01 21:49:59.822403+00', '6be3c09d-4425-44b0-8b8d-fca0f2036455');
+	('d1e7797e-7e6e-423f-9056-f1bda4a3bc1d', 'd1e7797e-7e6e-423f-9056-f1bda4a3bc1d', '{"sub": "d1e7797e-7e6e-423f-9056-f1bda4a3bc1d", "email": "abel1@sgedd.com", "email_verified": false, "phone_verified": false}', 'email', '2025-12-01 21:49:59.822297+00', '2025-12-01 21:49:59.822403+00', '2025-12-01 21:49:59.822403+00', '6be3c09d-4425-44b0-8b8d-fca0f2036455'),
+	('30d54813-b057-4497-ad0e-7ee8cf9c7876', '30d54813-b057-4497-ad0e-7ee8cf9c7876', '{"sub": "30d54813-b057-4497-ad0e-7ee8cf9c7876", "email": "carlos1@sgedd.com", "email_verified": false, "phone_verified": false}', 'email', '2025-12-03 02:40:45.58067+00', '2025-12-03 02:40:45.581065+00', '2025-12-03 02:40:45.581065+00', '3380f6c0-4632-4fa1-b4c9-5612344c3964'),
+	('ce17b815-ebb2-44e5-befc-87815ee6188f', 'ce17b815-ebb2-44e5-befc-87815ee6188f', '{"sub": "ce17b815-ebb2-44e5-befc-87815ee6188f", "email": "kevin1@sgedd.com", "email_verified": false, "phone_verified": false}', 'email', '2025-12-03 02:44:41.450694+00', '2025-12-03 02:44:41.450735+00', '2025-12-03 02:44:41.450735+00', 'e931fec9-7bae-41d5-aa28-a3d141262f1d'),
+	('4bbeb609-723c-4da9-b214-8583d29c2c02', '4bbeb609-723c-4da9-b214-8583d29c2c02', '{"sub": "4bbeb609-723c-4da9-b214-8583d29c2c02", "email": "ernesto1@sgedd.com", "email_verified": false, "phone_verified": false}', 'email', '2025-12-03 03:35:03.965226+00', '2025-12-03 03:35:03.965331+00', '2025-12-03 03:35:03.965331+00', 'c5d7f576-896d-4147-bb4f-68513d6b9d26');
 
 
 --
@@ -162,7 +249,7 @@ INSERT INTO "auth"."identities" ("provider_id", "user_id", "identity_data", "pro
 --
 
 INSERT INTO "auth"."sessions" ("id", "user_id", "created_at", "updated_at", "factor_id", "aal", "not_after", "refreshed_at", "user_agent", "ip", "tag", "oauth_client_id", "refresh_token_hmac_key", "refresh_token_counter") VALUES
-	('e84a2c6a-0c2b-46ec-a0f5-8ffe99d4be19', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', '2025-12-02 06:57:50.869896+00', '2025-12-02 20:59:33.204198+00', NULL, 'aal1', NULL, '2025-12-02 20:59:33.204019', 'node', '172.18.0.1', NULL, NULL, NULL, NULL);
+	('f612e05d-da5a-4c79-90f5-dd4dfe5cb129', '4bbeb609-723c-4da9-b214-8583d29c2c02', '2025-12-03 03:35:04.018217+00', '2025-12-03 05:49:04.679333+00', NULL, 'aal1', NULL, '2025-12-03 05:49:04.679269', 'node', '172.18.0.1', NULL, NULL, NULL, NULL);
 
 
 --
@@ -170,7 +257,7 @@ INSERT INTO "auth"."sessions" ("id", "user_id", "created_at", "updated_at", "fac
 --
 
 INSERT INTO "auth"."mfa_amr_claims" ("session_id", "created_at", "updated_at", "authentication_method", "id") VALUES
-	('e84a2c6a-0c2b-46ec-a0f5-8ffe99d4be19', '2025-12-02 06:57:50.877399+00', '2025-12-02 06:57:50.877399+00', 'password', '1c3941df-aa2c-4eb6-a46f-faaec94c5c37');
+	('f612e05d-da5a-4c79-90f5-dd4dfe5cb129', '2025-12-03 03:35:04.027709+00', '2025-12-03 03:35:04.027709+00', 'password', '552c49a5-7abe-4ea2-9e3c-e5acd7838b81');
 
 
 --
@@ -208,10 +295,9 @@ INSERT INTO "auth"."mfa_amr_claims" ("session_id", "created_at", "updated_at", "
 --
 
 INSERT INTO "auth"."refresh_tokens" ("instance_id", "id", "token", "user_id", "revoked", "created_at", "updated_at", "parent", "session_id") VALUES
-	('00000000-0000-0000-0000-000000000000', 64, 'zkr4w7ux2imh', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', true, '2025-12-02 06:57:50.873595+00', '2025-12-02 18:58:43.178156+00', NULL, 'e84a2c6a-0c2b-46ec-a0f5-8ffe99d4be19'),
-	('00000000-0000-0000-0000-000000000000', 65, 'ua62bggcryel', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', true, '2025-12-02 18:58:43.180085+00', '2025-12-02 19:58:26.477422+00', 'zkr4w7ux2imh', 'e84a2c6a-0c2b-46ec-a0f5-8ffe99d4be19'),
-	('00000000-0000-0000-0000-000000000000', 66, 'bxu75744tzsn', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', true, '2025-12-02 19:58:26.482188+00', '2025-12-02 20:59:32.238823+00', 'ua62bggcryel', 'e84a2c6a-0c2b-46ec-a0f5-8ffe99d4be19'),
-	('00000000-0000-0000-0000-000000000000', 67, 'o5w3opolfiqq', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', false, '2025-12-02 20:59:32.243414+00', '2025-12-02 20:59:32.243414+00', 'bxu75744tzsn', 'e84a2c6a-0c2b-46ec-a0f5-8ffe99d4be19');
+	('00000000-0000-0000-0000-000000000000', 76, 'mjyqi3d537gj', '4bbeb609-723c-4da9-b214-8583d29c2c02', true, '2025-12-03 03:35:04.022068+00', '2025-12-03 04:36:02.594601+00', NULL, 'f612e05d-da5a-4c79-90f5-dd4dfe5cb129'),
+	('00000000-0000-0000-0000-000000000000', 77, 'cs2hkvwsovl2', '4bbeb609-723c-4da9-b214-8583d29c2c02', true, '2025-12-03 04:36:02.600668+00', '2025-12-03 05:48:49.887392+00', 'mjyqi3d537gj', 'f612e05d-da5a-4c79-90f5-dd4dfe5cb129'),
+	('00000000-0000-0000-0000-000000000000', 78, 'dqlxb76vbfpy', '4bbeb609-723c-4da9-b214-8583d29c2c02', false, '2025-12-03 05:48:49.890533+00', '2025-12-03 05:48:49.890533+00', 'cs2hkvwsovl2', 'f612e05d-da5a-4c79-90f5-dd4dfe5cb129');
 
 
 --
@@ -294,7 +380,6 @@ INSERT INTO "public"."apoyoadocencia" ("apoyodocid", "nombreactividad", "meta", 
 	('3910b988-f23e-4c7f-a31e-70b54ffbcc1f', 'Asesorías Académicas', '20 estudiantes asesorados', 6, 'GOMÑ920801TD8'),
 	('898c31d8-a745-469f-b0f4-4a870fe529af', 'Diseño de material didáctico', '5 unidades de aprendizaje', 5, 'MÑLJ821102KD1'),
 	('f0427cad-71c7-4080-84b2-b436a5e1c316', 'Actualización de contenidos', '3 programas actualizados', 4, 'RMA921228TP9'),
-	('bf9a454f-fd88-4602-865b-e44278ca4b1f', 'Apoyo en prácticas', '10 prácticas guiadas', 4, 'LOP&850407XZ4'),
 	('ec29d909-aa6b-494a-a773-78205c36c542', 'Junta de academia', 'Participación mensual', 2, 'ZULS830923ML2'),
 	('c9b1e739-c01c-4a26-aae4-c43f55e9a3dd', 'Laboratorio de química', '5 prácticas actualizadas', 4, 'FERA990105QH6'),
 	('8e861bff-c9cf-43ff-bf58-2cc477b6006a', 'Material administrativo', '80 documentos procesados', 3, 'CÑTA770916BW8'),
@@ -311,7 +396,9 @@ INSERT INTO "public"."generador" ("rfc") VALUES
 	('GENB800102BB2'),
 	('GENC800103CC3'),
 	('GEND800104DD4'),
-	('GENE800105EE5');
+	('GENE800105EE5'),
+	('GENA800202BB1'),
+	('GENE999125EE3');
 
 
 --
@@ -322,7 +409,14 @@ INSERT INTO "public"."tipodocumento" ("tipodocid", "nombretipo", "tipoinf", "pla
 	('5f76042e-fffe-40ab-a950-8c083839e7b0', 'Carta de Exclusividad Laboral', 'Documento en que especifica el horario en que se van a realizar las actividades version A', '/plantillas/formato_horario_actividades_A.docx', NULL),
 	('9d1749bd-0136-4b3b-8ff4-c686fcf0a766', 'Constancia Actualizacion Curriculum', 'Documento en que especifica el horario en que se van a realizar las actividades version C', '/plantillas/formato_horario_actividades_C.docx', NULL),
 	('a0473e8a-832f-4565-8a84-71a25a263930', 'Constancia Alumnos Atendidos', 'Documento en que especifica el horario en que se van a realizar las actividades version B', '/plantillas/formato_horario_actividades_B.docx', NULL),
-	('068fe9fd-c111-4753-be14-a101729b2748', 'Constancia Docente', 'Documento que acredita la identidad del docente', '/plantillas/constancia_docente.docx', NULL);
+	('068fe9fd-c111-4753-be14-a101729b2748', 'Constancia Docente', 'Documento que acredita la identidad del docente', '/plantillas/constancia_docente.docx', NULL),
+	('879017b6-aa3a-450c-84f0-a106dc5bca3f', 'Formato de Actividades', 'Registro de Actividades', NULL, NULL),
+	('d417fd2c-0874-4156-9092-2172f266390f', 'Constancia de Cumplimiento de Actividades', 'Cumplimiento de Actividades', NULL, NULL),
+	('e9c608c6-2d8e-4c0d-819b-8151e7c797ea', 'Carta de Liberacion de Actividades', 'Liberacion de Actividades', NULL, NULL),
+	('d2c89db2-3c03-48f3-8838-5ce9c92cbc22', 'Carta de Grupos Licenciatura', 'Lista Grupos de Licenciatura', NULL, NULL),
+	('35c6b0d1-b2d4-4f0e-9f6d-2a53d143b349', 'Carta de Evaluacion', 'Evaluacion del Docente', NULL, NULL),
+	('4afd2ad2-0450-44b4-8ef1-6082ae40fc76', 'Constancia Tutorias', 'Aval de las tutorias', NULL, NULL),
+	('2a28acbd-afe5-41ae-8bb4-cc5406ed1a50', 'Constancia de Recursos', 'Elaboracion de Recursos Educativos', NULL, NULL);
 
 
 --
@@ -373,18 +467,18 @@ INSERT INTO "public"."materia" ("materiaid", "clavemateria", "nombre", "creditos
 -- Data for Name: cargamaterias; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "public"."cargamaterias" ("cargaid", "periodo", "grupo", "aula", "noalumnos", "modalidad", "materiaid", "docente_rfc") VALUES
-	('03d3121a-3adb-4280-9f20-59cb51c884b9', '2025-A', 'E1', 'Lab E2', 26, 'Presencial', '2ebf03c0-ecff-4b06-a068-cb0822a33515', 'HERA880706C9A'),
-	('428b1584-ed4e-4d63-83da-b8a4a62a632c', '2025-A', 'S3', 'Aula 11', 27, 'Presencial', '69705d46-7334-4976-a634-82b6f238eed9', 'LOP&850407XZ4'),
-	('3acd5716-7116-4f5a-b80b-85037e76ae66', '2025-A', 'M1', 'Lab 5', 24, 'Presencial', '5253fbd2-9b2b-4195-90fa-2c0b685f19ff', 'ZULS830923ML2'),
-	('556eaae5-f6ec-4c2e-96a5-2b4d7a66a52c', '2025-A', 'G1', 'Aula 4', 29, 'Presencial', '89bd872a-e764-4180-8ee5-9f0d56a7b300', 'RMA921228TP9'),
-	('6b303f62-db0a-467a-9066-ad9ec7767042', '2025-A', 'A1', 'Lab 3', 28, 'Presencial', '721af641-ea34-49cd-89d4-81e453ebadfa', 'GOMÑ920801TD8'),
-	('85b32d0c-adff-410c-8af5-667c7b446496', '2025-A', 'A3', 'Aula 14', 30, 'Presencial', '889304a7-2534-416f-a47e-18566ded9abe', 'CÑTA770916BW8'),
-	('8eeded19-5c4a-4d2a-92d2-e7dd4738efa0', '2025-A', 'I1', 'Lab 7', 26, 'Presencial', 'd050a797-f247-43b3-86ab-095e4b389705', 'MÑLJ821102KD1'),
-	('93d03ad3-8834-445a-abd9-7f72b40f592d', '2025-A', 'CB1', 'Aula 5', 33, 'Presencial', 'd3071682-0373-4ea6-bd85-1ddb63e94f58', 'QTRÑ760530VF5'),
-	('e11b7c7e-1008-47cc-86c5-f8e019abb988', '2025-A', 'Q2', 'Lab Q1', 22, 'Presencial', '89bd872a-e764-4180-8ee5-9f0d56a7b300', 'FERA990105QH6'),
-	('c212d50e-f3b0-45e8-be64-631f6aea28c1', '2025-A', 'A2', 'Aula 12', 31, 'Presencial', 'b9727344-da75-4f04-b3d3-696ae3af42d5', 'GOMÑ920801TD8'),
-	('4c882bab-63d4-41dc-a2e8-12e50f33693a', '2025-A', 'EF121', 'C4', 21, 'Presencial', '2ebf03c0-ecff-4b06-a068-cb0822a33515', 'ZULS830923ML2');
+INSERT INTO "public"."cargamaterias" ("cargaid", "periodo", "grupo", "aula", "noalumnos", "modalidad", "materiaid", "docente_rfc", "horario") VALUES
+	('0364499c-f1f8-4328-a4af-b5ebe2146496', '2025-B', '213', 'C2', 20, 'Presencial', '89bd872a-e764-4180-8ee5-9f0d56a7b300', 'RMA921228TP9', '07:00-08:00'),
+	('93d03ad3-8834-445a-abd9-7f72b40f592d', '2025-A', 'CB1', 'Aula 5', 33, 'Presencial', 'd3071682-0373-4ea6-bd85-1ddb63e94f58', 'QTRÑ760530VF5', '07:00-08:00'),
+	('4c882bab-63d4-41dc-a2e8-12e50f33693a', '2025-A', 'EF121', 'C4', 21, 'Presencial', '2ebf03c0-ecff-4b06-a068-cb0822a33515', 'ZULS830923ML2', '07:00-08:00'),
+	('c212d50e-f3b0-45e8-be64-631f6aea28c1', '2025-A', 'A2', 'Aula 12', 31, 'Presencial', 'b9727344-da75-4f04-b3d3-696ae3af42d5', 'GOMÑ920801TD8', '08:00-09:00'),
+	('6b303f62-db0a-467a-9066-ad9ec7767042', '2025-A', 'A1', 'Lab 3', 28, 'Presencial', '721af641-ea34-49cd-89d4-81e453ebadfa', 'GOMÑ920801TD8', '08:00-09:00'),
+	('f4068376-01e6-410d-963a-57577d66b1e5', '2025-A', '21', 'C3', 10, 'Virtual', '71818795-a389-49a9-bd94-c8fd98417b1a', 'RMA921228TP9', '09:00-10:00'),
+	('03d3121a-3adb-4280-9f20-59cb51c884b9', '2025-A', 'E1', 'Lab E2', 26, 'Presencial', '2ebf03c0-ecff-4b06-a068-cb0822a33515', 'HERA880706C9A', '09:00-10:00'),
+	('85b32d0c-adff-410c-8af5-667c7b446496', '2025-A', 'A3', 'Aula 14', 30, 'Presencial', '889304a7-2534-416f-a47e-18566ded9abe', 'CÑTA770916BW8', '11:00-12:00'),
+	('3acd5716-7116-4f5a-b80b-85037e76ae66', '2025-A', 'M1', 'Lab 5', 24, 'Presencial', '5253fbd2-9b2b-4195-90fa-2c0b685f19ff', 'ZULS830923ML2', '11:00-12:00'),
+	('8eeded19-5c4a-4d2a-92d2-e7dd4738efa0', '2025-A', 'I1', 'Lab 7', 26, 'Presencial', 'd050a797-f247-43b3-86ab-095e4b389705', 'MÑLJ821102KD1', '12:00-13:00'),
+	('e11b7c7e-1008-47cc-86c5-f8e019abb988', '2025-A', 'Q2', 'Lab Q1', 22, 'Presencial', '89bd872a-e764-4180-8ee5-9f0d56a7b300', 'FERA990105QH6', '12:00-13:00');
 
 
 --
@@ -428,6 +522,27 @@ INSERT INTO "public"."expediente" ("expedienteid", "fechacreacion", "estado", "c
 
 
 --
+-- Data for Name: documento; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO "public"."documento" ("documentoid", "estadoactual", "rutaarchivo", "tipodocid", "expedienteid") VALUES
+	('1fa85a78-0fe5-471b-a484-089f4b2d72cf', 'Generado', 'http://127.0.0.1:54321/storage/v1/object/public/documentos/ZULS830923ML2-1764722796583.pdf', 'a0473e8a-832f-4565-8a84-71a25a263930', '06192453-999d-487c-bb5b-76db5dc08236'),
+	('2df04399-e08f-4e93-af86-37ad88b4a495', 'Generado', 'http://127.0.0.1:54321/storage/v1/object/public/documentos/ZULS830923ML2-1764722912486.pdf', '068fe9fd-c111-4753-be14-a101729b2748', '06192453-999d-487c-bb5b-76db5dc08236'),
+	('d59b21ba-5917-44b7-b7d6-2c4c8eb2101c', 'Generado', 'http://127.0.0.1:54321/storage/v1/object/public/documentos/ZULS830923ML2-1764728846392.pdf', '879017b6-aa3a-450c-84f0-a106dc5bca3f', '06192453-999d-487c-bb5b-76db5dc08236'),
+	('55ff3e4f-2c9f-4c36-8f2e-3016ea42fb81', 'Generado', 'http://127.0.0.1:54321/storage/v1/object/public/documentos/LOP&850407XZ4-1764729891322.pdf', '879017b6-aa3a-450c-84f0-a106dc5bca3f', '6724fd69-72bc-4ec5-b43d-c73ce127ff60'),
+	('c4fefa25-6246-431b-ab43-fd167e400f11', 'Generado', 'http://127.0.0.1:54321/storage/v1/object/public/documentos/LOP&850407XZ4-1764732425564.pdf', 'd417fd2c-0874-4156-9092-2172f266390f', '6724fd69-72bc-4ec5-b43d-c73ce127ff60'),
+	('040bc013-fd3a-45ed-ad00-9ff7485552f5', 'Generado', 'http://127.0.0.1:54321/storage/v1/object/public/documentos/LOP&850407XZ4-1764732531199.pdf', 'a0473e8a-832f-4565-8a84-71a25a263930', '6724fd69-72bc-4ec5-b43d-c73ce127ff60'),
+	('c2efd4d3-1743-4291-b663-0f75c5f6434a', 'Generado', 'http://127.0.0.1:54321/storage/v1/object/public/documentos/RMA921228TP9-1764732923665.pdf', '879017b6-aa3a-450c-84f0-a106dc5bca3f', 'a64350ee-b8c5-4829-8ca8-8c27278ebb9a'),
+	('b06fd8ed-3c95-4b02-a0c1-eb90784198ff', 'Generado', 'http://127.0.0.1:54321/storage/v1/object/public/documentos/RMA921228TP9-1764733939224.pdf', '068fe9fd-c111-4753-be14-a101729b2748', 'a64350ee-b8c5-4829-8ca8-8c27278ebb9a'),
+	('4a3958f7-c7de-4bd4-a9b9-158bd576fb89', 'Generado', 'http://127.0.0.1:54321/storage/v1/object/public/documentos/RMA921228TP9-1764734294553.pdf', 'd417fd2c-0874-4156-9092-2172f266390f', 'a64350ee-b8c5-4829-8ca8-8c27278ebb9a'),
+	('74eae657-5b4c-4207-824e-ec2a7a462ff0', 'Generado', 'http://127.0.0.1:54321/storage/v1/object/public/documentos/RMA921228TP9-1764735389404.pdf', 'e9c608c6-2d8e-4c0d-819b-8151e7c797ea', 'a64350ee-b8c5-4829-8ca8-8c27278ebb9a'),
+	('006f56c6-8cfb-4ce6-9f37-2e942e1674f5', 'Generado', 'http://127.0.0.1:54321/storage/v1/object/public/documentos/RMA921228TP9-1764737694655.pdf', 'd2c89db2-3c03-48f3-8838-5ce9c92cbc22', 'a64350ee-b8c5-4829-8ca8-8c27278ebb9a'),
+	('0fcee86b-d322-4196-acb1-2e4c828fe43e', 'Generado', 'http://127.0.0.1:54321/storage/v1/object/public/documentos/RMA921228TP9-1764738784950.pdf', '35c6b0d1-b2d4-4f0e-9f6d-2a53d143b349', 'a64350ee-b8c5-4829-8ca8-8c27278ebb9a'),
+	('65f7e9e0-519b-4b55-8a70-a7b696cc2b6b', 'Generado', 'http://127.0.0.1:54321/storage/v1/object/public/documentos/RMA921228TP9-1764739887079.pdf', '4afd2ad2-0450-44b4-8ef1-6082ae40fc76', 'a64350ee-b8c5-4829-8ca8-8c27278ebb9a'),
+	('92e92be6-61e1-4184-a64b-a30b85ae853f', 'Generado', 'http://127.0.0.1:54321/storage/v1/object/public/documentos/RMA921228TP9-1764741028365.pdf', '2a28acbd-afe5-41ae-8bb4-cc5406ed1a50', 'a64350ee-b8c5-4829-8ca8-8c27278ebb9a');
+
+
+--
 -- Data for Name: documentoinfoextra; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -449,6 +564,27 @@ INSERT INTO "public"."estrategiadidactica" ("estrategiadidactid", "descripciones
 	('bda401c2-f631-45b8-b530-416902fca7b3', 'Clases invertidas', NULL, 'CÑTA770916BW8'),
 	('ea6745ab-6afb-4987-9624-b53f03e8dc98', 'Laboratorio avanzado', NULL, 'HERA880706C9A'),
 	('b334b969-3a43-4930-b4ac-f084fda3890c', 'Modelado matemático', NULL, 'QTRÑ760530VF5');
+
+
+--
+-- Data for Name: eventogeneracion; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO "public"."eventogeneracion" ("generador_rfc", "fechasolicitud", "idevento", "idsolicitante", "documento_id") VALUES
+	('GENC800103CC3', '2025-12-03', '2bc8a78f-b683-452f-80d8-fc77896a12c3', 'ZULS830923ML2', '1fa85a78-0fe5-471b-a484-089f4b2d72cf'),
+	('GENE800105EE5', '2025-12-03', '127c892b-834e-497d-8e6f-e619f26bd085', 'ZULS830923ML2', '2df04399-e08f-4e93-af86-37ad88b4a495'),
+	('GENA800101AA1', '2025-12-03', 'ceb828af-06ca-4f8e-bf36-8c2eb5c5f944', 'ZULS830923ML2', 'd59b21ba-5917-44b7-b7d6-2c4c8eb2101c'),
+	('GENA800101AA1', '2025-12-03', 'f752ce60-c044-4334-9a61-0ce73bfc6780', 'LOP&850407XZ4', '55ff3e4f-2c9f-4c36-8f2e-3016ea42fb81'),
+	('GENA800202BB1', '2025-12-03', '37a3b8c2-5b77-4306-ba10-7cfc6bd6bf4c', 'LOP&850407XZ4', 'c4fefa25-6246-431b-ab43-fd167e400f11'),
+	('GENC800103CC3', '2025-12-03', '5c037123-4601-40ee-bd07-6e4a53718e17', 'LOP&850407XZ4', '040bc013-fd3a-45ed-ad00-9ff7485552f5'),
+	('GENA800101AA1', '2025-12-03', 'e21cce41-1bbb-4af7-8ca5-e67c46bbf1ad', 'RMA921228TP9', 'c2efd4d3-1743-4291-b663-0f75c5f6434a'),
+	('GENE800105EE5', '2025-12-03', '5ca1e0fb-0438-4927-97db-fbd36d49bdae', 'RMA921228TP9', 'b06fd8ed-3c95-4b02-a0c1-eb90784198ff'),
+	('GENA800202BB1', '2025-12-03', '4a5bc4ba-a480-4dfe-872a-e44b3d674b45', 'RMA921228TP9', '4a3958f7-c7de-4bd4-a9b9-158bd576fb89'),
+	('GEND800104DD4', '2025-12-03', 'ebeaa102-cf11-4982-b75e-90a36d5a1199', 'RMA921228TP9', '74eae657-5b4c-4207-824e-ec2a7a462ff0'),
+	('GEND800104DD4', '2025-12-03', '3abf51e2-808b-4c6b-bb37-8a9fa97db0c7', 'RMA921228TP9', '006f56c6-8cfb-4ce6-9f37-2e942e1674f5'),
+	('GEND800104DD4', '2025-12-03', '5087afb8-175a-4de9-9a65-0c9be4c0f698', 'RMA921228TP9', '0fcee86b-d322-4196-acb1-2e4c828fe43e'),
+	('GENB800102BB2', '2025-12-03', '638f359b-190a-4547-b4f9-1206a63d8f1b', 'RMA921228TP9', '65f7e9e0-519b-4b55-8a70-a7b696cc2b6b'),
+	('GENE999125EE3', '2025-12-03', 'e1c36172-36e0-4909-80bf-3509ac83d26f', 'RMA921228TP9', '92e92be6-61e1-4184-a64b-a30b85ae853f');
 
 
 --
@@ -490,15 +626,21 @@ INSERT INTO "public"."programa" ("programaid", "periodovalidez", "docente_rfc") 
 --
 
 INSERT INTO "public"."recursoeducativo" ("recursoeduid", "semestreelaboracion", "programaeducativo", "materialid", "docente_rfc") VALUES
-	('46a5ea11-8b52-4654-9c3d-1d52fb377bb8', '2025-1', 'Ingeniería en Sistemas', NULL, 'GOMÑ920801TD8'),
-	('68ff2b17-fef1-4401-aa99-91775f723b7f', '2024-2', 'Ingeniería Industrial', NULL, 'MÑLJ821102KD1'),
-	('8217ef95-8fff-4fe3-8073-03c71649da5c', '2025-1', 'Lic. en Administración', NULL, 'RMA921228TP9'),
-	('f6281907-0ef3-49f9-94db-c4c86eb1be28', '2024-2', 'Arquitectura', NULL, 'LOP&850407XZ4'),
-	('7f68b31b-3260-4f52-9bd7-60dfa164b5e3', '2025-1', 'Mecatrónica', NULL, 'ZULS830923ML2'),
-	('86ddf5ae-6bd8-41e2-9bf3-dffd66044132', '2024-2', 'Química', NULL, 'FERA990105QH6'),
-	('50940e1c-fe5d-4839-974a-0fea7d4de027', '2025-1', 'Contaduría', NULL, 'CÑTA770916BW8'),
-	('a1e89f76-cbc9-488f-a4c7-910d56406e08', '2024-2', 'Electrónica', NULL, 'HERA880706C9A'),
-	('3cbb593d-75a3-48f9-90a7-ab6e13f40d4b', '2025-1', 'Ciencias Básicas', NULL, 'QTRÑ760530VF5');
+	('3cbb593d-75a3-48f9-90a7-ab6e13f40d4b', '2025-1', 'Ciencias Básicas', '2ebf03c0-ecff-4b06-a068-cb0822a33515', 'QTRÑ760530VF5'),
+	('68ff2b17-fef1-4401-aa99-91775f723b7f', '2024-2', 'Ingeniería Industrial', '721af641-ea34-49cd-89d4-81e453ebadfa', 'MÑLJ821102KD1'),
+	('46a5ea11-8b52-4654-9c3d-1d52fb377bb8', '2025-1', 'Ingeniería en Sistemas', '89bd872a-e764-4180-8ee5-9f0d56a7b300', 'GOMÑ920801TD8'),
+	('50940e1c-fe5d-4839-974a-0fea7d4de027', '2025-1', 'Contaduría', 'b9727344-da75-4f04-b3d3-696ae3af42d5', 'CÑTA770916BW8'),
+	('7f68b31b-3260-4f52-9bd7-60dfa164b5e3', '2025-1', 'Mecatrónica', 'd3071682-0373-4ea6-bd85-1ddb63e94f58', 'ZULS830923ML2'),
+	('f6281907-0ef3-49f9-94db-c4c86eb1be28', '2024-2', 'Arquitectura', 'b9727344-da75-4f04-b3d3-696ae3af42d5', 'LOP&850407XZ4'),
+	('86ddf5ae-6bd8-41e2-9bf3-dffd66044132', '2024-2', 'Química', 'd050a797-f247-43b3-86ab-095e4b389705', 'FERA990105QH6'),
+	('a1e89f76-cbc9-488f-a4c7-910d56406e08', '2024-2', 'Electrónica', '889304a7-2534-416f-a47e-18566ded9abe', 'HERA880706C9A'),
+	('8217ef95-8fff-4fe3-8073-03c71649da5c', '2025-1', 'Lic. en Administración', '71818795-a389-49a9-bd94-c8fd98417b1a', 'RMA921228TP9');
+
+
+--
+-- Data for Name: tickets; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
 
 
 --
@@ -508,13 +650,14 @@ INSERT INTO "public"."recursoeducativo" ("recursoeduid", "semestreelaboracion", 
 INSERT INTO "public"."tutores" ("tutoriaid", "periodo", "notutorados", "carreratutorados", "docente_rfc") VALUES
 	('2454746e-1afb-42ff-9d94-9fe5d03ef3c0', '2025-A', 12, 'Sistemas', 'GOMÑ920801TD8'),
 	('66e191d7-5270-47be-8401-82f4671466ae', '2025-A', 10, 'Industrial', 'MÑLJ821102KD1'),
-	('afaffbf9-3628-43d9-a3a0-8b6a476833d8', '2025-A', 9, 'Administración', 'RMA921228TP9'),
 	('217eb364-2a61-45f1-8930-6efe94a88e05', '2025-A', 8, 'Arquitectura', 'LOP&850407XZ4'),
 	('cda613ca-cd80-4f98-951a-ac0fd109fa6f', '2025-A', 11, 'Mecatrónica', 'ZULS830923ML2'),
 	('fd627caa-6c5d-4e67-aea8-74b3ae42cebf', '2025-A', 13, 'Química', 'FERA990105QH6'),
 	('7d988ef5-e834-488c-9747-b2ce95bfd901', '2025-A', 12, 'Contaduría', 'CÑTA770916BW8'),
 	('130cf6a5-ee5a-4478-9de1-85055cb6c95e', '2025-A', 14, 'Electrónica', 'HERA880706C9A'),
-	('102f843b-3d75-45a8-9fd2-7f43a0d85ead', '2025-A', 9, 'Ciencias Básicas', 'QTRÑ760530VF5');
+	('102f843b-3d75-45a8-9fd2-7f43a0d85ead', '2025-A', 9, 'Ciencias Básicas', 'QTRÑ760530VF5'),
+	('7122ddf0-d36a-4820-b2dc-2646614e882d', '2025-A', 10, 'Sistemas', 'RMA921228TP9'),
+	('078660ac-d1da-4222-8d80-ee73f70672c4', '2025-A', 10, 'Gestion', 'RMA921228TP9');
 
 
 --
@@ -528,19 +671,21 @@ INSERT INTO "public"."usuarios" ("id", "rol", "nombre", "ap_pat", "ap_mat", "pue
 	('d41c9d4f-c0f3-417b-90e5-0816c377db7f', 'revisor', 'Esteban', 'Reyes', 'Ochoa', 'Revisor Académico', NULL, NULL, NULL, 'REV900105EE5'),
 	('b34567d0-2c2b-4b7a-9fac-19ff366e931a', 'docente', 'Gerardo', 'Gómez', 'Ñuñez', 'Profesor de Tiempo Completo', NULL, 'GOMÑ920801TD8', NULL, NULL),
 	('d8291555-5545-4ae0-8502-eeec4ae86c18', 'docente', 'María', 'Muñoz', 'López', 'Profesor de Tiempo Completo', NULL, 'MÑLJ821102KD1', NULL, NULL),
-	('9125e214-f8f0-4a22-8b3b-3bce1a0d1e48', 'docente', 'Ricardo', 'Martínez', 'Aguilar', 'Profesor de Tiempo Completo', NULL, 'RMA921228TP9', NULL, NULL),
-	('ef3542f7-c53d-4fef-a19a-ea42b9c1ca61', 'docente', 'Lorena', 'López', 'Andrade', 'Profesor de Tiempo Completo', NULL, 'LOP&850407XZ4', NULL, NULL),
 	('0f8c5a9c-a979-4aea-9037-a4739b7158a8', 'docente', 'Fernando', 'Rentería', 'Alonso', 'Profesor de Tiempo Completo', NULL, 'FERA990105QH6', NULL, NULL),
 	('e36d45de-a776-4977-abac-279cac28bc39', 'docente', 'Cynthia', 'Ñolasco', 'Tavares', 'Profesor de Tiempo Completo', NULL, 'CÑTA770916BW8', NULL, NULL),
 	('1a078d60-61ae-4c50-96ed-7a39daf7bd4e', 'docente', 'Héctor', 'Hernández', 'Ramírez', 'Profesor de Tiempo Completo', NULL, 'HERA880706C9A', NULL, NULL),
-	('9cd11827-9b0b-4475-bac4-d64323f54daa', 'docente', 'Quetzal', 'Trujillo', 'Ñanco', 'Profesor de Tiempo Completo', NULL, 'QTRÑ760530VF5', NULL, NULL),
 	('c7b3cb2d-03d8-4464-8dcf-fbe0f9b50935', 'docente', 'Zulema', 'Santos', 'Lara', 'Profesor de Tiempo Completo', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', 'ZULS830923ML2', NULL, NULL),
 	('a2c573eb-1148-45e8-8e33-1ecd92167c06', 'revisor', 'Arturo', 'Santos', 'Ríos', 'Revisor Académico', '1d9c6248-0cc0-4496-b8ca-1fa012fbf38e', NULL, NULL, 'REV900101AA1'),
 	('44e4c1d3-db35-4f9e-9443-5ace7fff70c7', 'generador', 'Diego', 'Torres', 'Vega', 'Recursos Humanos', NULL, NULL, 'GEND800104DD4', NULL),
 	('a23d0701-0502-4b3a-b355-efe4c8ce9f04', 'generador', 'Bruno', 'Méndez', 'Paz', 'Jefe del Departamento de Desarrollo Academico', NULL, NULL, 'GENB800102BB2', NULL),
 	('011fc7ed-9c1b-44f3-a232-1dfa8f57394c', 'generador', 'Elisa', 'Hernández', 'Mora', 'Jefe de Departamento de Administración', 'd1e7797e-7e6e-423f-9056-f1bda4a3bc1d', NULL, 'GENE800105EE5', NULL),
 	('bd949366-d2e4-480b-b61d-c51ea82cfdc6', 'generador', 'Celia', 'Ramírez', 'Solís', 'Jefe del Departamento de Servicios Escolares', NULL, NULL, 'GENC800103CC3', NULL),
-	('384d9b4d-28c5-441a-9c17-cad7b4187224', 'generador', 'Ana', 'Gómez', 'Luna', 'Capturista', '53798262-7c9d-4764-94e5-31e00c1790c5', NULL, 'GENA800101AA1', NULL);
+	('384d9b4d-28c5-441a-9c17-cad7b4187224', 'generador', 'Ana', 'Gómez', 'Luna', 'Coordinador de Carrera', '53798262-7c9d-4764-94e5-31e00c1790c5', NULL, 'GENA800101AA1', NULL),
+	('9cd11827-9b0b-4475-bac4-d64323f54daa', 'docente', 'Quetzal', 'Trujillo', 'Ñanco', 'Profesor de Tiempo Completo', '30d54813-b057-4497-ad0e-7ee8cf9c7876', 'QTRÑ760530VF5', NULL, NULL),
+	('ef3542f7-c53d-4fef-a19a-ea42b9c1ca61', 'docente', 'Lorena', 'López', 'Andrade', 'Profesor de Tiempo Completo', 'ce17b815-ebb2-44e5-befc-87815ee6188f', 'LOP&850407XZ4', NULL, NULL),
+	('g-213121', 'generador', 'Juan', 'Lopez', 'Lopez', 'Subdireccion Academica', NULL, NULL, 'GENA800202BB1', NULL),
+	('9125e214-f8f0-4a22-8b3b-3bce1a0d1e48', 'docente', 'Ricardo', 'Martínez', 'Aguilar', 'Profesor de Tiempo Completo', '4bbeb609-723c-4da9-b214-8583d29c2c02', 'RMA921228TP9', NULL, NULL),
+	('g-12345', 'generador', 'Marisol', 'Manjarrez', 'Beltrán', 'Jefe del Departamento de Sistemas', NULL, NULL, 'GENE999125EE3', NULL);
 
 
 --
@@ -573,6 +718,27 @@ INSERT INTO "storage"."buckets" ("id", "name", "owner", "created_at", "updated_a
 -- Data for Name: iceberg_tables; Type: TABLE DATA; Schema: storage; Owner: supabase_storage_admin
 --
 
+
+
+--
+-- Data for Name: objects; Type: TABLE DATA; Schema: storage; Owner: supabase_storage_admin
+--
+
+INSERT INTO "storage"."objects" ("id", "bucket_id", "name", "owner", "created_at", "updated_at", "last_accessed_at", "metadata", "version", "owner_id", "user_metadata", "level") VALUES
+	('248bfad2-8ae8-4db7-8066-8ae68cc036c4', 'documentos', 'ZULS830923ML2-1764722796583.pdf', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', '2025-12-03 00:46:36.655113+00', '2025-12-03 00:46:36.655113+00', '2025-12-03 00:46:36.655113+00', '{"eTag": "\"dd5f9f93eb0dbee6c1f1cb2e1a5213b9\"", "size": 104629, "mimetype": "application/pdf", "cacheControl": "max-age=3600", "lastModified": "2025-12-03T00:46:36.638Z", "contentLength": 104629, "httpStatusCode": 200}', 'e928f2da-05cc-4388-bb44-d6d68720b17f', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', '{}', 1),
+	('33156f63-fa70-4013-b902-05d882f36991', 'documentos', 'ZULS830923ML2-1764722912486.pdf', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', '2025-12-03 00:48:32.532643+00', '2025-12-03 00:48:32.532643+00', '2025-12-03 00:48:32.532643+00', '{"eTag": "\"25d328c228acfc509a81dc877533afa6\"", "size": 97691, "mimetype": "application/pdf", "cacheControl": "max-age=3600", "lastModified": "2025-12-03T00:48:32.520Z", "contentLength": 97691, "httpStatusCode": 200}', '0519108d-ae02-40c3-a3ee-5ee742bf7bb7', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', '{}', 1),
+	('ccb36e08-43c0-454f-bad2-fe917ab291b1', 'documentos', 'ZULS830923ML2-1764728846392.pdf', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', '2025-12-03 02:27:26.666469+00', '2025-12-03 02:27:26.666469+00', '2025-12-03 02:27:26.666469+00', '{"eTag": "\"450a62683e4928df120a03bc33f860e5\"", "size": 129210, "mimetype": "application/pdf", "cacheControl": "max-age=3600", "lastModified": "2025-12-03T02:27:26.620Z", "contentLength": 129210, "httpStatusCode": 200}', 'cfac1748-3ea7-4693-b6a0-f98d877e9632', '748ba0b1-73d2-49ec-b48c-1f7a20df69bb', '{}', 1),
+	('9fcb6854-f43d-45fd-aa4e-05907aef7330', 'documentos', 'LOP&850407XZ4-1764729891322.pdf', 'ce17b815-ebb2-44e5-befc-87815ee6188f', '2025-12-03 02:44:51.391832+00', '2025-12-03 02:44:51.391832+00', '2025-12-03 02:44:51.391832+00', '{"eTag": "\"798639c207559adc2ed24c45377291a3\"", "size": 127718, "mimetype": "application/pdf", "cacheControl": "max-age=3600", "lastModified": "2025-12-03T02:44:51.379Z", "contentLength": 127718, "httpStatusCode": 200}', '3eba7046-770f-4d81-b55c-4e87c9c6268a', 'ce17b815-ebb2-44e5-befc-87815ee6188f', '{}', 1),
+	('91f65a78-525d-4c93-9d2f-158a39de25af', 'documentos', 'LOP&850407XZ4-1764732425564.pdf', 'ce17b815-ebb2-44e5-befc-87815ee6188f', '2025-12-03 03:27:05.759451+00', '2025-12-03 03:27:05.759451+00', '2025-12-03 03:27:05.759451+00', '{"eTag": "\"9439f65edee78d7a19fcb9c8d3ee660f\"", "size": 134366, "mimetype": "application/pdf", "cacheControl": "max-age=3600", "lastModified": "2025-12-03T03:27:05.731Z", "contentLength": 134366, "httpStatusCode": 200}', '052e3501-56c7-40f6-89e7-1d0e5098c657', 'ce17b815-ebb2-44e5-befc-87815ee6188f', '{}', 1),
+	('bd275f50-a971-4528-aa58-f7fd1ec91e76', 'documentos', 'LOP&850407XZ4-1764732531199.pdf', 'ce17b815-ebb2-44e5-befc-87815ee6188f', '2025-12-03 03:28:51.251216+00', '2025-12-03 03:28:51.251216+00', '2025-12-03 03:28:51.251216+00', '{"eTag": "\"96686131fc4cf064b59e09b7e188f500\"", "size": 100977, "mimetype": "application/pdf", "cacheControl": "max-age=3600", "lastModified": "2025-12-03T03:28:51.238Z", "contentLength": 100977, "httpStatusCode": 200}', '2c187055-3f25-415f-8962-a5bd3c18d1c4', 'ce17b815-ebb2-44e5-befc-87815ee6188f', '{}', 1),
+	('37c565a8-2926-4399-8a91-c37d33917e78', 'documentos', 'RMA921228TP9-1764732923665.pdf', '4bbeb609-723c-4da9-b214-8583d29c2c02', '2025-12-03 03:35:23.739348+00', '2025-12-03 03:35:23.739348+00', '2025-12-03 03:35:23.739348+00', '{"eTag": "\"6dd860747f6e3588b33c5ec387ecc365\"", "size": 128119, "mimetype": "application/pdf", "cacheControl": "max-age=3600", "lastModified": "2025-12-03T03:35:23.728Z", "contentLength": 128119, "httpStatusCode": 200}', 'd1230f9f-7219-4093-8e20-48e6233fa4b1', '4bbeb609-723c-4da9-b214-8583d29c2c02', '{}', 1),
+	('b1d2f2c0-b9a7-46ab-8a1b-1a6d22b47125', 'documentos', 'RMA921228TP9-1764733939224.pdf', '4bbeb609-723c-4da9-b214-8583d29c2c02', '2025-12-03 03:52:19.30099+00', '2025-12-03 03:52:19.30099+00', '2025-12-03 03:52:19.30099+00', '{"eTag": "\"404a57a65e6f3471ff18df9efd15a5af\"", "size": 97697, "mimetype": "application/pdf", "cacheControl": "max-age=3600", "lastModified": "2025-12-03T03:52:19.283Z", "contentLength": 97697, "httpStatusCode": 200}', '17278bd7-dc0e-4330-af4d-e0436a38df59', '4bbeb609-723c-4da9-b214-8583d29c2c02', '{}', 1),
+	('01727738-5667-4fed-ab0a-3c84c9cb7517', 'documentos', 'RMA921228TP9-1764734294553.pdf', '4bbeb609-723c-4da9-b214-8583d29c2c02', '2025-12-03 03:58:14.657176+00', '2025-12-03 03:58:14.657176+00', '2025-12-03 03:58:14.657176+00', '{"eTag": "\"cf54e85c6e616566fbae65045287d793\"", "size": 134377, "mimetype": "application/pdf", "cacheControl": "max-age=3600", "lastModified": "2025-12-03T03:58:14.638Z", "contentLength": 134377, "httpStatusCode": 200}', '3b02b7e9-8164-4c8c-9dfe-305761cafae3', '4bbeb609-723c-4da9-b214-8583d29c2c02', '{}', 1),
+	('81a5cbe2-6e55-41fc-978f-f7aa51b2f7d6', 'documentos', 'RMA921228TP9-1764735389404.pdf', '4bbeb609-723c-4da9-b214-8583d29c2c02', '2025-12-03 04:16:29.47891+00', '2025-12-03 04:16:29.47891+00', '2025-12-03 04:16:29.47891+00', '{"eTag": "\"da10753254bc62b81e575883ea5d3a51\"", "size": 107268, "mimetype": "application/pdf", "cacheControl": "max-age=3600", "lastModified": "2025-12-03T04:16:29.465Z", "contentLength": 107268, "httpStatusCode": 200}', 'f307359a-c526-4635-bb3f-183a0569c8cf', '4bbeb609-723c-4da9-b214-8583d29c2c02', '{}', 1),
+	('e5ef440b-4db1-41f6-bf3f-9b6689c1e2b7', 'documentos', 'RMA921228TP9-1764737694655.pdf', '4bbeb609-723c-4da9-b214-8583d29c2c02', '2025-12-03 04:54:54.876319+00', '2025-12-03 04:54:54.876319+00', '2025-12-03 04:54:54.876319+00', '{"eTag": "\"b4253df053eb305d3a69487904cab971\"", "size": 111095, "mimetype": "application/pdf", "cacheControl": "max-age=3600", "lastModified": "2025-12-03T04:54:54.851Z", "contentLength": 111095, "httpStatusCode": 200}', 'eedd2f4e-c3a2-4680-8ad3-eaf536b2ea35', '4bbeb609-723c-4da9-b214-8583d29c2c02', '{}', 1),
+	('9af45ec6-a94a-4546-b6e4-10a5f44bcf9a', 'documentos', 'RMA921228TP9-1764738784950.pdf', '4bbeb609-723c-4da9-b214-8583d29c2c02', '2025-12-03 05:13:05.040349+00', '2025-12-03 05:13:05.040349+00', '2025-12-03 05:13:05.040349+00', '{"eTag": "\"c769f36f52e1cd59bab33e6f70b2b7f5\"", "size": 106137, "mimetype": "application/pdf", "cacheControl": "max-age=3600", "lastModified": "2025-12-03T05:13:05.028Z", "contentLength": 106137, "httpStatusCode": 200}', '41a9d3d6-a4d6-4ecc-a7cb-6ff432c75418', '4bbeb609-723c-4da9-b214-8583d29c2c02', '{}', 1),
+	('142efa4e-e064-4396-8870-18a400e82105', 'documentos', 'RMA921228TP9-1764739887079.pdf', '4bbeb609-723c-4da9-b214-8583d29c2c02', '2025-12-03 05:31:27.160283+00', '2025-12-03 05:31:27.160283+00', '2025-12-03 05:31:27.160283+00', '{"eTag": "\"4fb2077c21ade70f1405ec4979fb6f55\"", "size": 125429, "mimetype": "application/pdf", "cacheControl": "max-age=3600", "lastModified": "2025-12-03T05:31:27.151Z", "contentLength": 125429, "httpStatusCode": 200}', '76a2eab1-f3d0-4beb-97e7-32d5f70af5d3', '4bbeb609-723c-4da9-b214-8583d29c2c02', '{}', 1),
+	('080938a0-8c8d-4945-bef6-a6d9306a1a38', 'documentos', 'RMA921228TP9-1764741028365.pdf', '4bbeb609-723c-4da9-b214-8583d29c2c02', '2025-12-03 05:50:28.555031+00', '2025-12-03 05:50:28.555031+00', '2025-12-03 05:50:28.555031+00', '{"eTag": "\"d59c51491dbc23f5a7bca52ce287eb34\"", "size": 134188, "mimetype": "application/pdf", "cacheControl": "max-age=3600", "lastModified": "2025-12-03T05:50:28.531Z", "contentLength": 134188, "httpStatusCode": 200}', '2b464cb4-7a90-4ff8-8a5c-f9994c49fdeb', '4bbeb609-723c-4da9-b214-8583d29c2c02', '{}', 1);
 
 
 --
@@ -609,7 +775,7 @@ INSERT INTO "storage"."buckets" ("id", "name", "owner", "created_at", "updated_a
 -- Name: refresh_tokens_id_seq; Type: SEQUENCE SET; Schema: auth; Owner: supabase_auth_admin
 --
 
-SELECT pg_catalog.setval('"auth"."refresh_tokens_id_seq"', 67, true);
+SELECT pg_catalog.setval('"auth"."refresh_tokens_id_seq"', 78, true);
 
 
 --
@@ -623,6 +789,6 @@ SELECT pg_catalog.setval('"supabase_functions"."hooks_id_seq"', 1, false);
 -- PostgreSQL database dump complete
 --
 
--- \unrestrict U4ULVffY8bNyGccqpEwMppQD2Qt4nYovZLRyeKE6oeMRDkHRoB3Z5xJOedIKb1G
+-- \unrestrict fHtfjNa2OhBuYqJ9X0fB8RVWGYFZZmW70FSGLarE05rLHW1Yj1C9RW3UA0WWdHi
 
 RESET ALL;

@@ -4,7 +4,7 @@ import { getCurrentUser } from "@/actions/auth";
 import { getSupabaseCookiesClient } from "@/supabase/clients";
 import { NextResponse } from "next/server";
 import { PDFDocument, PDFForm } from "pdf-lib";
-import { Usuario } from "@/types/Usuario";
+import { Usuario } from "@/types/usuario";
 import fs from "fs/promises";
 import path from "path";
 
@@ -67,6 +67,12 @@ export async function POST(
       .eq("puesto", "Jefe del Departamento de Desarrollo Academico")
       .single();
 
+    const { data: coordinador } = await supabase
+      .from("usuarios")
+      .select("*")
+      .eq("puesto", "Coordinador de Carrera")
+      .single();
+
     //Cargar datos del curriculum
     const { data: curriculum } = await supabase
       .from("curriculum")
@@ -91,7 +97,39 @@ export async function POST(
       )
       .eq("docente_rfc", usuario.docente_rfc);
 
+    //Cargar datos de datos de recursos
+    const { data: recursos } = await supabase
+      .from("recursoeducativo")
+      .select(
+        `
+    *,
+    materia (
+      materiaid,
+      clavemateria,
+      nombre,
+      creditos,
+      carrera
+    )
+  `
+      )
+      .eq("docente_rfc", usuario.docente_rfc)
+      .single();
+
+    //Cargar datos de apoyo a la docencia
+    const { data: apoyos } = await supabase
+      .from("apoyoadocencia")
+      .select("*")
+      .eq("docente_rfc", usuario.docente_rfc);
+
+    //Cargar datos de tutorias del docente
+    const { data: tutorias } = await supabase
+      .from("tutores")
+      .select("*")
+      .eq("docente_rfc", usuario.docente_rfc);
+
     console.log(materias);
+    console.log(apoyos);
+    console.log(recursos);
     // Handlers del PDF
     const documentHandlers: Record<
       string,
@@ -202,6 +240,216 @@ export async function POST(
           });
         },
       },
+
+      "Formato de Actividades": {
+        template: "Formato de Actividades.pdf",
+        fill: (form, usuario, docente) => {
+          if (!materias || materias.length === 0) return;
+          form
+            .getTextField("Nombre_Docente")
+            .setText(
+              usuario.nombre + " " + usuario.ap_pat + " " + usuario.ap_mat
+            );
+          form.getTextField("Carrera").setText(docente.departamento);
+          form
+            .getTextField("Clave_Presupuestal")
+            .setText(docente.clave_presupuestal);
+          form.getTextField("Estatus_Plaza").setText(docente.estatus_plaza);
+          form.getTextField("Fecha_Ingreso").setText(docente.fecha_ingreso);
+          form.getTextField("Departamento").setText(docente.departamento);
+          form
+            .getTextField("Nombre_Coordinador")
+            .setText(
+              coordinador.nombre +
+                " " +
+                coordinador.ap_pat +
+                " " +
+                coordinador.ap_mat
+            );
+
+          materias.forEach((carga, index) => {
+            const idx = index + 1;
+            form
+              .getTextField(`Asign_${idx}`)
+              .setText(carga.materia?.nombre ?? "");
+
+            form
+              .getTextField(`Grupo_${idx}`)
+              .setText(String(carga.grupo ?? ""));
+            form
+              .getTextField(`Estudiantes_${idx}`)
+              .setText(String(carga.noalumnos ?? ""));
+            form.getTextField(`Aula_${idx}`).setText(carga.aula ?? "");
+            form.getTextField(`Carrera_${idx}`).setText(carga.carrera ?? "");
+            form.getTextField(`Horario_${idx}`).setText(carga.horario ?? "");
+          });
+          apoyos?.forEach((apoyo, index) => {
+            const idx = index + 1;
+            form
+              .getTextField(`Apoyo_${idx}`)
+              .setText(apoyo.nombreactividad ?? "");
+          });
+        },
+      },
+      "Constancia de Cumplimiento de Actividades": {
+        template: "Constancia de Cumplimiento de Actividades.pdf",
+        fill: (form, usuario, docente) => {
+          form
+            .getTextField("Nombre_Docente")
+            .setText(
+              usuario.nombre + " " + usuario.ap_pat + " " + usuario.ap_mat
+            );
+          form.getTextField("Numero_Afiliacion").setText(docente.estatus_plaza);
+          form
+            .getTextField("Categoria_Plaza")
+            .setText(docente.clave_presupuestal);
+          let totalAlumnos = 0;
+          materias?.forEach((carga, index) => {
+            const idx = index + 1;
+            const alumnos = carga.noalumnos ?? 0;
+            totalAlumnos += alumnos;
+          });
+          form.getTextField("Sum_Alumnos").setText(String(totalAlumnos));
+          form.getTextField("Fecha").setText(obtenerFechaFormateada());
+        },
+      },
+      "Carta de Liberacion de Actividades": {
+        template: "Carta de Liberacion de Actividades.pdf",
+        fill: (form, usuario, docente) => {
+          form.getTextField("Fecha").setText(obtenerFechaFormateada());
+          form
+            .getTextField("Nombre_Docente")
+            .setText(
+              usuario.nombre + " " + usuario.ap_pat + " " + usuario.ap_mat
+            );
+          form.getTextField("Categoria_Plaza").setText(docente.categoria_plaza);
+          form
+            .getTextField("Nombre_Docente2")
+            .setText(
+              usuario.nombre + " " + usuario.ap_pat + " " + usuario.ap_mat
+            );
+          form
+            .getTextField("Numero_Afiliacion")
+            .setText(docente.numero_afiliacion);
+          form
+            .getTextField("Clave_Presupuestal")
+            .setText(docente.clave_presupuestal);
+          form
+            .getTextField("Nombre_Docente3")
+            .setText(
+              usuario.nombre + " " + usuario.ap_pat + " " + usuario.ap_mat
+            );
+        },
+      },
+      "Carta de Grupos Licenciatura": {
+        template: "Carta de Grupos Licenciatura.pdf",
+        fill: (form, usuario, docente) => {
+          form.getTextField("Fecha").setText(obtenerFechaFormateada());
+          form
+            .getTextField("Nombre_Docente")
+            .setText(
+              usuario.nombre + " " + usuario.ap_pat + " " + usuario.ap_mat
+            );
+          form
+            .getTextField("Numero_Afiliacion")
+            .setText(docente.numero_afiliacion);
+          form
+            .getTextField("Clave_Presupuestal")
+            .setText(docente.clave_presupuestal);
+
+          let textoConcatenadoAsignatura = "";
+          let textoConcatenadoGrupo = "";
+          let textoConcatenadoCarrera = "";
+          let textoConcatenadoHoras = "";
+          materias?.forEach((carga, index) => {
+            const idx = index + 1;
+            const textoAsignatura = carga.materia?.nombre ?? "";
+            if (textoAsignatura.length > 0) {
+              textoConcatenadoAsignatura +=
+                (textoConcatenadoAsignatura ? ", " : "") + textoAsignatura;
+            }
+            const textoGrupo = carga.grupo ?? "";
+            if (textoGrupo.length > 0) {
+              textoConcatenadoGrupo +=
+                (textoConcatenadoGrupo ? ", " : "") + textoGrupo;
+            }
+            const textoCarrera = carga.materia?.carrera ?? "";
+            if (textoCarrera.length > 0) {
+              textoConcatenadoCarrera +=
+                (textoConcatenadoCarrera ? ", " : "") + textoCarrera;
+            }
+            const textoHoras = carga.horario ?? "";
+            if (textoHoras.length > 0) {
+              textoConcatenadoHoras +=
+                (textoConcatenadoHoras ? ", " : "") + textoHoras;
+            }
+          });
+          form.getTextField("Asignatura").setText(textoConcatenadoAsignatura);
+          form.getTextField("Grupo").setText(textoConcatenadoGrupo);
+          form.getTextField("Carrera").setText(textoConcatenadoCarrera);
+          form.getTextField("Creditos").setText(textoConcatenadoHoras);
+          form
+            .getTextField("Nombre_Docente2")
+            .setText(
+              usuario.nombre + " " + usuario.ap_pat + " " + usuario.ap_mat
+            );
+        },
+      },
+      "Carta de Evaluacion": {
+        template: "Carta de Evaluacion.pdf",
+        fill: (form, usuario, docente) => {
+          form.getTextField("Fecha").setText(obtenerFechaFormateada());
+          form
+            .getTextField("Nombre_Docente")
+            .setText(
+              usuario.nombre + " " + usuario.ap_pat + " " + usuario.ap_mat
+            );
+          form
+            .getTextField("Nombre_Docente2")
+            .setText(
+              usuario.nombre + " " + usuario.ap_pat + " " + usuario.ap_mat
+            );
+          form
+            .getTextField("Numero_Afiliacion")
+            .setText(docente.numero_afiliacion);
+          form
+            .getTextField("Nombre_Docente3")
+            .setText(
+              usuario.nombre + " " + usuario.ap_pat + " " + usuario.ap_mat
+            );
+        },
+      },
+      "Constancia Tutorias": {
+        template: "Constancia Tutorias.pdf",
+        fill: (form, usuario, docente) => {
+          form
+            .getTextField("Nombre_Docente")
+            .setText(
+              usuario.nombre + " " + usuario.ap_pat + " " + usuario.ap_mat
+            );
+          let totalAlumnos = 0;
+          tutorias?.forEach((carga, index) => {
+            const idx = index + 1;
+            const alumnos = carga.notutorados ?? 0;
+            totalAlumnos += alumnos;
+          });
+          form.getTextField("Total_Tutorados").setText(String(totalAlumnos));
+        },
+      },
+      "Constancia de Recursos": {
+        template: "Constancia de Recursos.pdf",
+        fill: (form, usuario, docente) => {
+          form
+            .getTextField("Nombre_Docente")
+            .setText(
+              usuario.nombre + " " + usuario.ap_pat + " " + usuario.ap_mat
+            );
+          form.getTextField("Semestre_Recurso").setText(recursos.semestreelaboracion);
+          form.getTextField("Materia").setText(recursos.materia.nombre);
+          form.getTextField("Programa_Educativo").setText(recursos.programaeducativo);
+          form.getTextField("Fecha").setText(obtenerFechaFormateada());
+        },
+      },
     };
 
     const handler = documentHandlers[tipodoc];
@@ -245,7 +493,145 @@ export async function POST(
       "Constancia Alumnos Atendidos": {
         documentoUUID: "a0473e8a-832f-4565-8a84-71a25a263930",
         puestoGenerador: "Jefe del Departamento de Servicios Escolares",
+        validar: async () => {
+          const { data: materias } = await supabase
+            .from("cargamaterias")
+            .select(
+              `
+    *,
+    materia (
+      materiaid,
+      clavemateria,
+      nombre,
+      creditos,
+      carrera
+    )
+  `
+            )
+            .eq("docente_rfc", usuario.docente_rfc);
+
+          return Array.isArray(materias) && materias.length > 0;
+        },
+      },
+
+      "Formato de Actividades": {
+        documentoUUID: "879017b6-aa3a-450c-84f0-a106dc5bca3f",
+        puestoGenerador: "Coordinador de Carrera",
+        validar: async () => {
+          const { data: materias } = await supabase
+            .from("cargamaterias")
+            .select(
+              `
+    *,
+    materia (
+      materiaid,
+      clavemateria,
+      nombre,
+      creditos,
+      carrera
+    )
+  `
+            )
+            .eq("docente_rfc", usuario.docente_rfc);
+          const { data: apoyos } = await supabase
+            .from("apoyoadocencia")
+            .select("*")
+            .eq("docente_rfc", usuario.docente_rfc);
+          const tieneMaterias = Array.isArray(materias) && materias.length > 0;
+          const tieneApoyos = Array.isArray(apoyos) && apoyos.length > 0;
+
+          return tieneMaterias || tieneApoyos;
+        },
+      },
+      "Constancia de Cumplimiento de Actividades": {
+        documentoUUID: "d417fd2c-0874-4156-9092-2172f266390f",
+        puestoGenerador: "Subdireccion Academica",
+        validar: async () => {
+          const { data: materias } = await supabase
+            .from("cargamaterias")
+            .select(
+              `
+    *,
+    materia (
+      materiaid,
+      clavemateria,
+      nombre,
+      creditos,
+      carrera
+    )
+  `
+            )
+            .eq("docente_rfc", usuario.docente_rfc);
+
+          return Array.isArray(materias) && materias.length > 0;
+        },
+      },
+      "Carta de Liberacion de Actividades": {
+        documentoUUID: "e9c608c6-2d8e-4c0d-819b-8151e7c797ea",
+        puestoGenerador: "Recursos Humanos",
         validar: async () => true,
+      },
+      "Carta de Grupos Licenciatura": {
+        documentoUUID: "d2c89db2-3c03-48f3-8838-5ce9c92cbc22",
+        puestoGenerador: "Recursos Humanos",
+        validar: async () => {
+          const { data: materias } = await supabase
+            .from("cargamaterias")
+            .select(
+              `
+    *,
+    materia (
+      materiaid,
+      clavemateria,
+      nombre,
+      creditos,
+      carrera
+    )
+  `
+            )
+            .eq("docente_rfc", usuario.docente_rfc);
+
+          return Array.isArray(materias) && materias.length > 0;
+        },
+      },
+      "Carta de Evaluacion": {
+        documentoUUID: "35c6b0d1-b2d4-4f0e-9f6d-2a53d143b349",
+        puestoGenerador: "Recursos Humanos",
+        validar: async () => true,
+      },
+      "Constancia Tutorias": {
+        documentoUUID: "4afd2ad2-0450-44b4-8ef1-6082ae40fc76",
+        puestoGenerador: "Jefe del Departamento de Desarrollo Academico",
+        validar: async () => {
+          const { data: tutorias } = await supabase
+            .from("tutores")
+            .select("*")
+            .eq("docente_rfc", usuario.docente_rfc);
+
+          return Array.isArray(tutorias) && tutorias.length > 0;
+        },
+      },
+      "Constancia de Recursos": {
+        documentoUUID: "2a28acbd-afe5-41ae-8bb4-cc5406ed1a50",
+        puestoGenerador: "Jefe del Departamento de Sistemas",
+        validar: async () => {
+          const { data: recursos } = await supabase
+            .from("recursoeducativo")
+            .select(
+              `
+    *,
+    materia (
+      materiaid,
+      clavemateria,
+      nombre,
+      creditos,
+      carrera
+    )
+  `
+            )
+            .eq("docente_rfc", usuario.docente_rfc);
+          return Array.isArray(recursos) && recursos.length > 0;
+        },
       },
     } as const;
 
@@ -314,7 +700,9 @@ export async function POST(
     const tipoDocumentoUUID = eventHandler.documentoUUID;
 
     // Insertar Documento
-    const { error: insertDocErr, data } = await supabase.from("documento").insert({
+    const { error: insertDocErr, data } = await supabase
+      .from("documento")
+      .insert({
         estadoactual: "Generado",
         rutaarchivo: pdfUrl,
         tipodocid: tipoDocumentoUUID,
