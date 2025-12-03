@@ -1,12 +1,11 @@
 alter table "public"."eventogeneracion" drop constraint "eventogeneracion_tipodocumento_fkey";
 
-
   create table "public"."tickets" (
     "id" uuid not null default gen_random_uuid(),
     "created_at" timestamp with time zone not null default now(),
     "matter" character varying,
     "message" character varying,
-    "document_id" uuid default gen_random_uuid()
+    "document_id" uuid null
       );
 
 
