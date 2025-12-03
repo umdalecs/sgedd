@@ -56,7 +56,7 @@ export async function register(values: z.infer<typeof RegisterSchema>) {
     const fecha_ingreso = new Date(docente.fecha_ingreso).getFullYear();
 
     // Si  no cumple los requisitos de registro no se permite el registro
-    if (docente.hrs_carga < 8 || (now - fecha_ingreso) < 1) {
+    if (docente.hrs_carga < 8 || (now - fecha_ingreso) < 1 || docente.categoria_plaza === "PTC") {
       return {
                 error: "No cumples los requisitos para inscribirte en SGEDD",
       };
